@@ -1,5 +1,10 @@
 # SAVER Verifier
 
+![x402](https://img.shields.io/badge/x402-enabled-blue)
+![Network](https://img.shields.io/badge/network-Base%20Mainnet-blue)
+![Payment](https://img.shields.io/badge/payment-USDC-green)
+![API](https://img.shields.io/badge/API-OpenAPI-orange)
+
 ## Paid Trust Infrastructure for Autonomous AI Agents
 
 SAVER Verifier provides a machine-to-machine verification layer for
