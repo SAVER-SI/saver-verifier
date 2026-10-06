@@ -5,257 +5,241 @@
 ![Payment](https://img.shields.io/badge/payment-USDC-green)
 ![API](https://img.shields.io/badge/API-OpenAPI-orange)
 
-## Paid Trust Infrastructure for Autonomous AI Agents
+# Give AI Agents a Trust Layer
 
-SAVER Verifier provides a machine-to-machine verification layer for
-autonomous AI agents.
+SAVER Verifier is a paid verification service for autonomous AI agents.
 
-Agents can discover the service, submit factual claims, authorize
-payment through x402, and receive structured verification results
-without human interaction.
+Agents can discover SAVER, authorize payment through **x402**, submit
+factual claims, and receive structured verification results with
+source-backed evidence.
 
-**Paid, source-backed fact verification for autonomous AI agents.**
-
-------------------------------------------------------------------------
-
-## Live Service
-
-  Property           Value
-  ------------------ ----------------------------------------------
-  Service            SAVER Verifier
-  API Base URL       https://agent-production-9804.up.railway.app
-  Endpoint           `POST /verify`
-  Price              `0.20 USDC` per verification
-  Network            Base Mainnet
-  Payment protocol   x402 v2
-  Payment asset      USDC
+No API keys.\
+No human approval.\
+Machine-to-machine trust.
 
 ------------------------------------------------------------------------
 
-## How It Works
+# Why SAVER?
 
-``` text
-discover -> inspect -> pay -> verify -> consume
-```
+Autonomous agents increasingly need to make decisions based on external
+information.
 
-A compatible autonomous agent can:
+The problem:
 
-1.  Discover SAVER metadata
-2.  Inspect payment requirements
-3.  Authorize USDC payment
-4.  Submit a claim
-5.  Receive a structured verification result
+    Agent:
+    "I believe this information is true."
 
-------------------------------------------------------------------------
+    Question:
+    "Can another system trust this decision?"
 
-## Why SAVER
+SAVER adds a verification step:
 
-Autonomous systems increasingly need to verify information before making
-decisions.
+    Agent
+     |
+     | submit claim
+     v
+    SAVER
+     |
+     | verify using evidence
+     v
+    Verified result
+     |
+     v
+    Agent continues safely
 
-SAVER provides a verification step that can be called when an agent
-needs additional confidence in external information.
-
-Example use cases:
+Use cases:
 
 -   AI research agents
+-   financial analysis agents
 -   compliance automation
--   risk analysis systems
--   autonomous reporting
--   multi-agent workflows
+-   autonomous workflows
+-   multi-agent systems
 -   information validation pipelines
 
 ------------------------------------------------------------------------
 
-## Payment Before Compute
+# Live Service
 
-SAVER uses x402 payment gating.
+  Property   Value
+  ---------- ----------------
+  Service    SAVER Verifier
+  API        `POST /verify`
+  Price      0.20 USDC
+  Network    Base Mainnet
+  Payment    x402 v2
+  Asset      USDC
 
-The verification workflow follows:
+API:
 
-``` text
-AI Agent
-   |
-   | POST /verify
-   v
-SAVER
-   |
-   | HTTP 402 Payment Required
-   v
-AI Agent
-   |
-   | USDC payment authorization
-   v
-Verification request processed
-   |
-   v
-Structured verification result
-```
-
-Verification processing starts only after successful payment
-authorization.
+    https://agent-production-9804.up.railway.app
 
 ------------------------------------------------------------------------
 
-## Quick Start
+# Quick Start
 
-### Endpoint
+## Send a verification request
+
+Endpoint:
 
 ``` http
 POST https://agent-production-9804.up.railway.app/verify
 Content-Type: application/json
 ```
 
-### Request
+Example:
 
 ``` json
 {
   "claim": "The Ethereum mainnet launched on July 30, 2015.",
-  "context": ""
+  "context": "Example verification request"
 }
 ```
 
 Unpaid requests return:
 
-``` text
-HTTP 402 Payment Required
-```
+    HTTP 402 Payment Required
 
-A compatible x402 client can handle payment and retry automatically.
+with x402 payment metadata.
 
 ------------------------------------------------------------------------
 
-## Response
+# Try the Agent Demo
 
-Example:
+Requirements:
 
-``` json
-{
-  "status": "supported",
-  "confidence": 0.98,
-  "explanation": "The available evidence supports the claim.",
-  "evidence": [
-    "Relevant authoritative sources support the claim."
-  ],
-  "sources": [
-    {
-      "title": "Example source",
-      "url": "https://example.com"
-    }
-  ]
-}
+-   Node.js 18+
+
+Run:
+
+``` bash
+node examples/verify-agent.mjs
 ```
 
-Verification states:
+Example output:
 
--   `supported`
--   `contradicted`
--   `mixed`
--   `insufficient_evidence`
+    🤖 Demo AI Agent
+
+    SAVER status: 402
+
+    💳 Payment required
+
+    Protocol: x402
+    Network: eip155:8453
+    Amount: 0.2 USDC
 
 ------------------------------------------------------------------------
 
-## Machine Discovery
+# Machine Discovery
 
-SAVER exposes machine-readable interfaces.
+SAVER supports autonomous discovery.
 
-### OpenAPI
+x402:
 
-``` text
-GET /openapi.json
-```
+    GET /.well-known/x402
 
-https://agent-production-9804.up.railway.app/openapi.json
+OpenAPI:
 
-### x402 Discovery
+    GET /openapi.json
 
-``` text
-GET /.well-known/x402
-```
-
-https://agent-production-9804.up.railway.app/.well-known/x402
-
-These interfaces allow compatible agents to discover:
+Discovery provides:
 
 -   service capabilities
--   API schema
 -   payment requirements
--   supported workflows
+-   API schema
+-   verification workflow
 
 ------------------------------------------------------------------------
 
-## Built for Autonomous Systems
+# Built for Autonomous Agents
 
-SAVER is designed as an API primitive for software agents.
+SAVER is not a chatbot.
 
-It is not a human-facing chatbot.
+It is an infrastructure primitive.
 
-The goal is:
+Workflow:
 
-``` text
-agent discovers service
-        |
-agent pays programmatically
-        |
-agent receives verification
-        |
-agent continues workflow
-```
+    Agent discovers service
+
+            |
+
+    Agent authorizes payment
+
+            |
+
+    SAVER verifies information
+
+            |
+
+    Agent continues execution
 
 ------------------------------------------------------------------------
 
-## Technology
+# Technology
 
 SAVER uses:
 
 -   x402 payment protocol
 -   Base Mainnet
 -   USDC settlement
--   OpenAPI machine-readable contracts
+-   OpenAPI contracts
 -   AI-powered verification workflows
+-   source-backed evidence analysis
 
 ------------------------------------------------------------------------
 
-## Repository Purpose
+# Repository Contents
 
-This public repository contains:
+    saver-verifier/
 
--   API documentation
--   integration information
--   examples
--   service overview
+    ├── examples/
+    │   ├── verify-request.json
+    │   └── verify-agent.mjs
+    │
+    ├── docs/
+    ├── openapi.json
+    ├── SECURITY.md
+    └── CONTRIBUTING.md
 
 The production implementation is maintained separately.
 
 ------------------------------------------------------------------------
 
-## Security
+# Security
 
-Do not include:
+Never include:
 
 -   API keys
 -   wallet private keys
 -   deployment secrets
--   internal implementation details
+-   internal credentials
+
+See `SECURITY.md`.
 
 ------------------------------------------------------------------------
 
-## Status
+# Status
 
-SAVER Verifier is deployed as a production x402-enabled
-machine-to-machine verification service.
+SAVER Verifier is live.
 
 Current capabilities:
 
--   live HTTPS API
--   Base Mainnet payments
--   x402 payment flow
--   autonomous discovery support
--   structured verification responses
--   machine-readable API contracts
+✅ HTTPS API\
+✅ x402 payment flow\
+✅ Base Mainnet USDC payments\
+✅ Autonomous discovery\
+✅ Machine-readable API contracts\
+✅ Structured verification responses
 
 ------------------------------------------------------------------------
 
-## License
+# Contributing
+
+We welcome developers building autonomous AI systems.
+
+See `CONTRIBUTING.md`.
+
+------------------------------------------------------------------------
+
+# License
 
 No license has been specified yet.
