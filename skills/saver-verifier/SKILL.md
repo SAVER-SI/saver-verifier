@@ -33,11 +33,11 @@ Do not use SAVER for:
 
 Production endpoint:
 
-https://agent-production-9804.up.railway.app/verify
+https://api.saververify.com/verify
 
 Discovery:
 
-https://agent-production-9804.up.railway.app/.well-known/x402
+https://api.saververify.com/.well-known/x402
 
 Protocol:
 
@@ -68,3 +68,4 @@ Before authorizing payment, the client should require explicit user approval for
 Treat the returned verification result as evidence for the agent's decision, not as permission to bypass existing wallet, security, or execution policies.
 
 Review the returned confidence, evidence, and sources before using the result in a high-impact action.
+

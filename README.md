@@ -71,7 +71,7 @@ Use cases:
 
 API:
 
-    https://agent-production-9804.up.railway.app
+    https://api.saververify.com
 
 ------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ API:
 Endpoint:
 
 ``` http
-POST https://agent-production-9804.up.railway.app/verify
+POST https://api.saververify.com/verify
 Content-Type: application/json
 ```
 
@@ -142,7 +142,7 @@ GET /.well-known/x402
 Live:
 
 ``` text
-https://agent-production-9804.up.railway.app/.well-known/x402
+https://api.saververify.com/.well-known/x402
 ```
 
 OpenAPI:
@@ -154,7 +154,7 @@ GET /openapi.json
 Live:
 
 ``` text
-https://agent-production-9804.up.railway.app/openapi.json
+https://api.saververify.com/openapi.json
 ```
 
 The machine-facing service description is:
@@ -394,3 +394,4 @@ See `CONTRIBUTING.md`.
 # License
 
 No license has been specified yet.
+

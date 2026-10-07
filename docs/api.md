@@ -20,7 +20,7 @@ The API allows compatible agents and software systems to submit factual claims a
 
 ```text
 
-https://agent-production-9804.up.railway.app
+https://api.saververify.com
 
 ```
 
@@ -48,7 +48,7 @@ Full URL:
 
 ```text
 
-https://agent-production-9804.up.railway.app/verify
+https://api.saververify.com/verify
 
 ```
 
@@ -334,7 +334,7 @@ URL:
 
 ```text
 
-https://agent-production-9804.up.railway.app/openapi.json
+https://api.saververify.com/openapi.json
 
 ```
 
@@ -362,7 +362,7 @@ URL:
 
 ```text
 
-https://agent-production-9804.up.railway.app/.well-known/x402
+https://api.saververify.com/.well-known/x402
 
 ```
 
@@ -426,7 +426,7 @@ The complete machine-readable API definition is available here:
 
 ```text
 
-https://agent-production-9804.up.railway.app/openapi.json
+https://api.saververify.com/openapi.json
 
 ```
 
@@ -446,7 +446,7 @@ Payment discovery information is available here:
 
 ```text
 
-https://agent-production-9804.up.railway.app/.well-known/x402
+https://api.saververify.com/.well-known/x402
 
 ```
 
@@ -473,4 +473,5 @@ This public repository contains:
 
 
 The production implementation is maintained separately.
+
 

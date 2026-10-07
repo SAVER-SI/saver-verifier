@@ -1,5 +1,5 @@
 async function main() {
-  const SAVER_URL = "https://agent-production-9804.up.railway.app/verify";
+  const SAVER_URL = "https://api.saververify.com/verify";
 
   const request = {
     claim: "The Ethereum mainnet launched on July 30, 2015.",
