@@ -104,6 +104,40 @@ SAVER follows these principles:
 
 
 
+\## ClawHub Skill Audit
+
+
+
+The published SAVER Verifier skill is scanned by ClawHub security tooling.
+
+
+
+\- SkillSpector reports no suspicious patterns detected.
+
+\- A.I.G reports one warning: payment authorization lacks an explicit user confirmation gate.
+
+
+
+Before authorizing a 0.20 USDC verification charge, an x402 wallet or client should require explicit user approval for each charge or enforce a preconfigured spending policy with appropriate per-call, session, or daily limits.
+
+
+
+SAVER verification results are evidence signals and must not be treated as permission to bypass existing wallet, security, or execution policies.
+
+
+
+ClawHub audit:
+
+
+
+https://clawhub.ai/saver-si/skills/saver-verifier/security-audit
+
+
+
+\---
+
+
+
 \## Scope
 
 

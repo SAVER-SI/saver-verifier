@@ -61,6 +61,8 @@ Example body:
 
 The endpoint is x402-protected. An unpaid request returns HTTP 402 with payment requirements. An x402-compatible client should authorize payment and retry the request.
 
+Before authorizing payment, the client should require explicit user approval for each charge or enforce a preconfigured spending policy with appropriate per-call, session, or daily limits. Do not authorize payment if neither control is in place.
+
 ## Using the result
 
 Treat the returned verification result as evidence for the agent's decision, not as permission to bypass existing wallet, security, or execution policies.

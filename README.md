@@ -244,7 +244,7 @@ the protected request.
 
 SAVER Verifier is published on ClawHub as @saver-si/saver-verifier.
 
-Current release: v1.0.0. Security audit: Pass.
+Current release: v1.0.0. ClawHub security audit: one payment-authorization warning; SkillSpector reports no suspicious patterns.
 
 Install: openclaw skills install @saver-si/saver-verifier
 
@@ -329,6 +329,12 @@ Never include:
 
 See `SECURITY.md`.
 
+ClawHub skill audit:
+
+    https://clawhub.ai/saver-si/skills/saver-verifier/security-audit
+
+Before authorizing a SAVER payment, configure the x402 wallet or client to require explicit approval for each charge or enforce appropriate per-call, session, or daily spending limits.
+
 ------------------------------------------------------------------------
 
 # Status
@@ -346,7 +352,7 @@ Current capabilities:
 ✅ x402scan indexing\
 ✅ OpenClaw skill source\
 ✅ Published on ClawHub as `@saver-si/saver-verifier`\
-✅ ClawHub security audit passed\
+⚠️ ClawHub security audit: one payment-authorization warning; SkillSpector reports no suspicious patterns\
 ✅ Structured verification responses
 
 ------------------------------------------------------------------------
