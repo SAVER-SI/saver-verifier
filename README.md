@@ -7,11 +7,11 @@
 
 # Give AI Agents a Trust Layer
 
-SAVER Verifier is a paid verification service for autonomous AI agents.
+SAVER Verifier is a source-backed factual claim verification service for autonomous AI agents.
 
 Agents can discover SAVER, authorize payment through **x402**, submit
 factual claims, and receive structured verification results with
-source-backed evidence.
+source-backed evidence before they act, pay, or make a decision.
 
 No API keys.\
 No human approval.\
@@ -32,7 +32,7 @@ The problem:
     Question:
     "Can another system trust this decision?"
 
-SAVER adds a verification step:
+SAVER adds an independent verification step:
 
     Agent
      |
@@ -42,10 +42,10 @@ SAVER adds a verification step:
      |
      | verify using evidence
      v
-    Verified result
+    Source-backed result
      |
      v
-    Agent continues safely
+    Agent decides whether to continue
 
 Use cases:
 
@@ -131,22 +131,119 @@ Example output:
 
 # Machine Discovery
 
-SAVER supports autonomous discovery.
+SAVER is designed to be discovered programmatically by autonomous software.
 
-x402:
+x402 well-known discovery:
 
-    GET /.well-known/x402
+``` text
+GET /.well-known/x402
+```
+
+Live:
+
+``` text
+https://agent-production-9804.up.railway.app/.well-known/x402
+```
 
 OpenAPI:
 
-    GET /openapi.json
+``` text
+GET /openapi.json
+```
 
-Discovery provides:
+Live:
+
+``` text
+https://agent-production-9804.up.railway.app/openapi.json
+```
+
+The machine-facing service description is:
+
+``` text
+Source-backed factual claim verification for autonomous AI agents. Verify external information with web evidence and cited sources before an agent acts, pays, or makes a decision.
+```
+
+Discovery exposes:
 
 -   service capabilities
--   payment requirements
+-   `POST /verify`
+-   x402 payment requirements
+-   price and network
 -   API schema
 -   verification workflow
+-   ownership information
+
+SAVER also publishes x402/Bazaar discovery metadata with tags including:
+
+``` text
+fact-verification
+claim-verification
+web-evidence
+ai-agents
+fact-checking
+```
+
+------------------------------------------------------------------------
+
+# x402 Ecosystem Visibility
+
+SAVER is indexed on x402scan as a live x402 service with observable
+on-chain usage.
+
+Public listing:
+
+``` text
+https://www.x402scan.com/server/ec61b7ea-e709-42eb-895e-1a3e9d0f61da
+```
+
+x402scan may apply broad UI categories of its own. SAVER's authoritative
+capability description remains the metadata exposed by the live service
+through x402 discovery and OpenAPI.
+
+------------------------------------------------------------------------
+
+# OpenClaw / ClawHub
+
+SAVER includes an OpenClaw-compatible skill for agent-native discovery.
+
+Skill source:
+
+``` text
+skills/saver-verifier/SKILL.md
+```
+
+Repository path:
+
+``` text
+https://github.com/SAVER-SI/saver-verifier/tree/main/skills/saver-verifier
+```
+
+Skill identity:
+
+``` text
+saver-verifier@1.0.0
+```
+
+ClawHub publisher:
+
+``` text
+@saver-si
+```
+
+The skill teaches compatible agents:
+
+-   when SAVER should be used
+-   where to discover the live service
+-   how to submit a factual claim
+-   how to interpret the verification result
+-   when SAVER should not replace deterministic security controls
+
+The skill does not replace an x402 payment client. The calling agent still
+needs an x402-compatible payment capability to authorize payment and retry
+the protected request.
+
+The first ClawHub release has been submitted and is subject to ClawHub's
+security scanning and publication process.
 
 ------------------------------------------------------------------------
 
@@ -154,11 +251,15 @@ Discovery provides:
 
 SAVER is not a chatbot.
 
-It is an infrastructure primitive.
+It is an independent verification primitive for autonomous software.
 
 Workflow:
 
-    Agent discovers service
+    Agent discovers SAVER
+
+            |
+
+    Agent inspects x402 requirements
 
             |
 
@@ -166,11 +267,15 @@ Workflow:
 
             |
 
-    SAVER verifies information
+    SAVER verifies the claim
 
             |
 
-    Agent continues execution
+    Agent receives evidence + sources
+
+            |
+
+    Agent decides whether to continue
 
 ------------------------------------------------------------------------
 
@@ -181,7 +286,10 @@ SAVER uses:
 -   x402 payment protocol
 -   Base Mainnet
 -   USDC settlement
--   OpenAPI contracts
+-   OpenAPI 3.1 contracts
+-   x402 well-known discovery
+-   Bazaar discovery metadata
+-   OpenClaw skill metadata
 -   AI-powered verification workflows
 -   source-backed evidence analysis
 
@@ -196,6 +304,9 @@ SAVER uses:
     │   └── verify-agent.mjs
     │
     ├── docs/
+    ├── skills/
+    │   └── saver-verifier/
+    │       └── SKILL.md
     ├── openapi.json
     ├── SECURITY.md
     └── CONTRIBUTING.md
@@ -228,7 +339,37 @@ Current capabilities:
 ✅ Base Mainnet USDC payments\
 ✅ Autonomous discovery\
 ✅ Machine-readable API contracts\
+✅ Bazaar discovery metadata\
+✅ x402scan indexing\
+✅ OpenClaw skill source\
+✅ ClawHub submission under `@saver-si`\
 ✅ Structured verification responses
+
+------------------------------------------------------------------------
+
+# How Agents Should Use SAVER
+
+SAVER should be used when an agent needs an independent evidence check for a
+factual premise obtained from external content, another tool, or another
+agent.
+
+Good examples:
+
+-   verify a factual claim before a costly or irreversible action
+-   independently check information produced by another agent
+-   validate external information before relying on it in a workflow
+-   obtain cited evidence before an autonomous decision
+
+SAVER is not intended to replace:
+
+-   transaction simulation
+-   token-contract security analysis
+-   sanctions screening
+-   wallet policy enforcement
+-   deterministic calculations that can be checked locally
+
+Agents should treat SAVER as an evidence signal and combine it with their
+existing execution, wallet, and security policies.
 
 ------------------------------------------------------------------------
 
