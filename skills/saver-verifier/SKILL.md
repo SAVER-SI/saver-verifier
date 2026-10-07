@@ -1,6 +1,6 @@
 ---
 name: saver-verifier
-description: Verify factual claims with source-backed evidence before an autonomous agent acts, pays, or makes a decision.
+description: Fact verification, fact checking, and claim verification for autonomous AI agents using source-backed web evidence and cited sources before actions, payments, or decisions.
 version: 1.0.0
 metadata:
   openclaw:
