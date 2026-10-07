@@ -242,8 +242,11 @@ The skill does not replace an x402 payment client. The calling agent still
 needs an x402-compatible payment capability to authorize payment and retry
 the protected request.
 
-The first ClawHub release has been submitted and is subject to ClawHub's
-security scanning and publication process.
+SAVER Verifier is published on ClawHub as @saver-si/saver-verifier.
+
+Current release: v1.0.0. Security audit: Pass.
+
+Install: openclaw skills install @saver-si/saver-verifier
 
 ------------------------------------------------------------------------
 
@@ -342,7 +345,8 @@ Current capabilities:
 ✅ Bazaar discovery metadata\
 ✅ x402scan indexing\
 ✅ OpenClaw skill source\
-✅ ClawHub submission under `@saver-si`\
+✅ Published on ClawHub as `@saver-si/saver-verifier`\
+✅ ClawHub security audit passed\
 ✅ Structured verification responses
 
 ------------------------------------------------------------------------
