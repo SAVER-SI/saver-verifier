@@ -244,7 +244,7 @@ the protected request.
 
 SAVER Verifier is published on ClawHub as @saver-si/saver-verifier.
 
-Current release: v1.0.0. ClawHub security audit: one payment-authorization warning; SkillSpector reports no suspicious patterns.
+Current release: v1.0.2. Security audit: Pass.
 
 Install: openclaw skills install @saver-si/saver-verifier
 
@@ -352,7 +352,7 @@ Current capabilities:
 ✅ x402scan indexing\
 ✅ OpenClaw skill source\
 ✅ Published on ClawHub as `@saver-si/saver-verifier`\
-⚠️ ClawHub security audit: one payment-authorization warning; SkillSpector reports no suspicious patterns\
+✅ ClawHub security audit passed\
 ✅ Structured verification responses
 
 ------------------------------------------------------------------------

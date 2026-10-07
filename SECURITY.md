@@ -112,9 +112,11 @@ The published SAVER Verifier skill is scanned by ClawHub security tooling.
 
 
 
-\- SkillSpector reports no suspicious patterns detected.
+Current release: v1.0.2. Security audit: Pass.
 
-\- A.I.G reports one warning: payment authorization lacks an explicit user confirmation gate.
+
+
+A previous audit warning identified that payment authorization guidance did not explicitly require a user confirmation gate or bounded spending policy. Version 1.0.2 addresses that guidance.
 
 
 
