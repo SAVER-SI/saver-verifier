@@ -7,7 +7,8 @@
 
 # Give AI Agents a Trust Layer
 
-SAVER Verifier is a source-backed factual claim verification service for autonomous AI agents.
+SAVER Verifier is a source-backed factual claim verification service for
+autonomous AI agents.
 
 Agents can discover SAVER, authorize payment through **x402**, submit
 factual claims, and receive structured verification results with
@@ -131,7 +132,8 @@ Example output:
 
 # Machine Discovery
 
-SAVER is designed to be discovered programmatically by autonomous software.
+SAVER is designed to be discovered programmatically by autonomous
+software.
 
 x402 well-known discovery:
 
@@ -155,13 +157,25 @@ Live:
 
 ``` text
 https://api.saververify.com/openapi.json
+
+### LLM and crawler discovery
+
+SAVER also exposes lightweight machine-readable discovery files:
+
+```text
+https://api.saververify.com/llms.txt
+https://api.saververify.com/robots.txt
 ```
 
-The machine-facing service description is:
+`llms.txt` provides a concise service description for AI-oriented
+discovery. `robots.txt` exposes the public sitemap location for crawler
+discovery.
 
-``` text
-Source-backed factual claim verification for autonomous AI agents. Verify external information with web evidence and cited sources before an agent acts, pays, or makes a decision.
-```
+
+    The machine-facing service description is:
+
+    ``` text
+    Source-backed factual claim verification for autonomous AI agents. Verify external information with web evidence and cited sources before an agent acts, pays, or makes a decision.
 
 Discovery exposes:
 
@@ -221,7 +235,7 @@ https://github.com/SAVER-SI/saver-verifier/tree/main/skills/saver-verifier
 Skill identity:
 
 ``` text
-saver-verifier@1.0.0
+saver-verifier@1.0.3
 ```
 
 ClawHub publisher:
@@ -238,13 +252,13 @@ The skill teaches compatible agents:
 -   how to interpret the verification result
 -   when SAVER should not replace deterministic security controls
 
-The skill does not replace an x402 payment client. The calling agent still
-needs an x402-compatible payment capability to authorize payment and retry
-the protected request.
+The skill does not replace an x402 payment client. The calling agent
+still needs an x402-compatible payment capability to authorize payment
+and retry the protected request.
 
 SAVER Verifier is published on ClawHub as @saver-si/saver-verifier.
 
-Current release: v1.0.2. Security audit: Pass.
+Current release: v1.0.3. Security audit: Pass.
 
 Install: openclaw skills install @saver-si/saver-verifier
 
@@ -333,7 +347,9 @@ ClawHub skill audit:
 
     https://clawhub.ai/saver-si/skills/saver-verifier/security-audit
 
-Before authorizing a SAVER payment, configure the x402 wallet or client to require explicit approval for each charge or enforce appropriate per-call, session, or daily spending limits.
+Before authorizing a SAVER payment, configure the x402 wallet or client
+to require explicit approval for each charge or enforce appropriate
+per-call, session, or daily spending limits.
 
 ------------------------------------------------------------------------
 
@@ -359,9 +375,9 @@ Current capabilities:
 
 # How Agents Should Use SAVER
 
-SAVER should be used when an agent needs an independent evidence check for a
-factual premise obtained from external content, another tool, or another
-agent.
+SAVER should be used when an agent needs an independent evidence check
+for a factual premise obtained from external content, another tool, or
+another agent.
 
 Good examples:
 
@@ -378,8 +394,8 @@ SAVER is not intended to replace:
 -   wallet policy enforcement
 -   deterministic calculations that can be checked locally
 
-Agents should treat SAVER as an evidence signal and combine it with their
-existing execution, wallet, and security policies.
+Agents should treat SAVER as an evidence signal and combine it with
+their existing execution, wallet, and security policies.
 
 ------------------------------------------------------------------------
 
@@ -394,4 +410,3 @@ See `CONTRIBUTING.md`.
 # License
 
 No license has been specified yet.
-
