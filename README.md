@@ -410,3 +410,10 @@ See `CONTRIBUTING.md`.
 # License
 
 No license has been specified yet.
+
+## Demo
+
+See SAVER Verifier in action:
+
+https://saververify.com/media/SAVER-Verifier.mp4
+
