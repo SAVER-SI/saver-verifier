@@ -1,7 +1,7 @@
 ---
 name: saver-verifier
 description: Fact verification, fact checking, and claim verification for autonomous AI agents using source-backed web evidence and cited sources before actions, payments, or decisions.
-version: 1.0.0
+version: 1.0.3
 metadata:
   openclaw:
     emoji: "🛡️"
@@ -68,4 +68,5 @@ Before authorizing payment, the client should require explicit user approval for
 Treat the returned verification result as evidence for the agent's decision, not as permission to bypass existing wallet, security, or execution policies.
 
 Review the returned confidence, evidence, and sources before using the result in a high-impact action.
+
 

@@ -1,8 +1,8 @@
-\# Security Policy
+# Security Policy
 
 
 
-\## Overview
+## Overview
 
 
 
@@ -14,11 +14,11 @@ Security is important because the service handles automated interactions, paymen
 
 
 
-\---
+---
 
 
 
-\## Supported Versions
+## Supported Versions
 
 
 
@@ -30,11 +30,11 @@ Older versions may not receive security fixes.
 
 
 
-\---
+---
 
 
 
-\## Reporting a Security Issue
+## Reporting a Security Issue
 
 
 
@@ -50,21 +50,21 @@ Include:
 
 
 
-\- Description of the issue
+- Description of the issue
 
-\- Steps to reproduce
+- Steps to reproduce
 
-\- Potential impact
+- Potential impact
 
-\- Any relevant technical details
-
-
-
-\---
+- Any relevant technical details
 
 
 
-\## Responsible Disclosure
+---
+
+
+
+## Responsible Disclosure
 
 
 
@@ -76,11 +76,11 @@ Please allow reasonable time for investigation and remediation before publicly d
 
 
 
-\---
+---
 
 
 
-\## Security Principles
+## Security Principles
 
 
 
@@ -88,23 +88,23 @@ SAVER follows these principles:
 
 
 
-\- Payment authorization before protected processing
+- Payment authorization before protected processing
 
-\- No exposure of private credentials
+- No exposure of private credentials
 
-\- Machine-readable API contracts
+- Machine-readable API contracts
 
-\- Separation between public documentation and production implementation
+- Separation between public documentation and production implementation
 
-\- Secure handling of service configuration
-
-
-
-\---
+- Secure handling of service configuration
 
 
 
-\## ClawHub Skill Audit
+---
+
+
+
+## ClawHub Skill Audit
 
 
 
@@ -112,7 +112,7 @@ The published SAVER Verifier skill is scanned by ClawHub security tooling.
 
 
 
-Current release: v1.0.2. Security audit: Pass.
+Current skill release: v1.0.3. Latest explicitly documented audited release: v1.0.2 — Pass.
 
 
 
@@ -136,11 +136,11 @@ https://clawhub.ai/saver-si/skills/saver-verifier/security-audit
 
 
 
-\---
+---
 
 
 
-\## Scope
+## Scope
 
 
 
@@ -148,23 +148,23 @@ Examples of security issues include:
 
 
 
-\- Unauthorized access
+- Unauthorized access
 
-\- Payment flow vulnerabilities
+- Payment flow vulnerabilities
 
-\- Authentication or authorization issues
+- Authentication or authorization issues
 
-\- Exposure of sensitive information
+- Exposure of sensitive information
 
-\- Data handling problems
-
-
-
-\---
+- Data handling problems
 
 
 
-\## Out of Scope
+---
+
+
+
+## Out of Scope
 
 
 
@@ -172,23 +172,24 @@ The following are generally not considered security vulnerabilities:
 
 
 
-\- General feature requests
+- General feature requests
 
-\- Documentation improvements
+- Documentation improvements
 
-\- Public API suggestions
+- Public API suggestions
 
-\- Expected API behavior
-
-
-
-\---
+- Expected API behavior
 
 
 
-\## Contact
+---
+
+
+
+## Contact
 
 
 
 For security reports, please contact the maintainers through the appropriate private communication channel.
+
 

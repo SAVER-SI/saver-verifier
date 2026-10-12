@@ -1,4 +1,4 @@
-\# Contributing to SAVER Verifier
+# Contributing to SAVER Verifier
 
 
 
@@ -10,11 +10,11 @@ This repository contains public documentation, API references, and integration e
 
 
 
-\---
+---
 
 
 
-\## Before Contributing
+## Before Contributing
 
 
 
@@ -22,11 +22,11 @@ Please review:
 
 
 
-\- README.md
+- README.md
 
-\- API documentation
+- API documentation
 
-\- x402 integration documentation
+- x402 integration documentation
 
 
 
@@ -34,11 +34,11 @@ The production implementation is maintained separately.
 
 
 
-\---
+---
 
 
 
-\## Types of Contributions
+## Types of Contributions
 
 
 
@@ -46,23 +46,23 @@ Useful contributions include:
 
 
 
-\- Documentation improvements
+- Documentation improvements
 
-\- API documentation suggestions
+- API documentation suggestions
 
-\- Integration examples
+- Integration examples
 
-\- Developer experience improvements
+- Developer experience improvements
 
-\- Bug reports related to public documentation
-
-
-
-\---
+- Bug reports related to public documentation
 
 
 
-\## Reporting Issues
+---
+
+
+
+## Reporting Issues
 
 
 
@@ -70,19 +70,19 @@ For documentation or public repository issues:
 
 
 
-1\. Check existing issues first
+1. Check existing issues first
 
-2\. Create a clear issue description
+2. Create a clear issue description
 
-3\. Include relevant examples or expected behavior
-
-
-
-\---
+3. Include relevant examples or expected behavior
 
 
 
-\## Pull Requests
+---
+
+
+
+## Pull Requests
 
 
 
@@ -90,21 +90,21 @@ When submitting a pull request:
 
 
 
-\- Keep changes focused
+- Keep changes focused
 
-\- Explain the purpose of the change
+- Explain the purpose of the change
 
-\- Update documentation when relevant
+- Update documentation when relevant
 
-\- Avoid including secrets or private information
-
-
-
-\---
+- Avoid including secrets or private information
 
 
 
-\## Security Issues
+---
+
+
+
+## Security Issues
 
 
 
@@ -124,11 +124,11 @@ SECURITY.md
 
 
 
-\---
+---
 
 
 
-\## Code of Conduct
+## Code of Conduct
 
 
 
@@ -137,4 +137,5 @@ Contributors are expected to communicate professionally and respectfully.
 
 
 The goal is to build reliable infrastructure for autonomous AI systems.
+
 
