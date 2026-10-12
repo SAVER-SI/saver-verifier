@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreSpend": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "franklin-prespend-hook.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
