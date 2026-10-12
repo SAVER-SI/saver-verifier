@@ -14,9 +14,7 @@ Agents can discover SAVER, authorize payment through **x402**, submit
 factual claims, and receive structured verification results with
 source-backed evidence before they act, pay, or make a decision.
 
-No API keys.\
-No human approval.\
-Machine-to-machine trust.
+No API keys.\`r`nNo account signup.\`r`nMachine-to-machine trust.
 
 ------------------------------------------------------------------------
 
@@ -157,6 +155,7 @@ Live:
 
 ``` text
 https://api.saververify.com/openapi.json
+` 
 
 ### LLM and crawler discovery
 
@@ -416,5 +415,6 @@ No license has been specified yet.
 See SAVER Verifier in action:
 
 https://saververify.com/media/SAVER-Verifier.mp4
+
 
 
