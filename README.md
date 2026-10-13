@@ -128,6 +128,30 @@ Example output:
 
 ------------------------------------------------------------------------
 
+# Full Paid Example
+
+The repository also includes a complete x402 payment example that performs
+a real SAVER verification on Base Mainnet.
+
+The wallet must contain sufficient USDC on Base Mainnet.
+
+PowerShell:
+
+```powershell
+$env:SAVER_PRIVATE_KEY="0x..."
+node examples/paid-verify.mjs
+```
+
+The x402 client handles the `402 Payment Required` response, signs the
+payment authorization, retries the request, and returns the structured
+verification result.
+
+Each successful paid request costs `0.20 USDC`.
+
+Never commit or share your private key.
+
+------------------------------------------------------------------------
+
 # Machine Discovery
 
 SAVER is designed to be discovered programmatically by autonomous
@@ -415,6 +439,4 @@ No license has been specified yet.
 See SAVER Verifier in action:
 
 https://saververify.com/media/SAVER-Verifier.mp4
-
-
 
