@@ -1,26 +1,14 @@
 # Contributing to SAVER Verifier
 
-
-
 Thank you for your interest in SAVER Verifier.
-
-
 
 This repository contains public documentation, API references, and integration examples for the SAVER verification service.
 
-
-
 ---
-
-
 
 ## Before Contributing
 
-
-
 Please review:
-
-
 
 - README.md
 
@@ -28,23 +16,13 @@ Please review:
 
 - x402 integration documentation
 
-
-
 The production implementation is maintained separately.
-
-
 
 ---
 
-
-
 ## Types of Contributions
 
-
-
 Useful contributions include:
-
-
 
 - Documentation improvements
 
@@ -56,19 +34,11 @@ Useful contributions include:
 
 - Bug reports related to public documentation
 
-
-
 ---
-
-
 
 ## Reporting Issues
 
-
-
 For documentation or public repository issues:
-
-
 
 1. Check existing issues first
 
@@ -76,19 +46,11 @@ For documentation or public repository issues:
 
 3. Include relevant examples or expected behavior
 
-
-
 ---
-
-
 
 ## Pull Requests
 
-
-
 When submitting a pull request:
-
-
 
 - Keep changes focused
 
@@ -98,23 +60,13 @@ When submitting a pull request:
 
 - Avoid including secrets or private information
 
-
-
 ---
-
-
 
 ## Security Issues
 
-
-
 Do not report security vulnerabilities through public issues.
 
-
-
 Please follow the process described in:
-
-
 
 ```text
 
@@ -122,20 +74,11 @@ SECURITY.md
 
 ```
 
-
-
 ---
-
-
 
 ## Code of Conduct
 
-
-
 Contributors are expected to communicate professionally and respectfully.
 
-
-
 The goal is to build reliable infrastructure for autonomous AI systems.
-
 

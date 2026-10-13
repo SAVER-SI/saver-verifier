@@ -179,7 +179,7 @@ Live:
 
 ``` text
 https://api.saververify.com/openapi.json
-` 
+```
 
 ### LLM and crawler discovery
 
@@ -193,12 +193,11 @@ https://api.saververify.com/robots.txt
 `llms.txt` provides a concise service description for AI-oriented
 discovery. `robots.txt` exposes the public sitemap location for crawler
 discovery.
+The machine-facing service description is:
 
-
-    The machine-facing service description is:
-
-    ``` text
-    Source-backed factual claim verification for autonomous AI agents. Verify external information with web evidence and cited sources before an agent acts, pays, or makes a decision.
+``` text
+Source-backed factual claim verification for autonomous AI agents. Verify external information with web evidence and cited sources before an agent acts, pays, or makes a decision.
+```
 
 Discovery exposes:
 
@@ -341,7 +340,8 @@ SAVER uses:
 
     ├── examples/
     │   ├── verify-request.json
-    │   └── verify-agent.mjs
+    │   ├── verify-agent.mjs
+    │   └── paid-verify.mjs
     │
     ├── docs/
     ├── skills/
@@ -439,4 +439,3 @@ No license has been specified yet.
 See SAVER Verifier in action:
 
 https://saververify.com/media/SAVER-Verifier.mp4
-
