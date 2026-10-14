@@ -14,7 +14,9 @@ Agents can discover SAVER, authorize payment through **x402**, submit
 factual claims, and receive structured verification results with
 source-backed evidence before they act, pay, or make a decision.
 
-No API keys.\`r`nNo account signup.\`r`nMachine-to-machine trust.
+No API keys.
+No account signup.
+Machine-to-machine trust.
 
 ------------------------------------------------------------------------
 
