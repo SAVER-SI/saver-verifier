@@ -282,7 +282,7 @@ and retry the protected request.
 
 SAVER Verifier is published on ClawHub as @saver-si/saver-verifier.
 
-Current skill release: v1.0.3. Latest explicitly documented audited release: v1.0.2 — Pass.
+Current skill release: v1.0.3. ClawHub currently reports the skill security audit as Pass.
 
 Install: openclaw skills install @saver-si/saver-verifier
 
@@ -393,7 +393,7 @@ Current capabilities:
 ✅ x402scan indexing\
 ✅ OpenClaw skill source\
 ✅ Published on ClawHub as `@saver-si/saver-verifier`\
-✅ ClawHub skill audit: v1.0.2 — Pass\
+✅ ClawHub skill audit: v1.0.3 — Pass\
 ✅ Structured verification responses
 
 ------------------------------------------------------------------------
