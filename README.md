@@ -393,7 +393,7 @@ Current capabilities:
 ✅ x402scan indexing\
 ✅ OpenClaw skill source\
 ✅ Published on ClawHub as `@saver-si/saver-verifier`\
-✅ ClawHub security audit passed\
+✅ ClawHub skill audit: v1.0.2 — Pass\
 ✅ Structured verification responses
 
 ------------------------------------------------------------------------
