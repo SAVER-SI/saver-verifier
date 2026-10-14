@@ -434,7 +434,7 @@ See `CONTRIBUTING.md`.
 
 # License
 
-No license has been specified yet.
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE).
 
 ## Demo
 
