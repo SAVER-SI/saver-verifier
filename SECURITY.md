@@ -108,5 +108,9 @@ The following are generally not considered security vulnerabilities:
 
 ## Contact
 
-For security reports, please contact the maintainers through the appropriate private communication channel.
+Report security vulnerabilities privately by email:
+
+rjp.saver@gmail.com
+
+Please do not include private keys, wallet seed phrases, API credentials, or other secrets in the initial report.
 
