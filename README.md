@@ -68,3 +68,9 @@ The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.0.3. Its r
 ## Security and license
 
 Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API credentials. Public documentation and examples are Apache-2.0 licensed; this does not publish the private server implementation.
+
+## Source-linking update after the paid examples
+
+V2 source handling now preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict; valid remaining evidence is retained with an inconclusive result. The request and response formats, price and original `/verify` behavior are unchanged.
+
+All five recorded purchases predate this correction. Their responses remain unchanged and are not evidence of post-update accuracy. The update is covered by 24 offline tests; no additional paid post-update run has been performed.
