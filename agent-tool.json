@@ -163,5 +163,11 @@
     "Source-link checks do not establish correctness of interpretation.",
     "An insufficient_evidence result is a completed paid verification.",
     "No idempotency or result-recovery endpoint is currently offered."
-  ]
+  ],
+  "requestRecovery": {
+    "validation": "HTTP 400/413 responses include code and help. Correct the content type or JSON using help; validation happens before payment.",
+    "method": "GET/HEAD return 405 with Allow: POST. HEAD has no body; GET includes JSON guidance. OPTIONS returns 200.",
+    "retry": "Use help.endpoint to preserve the original response version. Only sign after receiving and validating a 402 challenge under the existing spending policy.",
+    "health": "https://api.saververify.com/healthz"
+  }
 }

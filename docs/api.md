@@ -62,7 +62,7 @@ Only `claim` and `context` are accepted as top-level fields. Do not send `query`
 
 Omit unused context or send an empty string. The current server also accepts `context: null` as absent; omitting it is compatible with the OpenAPI contract. The JSON body limit is 128 KiB. Invalid input is rejected before payment.
 
-`GET /verify` and `HEAD /verify` do not perform verification. Use `POST`; use `/healthz` for liveness checks.
+`GET /verify`, `HEAD /verify` and their v2 equivalents return 405 with `Allow: POST`. GET includes JSON correction guidance; HEAD has no body. OPTIONS returns 200. Use `/healthz` for liveness checks.
 
 ## Payment
 
@@ -268,3 +268,11 @@ Read https://saververify.com/agent-tool.json. Send its input fields as JSON dire
 These three source-guided production records were captured after the source-linking update. Each contains the original request, complete unedited response and a successful 0.20 USDC Base settlement transaction. The public [collection](https://saververify.com/examples.json) contains exactly these three examples. Input and output examples in OpenAPI use the first record.
 
 V2 preserves consulted sources before linking evidence, and incomplete finding/source linkage prevents a confident full verdict. The request/response formats, price and original `/verify` behavior are unchanged. Offline validation passes 24 tests; the three current paid records additionally demonstrate actual post-update outputs, not an independent accuracy benchmark.
+
+## Correcting a request automatically
+
+Both verification routes reject invalid input before payment. HTTP 400/413 responses preserve `error`, `message` and `requestId`, and add a machine-readable `code` and `help`. The help object supplies `method`, `contentType`, a minimal JSON `example`, the same-route `endpoint`, the recommended v2 endpoint and the OpenAPI URL. Send only the example/input fields as the body, not the help object.
+
+Correct the request and retry `help.endpoint` to preserve the response version. Only authorize payment after a valid HTTP 402 challenge and within the existing wallet spending policy. Wrong content types remain HTTP 400; form data is not silently converted.
+
+GET/HEAD on `/verify` and `/v2/verify` return HTTP 405 with `Allow: POST`. GET includes JSON guidance; HEAD has no body. OPTIONS returns HTTP 200 with `Allow: POST`. Use `/healthz` or `/readyz` for health checks. These guidance responses do not perform verification or charge a payment.
