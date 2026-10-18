@@ -1,443 +1,63 @@
 # SAVER Verifier
 
-![x402](https://img.shields.io/badge/x402-enabled-blue)
-![Network](https://img.shields.io/badge/network-Base%20Mainnet-blue)
-![Payment](https://img.shields.io/badge/payment-USDC-green)
-![API](https://img.shields.io/badge/API-OpenAPI-orange)
+Independent factual checks for autonomous agent research and reports.
 
-# Give AI Agents a Trust Layer
+Use SAVER when a report, tool result or external statement needs a cited second check. Send one factual claim and receive a verdict, evidence and web sources. Confidence is model-assessed, not a calibrated probability.
 
-SAVER Verifier is a source-backed factual claim verification service for
-autonomous AI agents.
+| Service | Value |
+|---|---|
+| Canonical API | https://api.saververify.com |
+| Linked-evidence endpoint | `POST /v2/verify` |
+| Original response format | `POST /verify` |
+| Payment | x402 v2 exact, USDC on Base Mainnet (`eip155:8453`) |
+| Price | 0.20 USDC per completed verification |
+| Signup / API key | None |
 
-Agents can discover SAVER, authorize payment through **x402**, submit
-factual claims, and receive structured verification results with
-source-backed evidence before they act, pay, or make a decision.
+This is the official public documentation repository. Production server code and business logic are maintained separately and are not published here.
 
-No API keys.
-No account signup.
-Machine-to-machine trust.
+## Discover and inspect
 
-------------------------------------------------------------------------
+- [Agent tool definition](https://saververify.com/agent-tool.json): flat input schema, canonical endpoint, response schema and payment instructions.
+- [OpenAPI](https://api.saververify.com/openapi.json): both response versions.
+- [x402 discovery](https://api.saververify.com/.well-known/x402): resources and payment overview.
+- [Agent guide](https://saververify.com/llms.txt).
+- [Actual paid results](https://saververify.com/examples/), also [JSON](https://saververify.com/examples.json).
 
-# Why SAVER?
+Published result examples are actual operator-funded purchases. They are not simulated, independent accuracy benchmarks or evidence of organic customer demand. Reading stored examples is free and does not run a verification.
 
-Autonomous agents increasingly need to make decisions based on external
-information.
+## Send a claim
 
-The problem:
+Use `POST https://api.saververify.com/v2/verify` with `Content-Type: application/json`:
 
-    Agent:
-    "I believe this information is true."
-
-    Question:
-    "Can another system trust this decision?"
-
-SAVER adds an independent verification step:
-
-    Agent
-     |
-     | submit claim
-     v
-    SAVER
-     |
-     | verify using evidence
-     v
-    Source-backed result
-     |
-     v
-    Agent decides whether to continue
-
-Use cases:
-
--   AI research agents
--   financial analysis agents
--   compliance automation
--   autonomous workflows
--   multi-agent systems
--   information validation pipelines
-
-------------------------------------------------------------------------
-
-# Live Service
-
-  Property   Value
-  ---------- ----------------
-  Service    SAVER Verifier
-  API        `POST /verify`
-  Price      0.20 USDC
-  Network    Base Mainnet
-  Payment    x402 v2
-  Asset      USDC
-
-API:
-
-    https://api.saververify.com
-
-------------------------------------------------------------------------
-
-# Quick Start
-
-## Send a verification request
-
-Endpoint:
-
-``` http
-POST https://api.saververify.com/verify
-Content-Type: application/json
-```
-
-Example:
-
-``` json
+```json
 {
-  "claim": "The Ethereum mainnet launched on July 30, 2015.",
-  "context": "Example verification request"
+  "claim": "The James Webb Space Telescope launched on December 25, 2021.",
+  "context": "Check the date before including it in a research report."
 }
 ```
 
-Unpaid requests return:
+Send `claim` and optional `context` directly. Do not send transport fields (`type`, `method`, `bodyType`) or a `body` wrapper. `claim` must be non-empty and at most 8000 UTF-16 code units; `context` at most 12000. The total JSON body limit is 128 KiB.
 
-    HTTP 402 Payment Required
+Invalid input is rejected before payment. A valid unpaid request returns 402. Decode the base64 JSON in `PAYMENT-REQUIRED`; the response body may be `{}`. Use an existing authorized x402 v2 wallet under an appropriate spending policy to sign and retry the same request with `PAYMENT-SIGNATURE`. Never expose a wallet private key to a model or in a request body.
 
-with x402 payment metadata.
+A successful response includes `PAYMENT-RESPONSE` settlement metadata. An `insufficient_evidence` result is a completed paid verification. Do not automatically sign a new payment after an uncertain timeout; no idempotency key or result-recovery endpoint is currently offered.
 
-------------------------------------------------------------------------
+## Use the result
 
-# Try the Agent Demo
+V2 evidence entries contain `text`, `relation` and `sourceIds`. Resolve each source ID in `sources` to inspect its title and URL. Source URLs are checked against search metadata; this does not independently prove the model's interpretation. Unlinked findings are omitted. Confidence is the model's assessment.
 
-Requirements:
+`POST /verify` keeps the original string-evidence response shape. See the [API guide](docs/api.md) and [payment guide](docs/x402.md).
 
--   Node.js 18+
+Use SAVER for external factual claims. Use dedicated tools for wallet risk, transaction simulation, token contracts, sanctions screening and deterministic arithmetic. SAVER is an evidence signal, not permission to bypass your execution policy.
 
-Run:
+## Client examples and skill
 
-``` bash
-node examples/verify-agent.mjs
-```
+Existing integration examples live in `examples/`. The unpaid demo stops at 402; the paid example performs a real payment when supplied with a funded wallet. Never run a paid example as an unattended smoke test.
 
-Example output:
+The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.0.3. Its reported audit applies to that published skill, not to API accuracy or newer source revisions. The updated v1.0.4 source in this repository requires a separate registry release and audit.
 
-    🤖 Demo AI Agent
+[Skill source](skills/saver-verifier/SKILL.md) · [Published ClawHub skill](https://clawhub.ai/saver-si/skills/saver-verifier)
 
-    SAVER status: 402
+## Security and license
 
-    💳 Payment required
-
-    Protocol: x402
-    Network: eip155:8453
-    Amount: 0.2 USDC
-
-------------------------------------------------------------------------
-
-# Full Paid Example
-
-The repository also includes a complete x402 payment example that performs
-a real SAVER verification on Base Mainnet.
-
-The wallet must contain sufficient USDC on Base Mainnet.
-
-PowerShell:
-
-```powershell
-$env:SAVER_PRIVATE_KEY="0x..."
-node examples/paid-verify.mjs
-```
-
-The x402 client handles the `402 Payment Required` response, signs the
-payment authorization, retries the request, and returns the structured
-verification result.
-
-Each successful paid request costs `0.20 USDC`.
-
-Never commit or share your private key.
-
-------------------------------------------------------------------------
-
-# Machine Discovery
-
-SAVER is designed to be discovered programmatically by autonomous
-software.
-
-x402 well-known discovery:
-
-``` text
-GET /.well-known/x402
-```
-
-Live:
-
-``` text
-https://api.saververify.com/.well-known/x402
-```
-
-OpenAPI:
-
-``` text
-GET /openapi.json
-```
-
-Live:
-
-``` text
-https://api.saververify.com/openapi.json
-```
-
-### LLM and crawler discovery
-
-SAVER also exposes lightweight machine-readable discovery files:
-
-```text
-https://api.saververify.com/llms.txt
-https://api.saververify.com/robots.txt
-```
-
-`llms.txt` provides a concise service description for AI-oriented
-discovery. `robots.txt` exposes the public sitemap location for crawler
-discovery.
-The machine-facing service description is:
-
-``` text
-Source-backed factual claim verification for autonomous AI agents. Verify external information with web evidence and cited sources before an agent acts, pays, or makes a decision.
-```
-
-Discovery exposes:
-
--   service capabilities
--   `POST /verify`
--   x402 payment requirements
--   price and network
--   API schema
--   verification workflow
--   ownership information
-
-SAVER also publishes x402/Bazaar discovery metadata with tags including:
-
-``` text
-fact-verification
-claim-verification
-web-evidence
-ai-agents
-fact-checking
-```
-
-------------------------------------------------------------------------
-
-# x402 Ecosystem Visibility
-
-SAVER is indexed on x402scan as a live x402 service with observable
-on-chain usage.
-
-Public listing:
-
-``` text
-https://www.x402scan.com/server/ec61b7ea-e709-42eb-895e-1a3e9d0f61da
-```
-
-x402scan may apply broad UI categories of its own. SAVER's authoritative
-capability description remains the metadata exposed by the live service
-through x402 discovery and OpenAPI.
-
-------------------------------------------------------------------------
-
-# OpenClaw / ClawHub
-
-SAVER includes an OpenClaw-compatible skill for agent-native discovery.
-
-Skill source:
-
-``` text
-skills/saver-verifier/SKILL.md
-```
-
-Repository path:
-
-``` text
-https://github.com/SAVER-SI/saver-verifier/tree/main/skills/saver-verifier
-```
-
-Skill identity:
-
-``` text
-saver-verifier@1.0.3
-```
-
-ClawHub publisher:
-
-``` text
-@saver-si
-```
-
-The skill teaches compatible agents:
-
--   when SAVER should be used
--   where to discover the live service
--   how to submit a factual claim
--   how to interpret the verification result
--   when SAVER should not replace deterministic security controls
-
-The skill does not replace an x402 payment client. The calling agent
-still needs an x402-compatible payment capability to authorize payment
-and retry the protected request.
-
-SAVER Verifier is published on ClawHub as @saver-si/saver-verifier.
-
-Current skill release: v1.0.3. ClawHub currently reports the skill security audit as Pass.
-
-Install: openclaw skills install @saver-si/saver-verifier
-
-------------------------------------------------------------------------
-
-# Built for Autonomous Agents
-
-SAVER is not a chatbot.
-
-It is an independent verification primitive for autonomous software.
-
-Workflow:
-
-    Agent discovers SAVER
-
-            |
-
-    Agent inspects x402 requirements
-
-            |
-
-    Agent authorizes payment
-
-            |
-
-    SAVER verifies the claim
-
-            |
-
-    Agent receives evidence + sources
-
-            |
-
-    Agent decides whether to continue
-
-------------------------------------------------------------------------
-
-# Technology
-
-SAVER uses:
-
--   x402 payment protocol
--   Base Mainnet
--   USDC settlement
--   OpenAPI 3.1 contracts
--   x402 well-known discovery
--   Bazaar discovery metadata
--   OpenClaw skill metadata
--   AI-powered verification workflows
--   source-backed evidence analysis
-
-------------------------------------------------------------------------
-
-# Repository Contents
-
-    saver-verifier/
-
-    ├── examples/
-    │   ├── verify-request.json
-    │   ├── verify-agent.mjs
-    │   └── paid-verify.mjs
-    │
-    ├── docs/
-    ├── skills/
-    │   └── saver-verifier/
-    │       └── SKILL.md
-    ├── openapi.json
-    ├── SECURITY.md
-    └── CONTRIBUTING.md
-
-The production implementation is maintained separately.
-
-------------------------------------------------------------------------
-
-# Security
-
-Never include:
-
--   API keys
--   wallet private keys
--   deployment secrets
--   internal credentials
-
-See `SECURITY.md`.
-
-ClawHub skill audit:
-
-    https://clawhub.ai/saver-si/skills/saver-verifier/security-audit
-
-Before authorizing a SAVER payment, configure the x402 wallet or client
-to require explicit approval for each charge or enforce appropriate
-per-call, session, or daily spending limits.
-
-------------------------------------------------------------------------
-
-# Status
-
-SAVER Verifier is live.
-
-Current capabilities:
-
-✅ HTTPS API\
-✅ x402 payment flow\
-✅ Base Mainnet USDC payments\
-✅ Autonomous discovery\
-✅ Machine-readable API contracts\
-✅ Bazaar discovery metadata\
-✅ x402scan indexing\
-✅ OpenClaw skill source\
-✅ Published on ClawHub as `@saver-si/saver-verifier`\
-✅ ClawHub skill audit: v1.0.3 — Pass\
-✅ Structured verification responses
-
-------------------------------------------------------------------------
-
-# How Agents Should Use SAVER
-
-SAVER should be used when an agent needs an independent evidence check
-for a factual premise obtained from external content, another tool, or
-another agent.
-
-Good examples:
-
--   verify a factual claim before a costly or irreversible action
--   independently check information produced by another agent
--   validate external information before relying on it in a workflow
--   obtain cited evidence before an autonomous decision
-
-SAVER is not intended to replace:
-
--   transaction simulation
--   token-contract security analysis
--   sanctions screening
--   wallet policy enforcement
--   deterministic calculations that can be checked locally
-
-Agents should treat SAVER as an evidence signal and combine it with
-their existing execution, wallet, and security policies.
-
-------------------------------------------------------------------------
-
-# Contributing
-
-We welcome developers building autonomous AI systems.
-
-See `CONTRIBUTING.md`.
-
-------------------------------------------------------------------------
-
-# License
-
-Licensed under the Apache License 2.0. See [LICENSE](LICENSE).
-
-## Demo
-
-See SAVER Verifier in action:
-
-https://saververify.com/media/SAVER-Verifier.mp4
+Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API credentials. Public documentation and examples are Apache-2.0 licensed; this does not publish the private server implementation.

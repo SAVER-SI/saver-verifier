@@ -1,1 +1,579 @@
-{"openapi":"3.1.0","info":{"title":"SAVER Verifier","version":"1.0.0","description":"Source-backed factual claim verification for autonomous AI agents. Verify external information with web evidence and cited sources before an agent acts, pays, or makes a decision."},"servers":[{"url":"https://api.saververify.com"}],"paths":{"/verify":{"post":{"operationId":"verifyClaim","summary":"Source-backed factual claim verification","description":"Source-backed factual claim verification for autonomous AI agents. Verify external information with web evidence and cited sources before an agent acts, pays, or makes a decision.","security":[{"x402":[]}],"x-payment-info":{"protocols":"x402","price":{"mode":"fixed","currency":"USDC","amount":"0.20"}},"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"claim":{"type":"string","minLength":1,"maxLength":8000,"pattern":"\\S","description":"Claim or factual statement to verify"},"context":{"type":"string","maxLength":12000,"description":"Optional additional context"}},"required":["claim"],"additionalProperties":false},"example":{"claim":"The Ethereum mainnet launched on July 30, 2015.","context":""}}}},"responses":{"200":{"description":"Verification completed successfully","content":{"application/json":{"schema":{"$ref":"#/components/schemas/VerificationResponse"}}}},"400":{"description":"Invalid request","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}},"402":{"description":"Payment Required - x402 payment challenge"},"413":{"description":"Request payload too large","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}},"429":{"description":"Too many requests","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}},"502":{"description":"Verification service unavailable","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}},"504":{"description":"Verification timeout","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}}}}}},"components":{"schemas":{"VerificationResponse":{"type":"object","properties":{"status":{"type":"string","enum":["supported","contradicted","mixed","insufficient_evidence"]},"confidence":{"type":"number","minimum":0,"maximum":1},"explanation":{"type":"string"},"evidence":{"type":"array","items":{"type":"string"}},"sources":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["title","url"],"additionalProperties":false}},"domain":{"type":"string"},"timestamp":{"type":"string","format":"date-time"}},"required":["status","confidence","explanation","evidence","sources","domain","timestamp"],"additionalProperties":false},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"requestId":{"type":"string"}},"required":["error","message","requestId"],"additionalProperties":false}},"securitySchemes":{"x402":{"type":"apiKey","in":"header","name":"PAYMENT-SIGNATURE","description":"x402 payment authorization. Unpaid requests receive HTTP 402 with Payment-Required metadata."}}},"x-discovery":{"ownershipProofs":["0xdfd6cb683F5288e1dD1337E84C09b490857CC110"]}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SAVER Verifier",
+    "version": "1.1.0",
+    "description": "Independently check externally sourced factual claims in agent research and reports. Returns supported, contradicted, mixed or insufficient_evidence with web sources. Use when a claim needs a cited second check; not for transaction simulation, wallet risk or deterministic arithmetic. Live verification costs 0.20 USDC on Base via x402 v2."
+  },
+  "servers": [
+    {
+      "url": "https://api.saververify.com"
+    }
+  ],
+  "paths": {
+    "/verify": {
+      "post": {
+        "operationId": "verifyClaim",
+        "summary": "Check an external factual claim with web evidence",
+        "description": "Independently check externally sourced factual claims in agent research and reports. Returns supported, contradicted, mixed or insufficient_evidence with web sources. Use when a claim needs a cited second check; not for transaction simulation, wallet risk or deterministic arithmetic. Live verification costs 0.20 USDC on Base via x402 v2. This endpoint keeps the original response shape; use /v2/verify for explicit evidence-to-source links.",
+        "security": [
+          {
+            "x402": []
+          }
+        ],
+        "x-payment-info": {
+          "protocols": "x402",
+          "price": {
+            "mode": "fixed",
+            "currency": "USDC",
+            "amount": "0.20"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "claim": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8000,
+                    "pattern": "\\S",
+                    "description": "Claim or factual statement to verify"
+                  },
+                  "context": {
+                    "type": "string",
+                    "maxLength": 12000,
+                    "description": "Optional additional context"
+                  }
+                },
+                "required": [
+                  "claim"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "claim": "The James Webb Space Telescope launched on December 25, 2021.",
+                "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationResponse"
+                }
+              }
+            },
+            "headers": {
+              "PAYMENT-RESPONSE": {
+                "description": "Base64-encoded x402 settlement response.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Read base64-encoded PaymentRequired JSON in PAYMENT-REQUIRED. Body may be {}. An authorized x402 v2 wallet client retries the same body with PAYMENT-SIGNATURE.",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 v2 PaymentRequired JSON.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request payload too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Verification service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Verification timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Claim verification"
+        ]
+      }
+    },
+    "/v2/verify": {
+      "post": {
+        "operationId": "verifyClaimWithSources",
+        "summary": "Verify a claim with explicit evidence-to-source links",
+        "description": "Independently check externally sourced factual claims in agent research and reports. Returns supported, contradicted, mixed or insufficient_evidence with web sources. Use when a claim needs a cited second check; not for transaction simulation, wallet risk or deterministic arithmetic. Live verification costs 0.20 USDC on Base via x402 v2. Evidence references source IDs. URLs are checked against search metadata, but this is not proof that each interpretation is correct. Confidence is model-assessed.",
+        "security": [
+          {
+            "x402": []
+          }
+        ],
+        "x-payment-info": {
+          "protocols": "x402",
+          "price": {
+            "mode": "fixed",
+            "currency": "USDC",
+            "amount": "0.20"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "claim": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8000,
+                    "pattern": "\\S",
+                    "description": "Claim or factual statement to verify"
+                  },
+                  "context": {
+                    "type": "string",
+                    "maxLength": 12000,
+                    "description": "Optional additional context"
+                  }
+                },
+                "required": [
+                  "claim"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "claim": "The James Webb Space Telescope launched on December 25, 2021.",
+                "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationResponseV2"
+                },
+                "example": {
+                  "schemaVersion": "2.0",
+                  "requestId": "saver-paid-example-20261018-webb-launch-date",
+                  "status": "supported",
+                  "confidence": 0.99,
+                  "explanation": "Authoritative NASA sources state that the James Webb Space Telescope launched on Saturday, December 25, 2021, specifically at 7:20 a.m. EST / 12:20 UTC, from Europe’s Spaceport in French Guiana aboard an Ariane 5 rocket. This directly supports the claim.",
+                  "domain": "general-verification",
+                  "timestamp": "2026-10-18T10:28:46.217Z",
+                  "confidenceType": "model_assessed",
+                  "evidence": [
+                    {
+                      "id": "e1",
+                      "text": "A NASA news article says Arianespace’s Ariane 5 rocket launched with NASA’s James Webb Space Telescope onboard on Saturday, Dec. 25, 2021, from the Guiana Space Centre in Kourou, French Guiana.",
+                      "relation": "supports",
+                      "sourceIds": [
+                        "s1"
+                      ]
+                    }
+                  ],
+                  "sources": [
+                    {
+                      "id": "s1",
+                      "title": "nasa.gov",
+                      "url": "https://www.nasa.gov/solar-system/nasas-webb-telescope-launches-to-see-first-galaxies-distant-worlds"
+                    }
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "PAYMENT-RESPONSE": {
+                "description": "Base64-encoded x402 settlement response.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Read base64-encoded PaymentRequired JSON in PAYMENT-REQUIRED. Body may be {}. An authorized x402 v2 wallet client retries the same body with PAYMENT-SIGNATURE.",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 v2 PaymentRequired JSON.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request payload too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Verification service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Verification timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Claim verification"
+        ]
+      }
+    },
+    "/examples.json": {
+      "get": {
+        "operationId": "readVerificationExamples",
+        "summary": "Read published paid verification examples for free; no new verification is run",
+        "responses": {
+          "200": {
+            "description": "Actual operator-funded paid results with provenance and payment references."
+          }
+        }
+      }
+    },
+    "/agent-tool.json": {
+      "get": {
+        "operationId": "readAgentToolDefinition",
+        "summary": "Read the flat input schema and canonical endpoint for agents",
+        "responses": {
+          "200": {
+            "description": "Agent integration metadata; not a payment challenge."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VerificationResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "contradicted",
+              "mixed",
+              "insufficient_evidence"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Model-assessed confidence; not a calibrated probability or independent accuracy guarantee."
+          },
+          "explanation": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "title",
+                "url"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "domain": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "status",
+          "confidence",
+          "explanation",
+          "evidence",
+          "sources",
+          "domain",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "requestId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error",
+          "message",
+          "requestId"
+        ],
+        "additionalProperties": false
+      },
+      "VerificationResponseV2": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "contradicted",
+              "mixed",
+              "insufficient_evidence"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "explanation": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "maxItems": 10,
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "relation": {
+                  "type": "string",
+                  "enum": [
+                    "supports",
+                    "contradicts",
+                    "context"
+                  ]
+                },
+                "sourceIds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "text",
+                "relation",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "url"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "domain": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "schemaVersion": {
+            "type": "string",
+            "const": "2.0"
+          },
+          "requestId": {
+            "type": "string"
+          },
+          "confidenceType": {
+            "type": "string",
+            "const": "model_assessed"
+          }
+        },
+        "required": [
+          "status",
+          "confidence",
+          "explanation",
+          "evidence",
+          "sources",
+          "domain",
+          "timestamp",
+          "schemaVersion",
+          "requestId",
+          "confidenceType"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "x402": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "PAYMENT-SIGNATURE",
+        "description": "x402 payment authorization. Unpaid requests receive HTTP 402 with Payment-Required metadata."
+      }
+    }
+  },
+  "x-discovery": {
+    "ownershipProofs": [
+      "0xdfd6cb683F5288e1dD1337E84C09b490857CC110"
+    ]
+  },
+  "externalDocs": {
+    "url": "https://saververify.com/examples/",
+    "description": "Inspect actual paid request/result examples before integrating."
+  },
+  "x-canonical-base-url": "https://api.saververify.com"
+}
