@@ -1,0 +1,72 @@
+{
+  "id": "digital-access-check",
+  "provenance": {
+    "kind": "paid_live_verification",
+    "serviceContractVersion": "1.1.1",
+    "callerSuppliedSource": true,
+    "operatorFunded": true,
+    "organicCustomer": false,
+    "capturedAt": "2026-10-18T14:26:43.021Z",
+    "endpoint": "https://api.saververify.com/v2/verify",
+    "priceUSDC": "0.20",
+    "network": "eip155:8453",
+    "transaction": "0x0bf0d922c99a3482e037b5b7e7812d9161c9a4eec14fc9761a6104dc7f337f5e",
+    "transactionUrl": "https://basescan.org/tx/0x0bf0d922c99a3482e037b5b7e7812d9161c9a4eec14fc9761a6104dc7f337f5e",
+    "requestId": "saver-professional-example-20261018-digital-access-check"
+  },
+  "request": {
+    "claim": "ITU's Facts and Figures 2023 estimated that 67% of the global population used the Internet, but the corresponding figures were 93% in high-income countries and 27% in low-income countries. The global average therefore did not describe equal Internet use across these income groups.",
+    "context": "A digital-market research brief cites https://www.itu.int/itu-d/reports/statistics/2023/10/10/ff23-internet-use/ . Verify each attributed figure and the population groups against this original publication. Assess the historical 2023 claim rather than substituting current-year statistics."
+  },
+  "response": {
+    "schemaVersion": "2.0",
+    "requestId": "saver-professional-example-20261018-digital-access-check",
+    "status": "supported",
+    "confidence": 0.99,
+    "explanation": "The original ITU Facts and Figures 2023 Internet use page reports the same 2023 figures cited in the claim: approximately 67% of the world's population online, 93% Internet use in high-income countries, and 27% in low-income countries. The page explicitly frames these as income-group comparisons, with income groups based on the World Bank classification. Because the reported high-income and low-income figures differ by 66 percentage points, the claim's conclusion that the global average did not describe equal Internet use across those income groups is supported by the source.",
+    "domain": "general-verification",
+    "timestamp": "2026-10-18T14:26:42.187Z",
+    "confidenceType": "model_assessed",
+    "evidence": [
+      {
+        "id": "e1",
+        "text": "ITU Facts and Figures 2023 states that approximately 67% of the world's population, or 5.4 billion people, was online in 2023, while 33% was offline.",
+        "relation": "supports",
+        "sourceIds": [
+          "s1"
+        ]
+      },
+      {
+        "id": "e2",
+        "text": "The same ITU page states that in 2023 the share of people using the Internet in high-income countries rose to 93%.",
+        "relation": "supports",
+        "sourceIds": [
+          "s1"
+        ]
+      },
+      {
+        "id": "e3",
+        "text": "The same ITU page states that in low-income countries, 27% of the population uses the Internet, and identifies a 66 percentage-point gap between high-income and low-income countries and regions.",
+        "relation": "supports",
+        "sourceIds": [
+          "s1"
+        ]
+      },
+      {
+        "id": "e4",
+        "text": "The ITU page specifies that income groups are according to the World Bank classification, confirming that the cited high-income and low-income categories are income groups in the publication.",
+        "relation": "supports",
+        "sourceIds": [
+          "s1"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "s1",
+        "title": "itu.int",
+        "url": "https://www.itu.int/itu-d/reports/statistics/2023/10/10/ff23-internet-use"
+      }
+    ]
+  }
+}

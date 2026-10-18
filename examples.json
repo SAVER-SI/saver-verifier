@@ -1,43 +1,162 @@
 {
   "service": "SAVER Verifier",
   "kind": "paid_verification_examples",
-  "notice": "Actual operator-funded paid SAVER runs. These illustrate returned outputs, not an independent accuracy benchmark or organic customer demand.",
-  "featuredExampleIds": [
-    "dart-measurement-revision",
-    "renewables-capacity-vs-generation"
-  ],
+  "notice": "Three actual operator-funded production checks after the source-linking update. Original requests, responses and transaction references are unchanged. Source URLs were provided by the caller.",
+  "serviceContractVersion": "1.1.1",
+  "publicationReview": {
+    "kind": "operator_source_review",
+    "reviewedAt": "2026-10-18T14:31:56.357504+00:00",
+    "scope": [
+      "Attribution and main numerical claims",
+      "Reporting years and population groups",
+      "Units and denominators",
+      "Returned evidence/source links",
+      "Successful Base USDC settlement"
+    ],
+    "notice": "Source-guided examples selected and funded by the operator. These three recorded outputs are not an independent accuracy benchmark or organic customer purchases."
+  },
   "examples": [
     {
-      "id": "dart-measurement-revision",
+      "id": "energy-capacity-check",
       "provenance": {
         "kind": "paid_live_verification",
+        "serviceContractVersion": "1.1.1",
+        "callerSuppliedSource": true,
         "operatorFunded": true,
         "organicCustomer": false,
-        "capturedAt": "2026-10-18T11:10:12.943Z",
+        "capturedAt": "2026-10-18T14:25:58.717Z",
         "endpoint": "https://api.saververify.com/v2/verify",
         "priceUSDC": "0.20",
         "network": "eip155:8453",
-        "transaction": "0x2495ff98b5448b22f0c94ffe83ccec472a24fd7bb118783faa84fbaf7f6885cd",
-        "transactionUrl": "https://basescan.org/tx/0x2495ff98b5448b22f0c94ffe83ccec472a24fd7bb118783faa84fbaf7f6885cd",
-        "requestId": "saver-research-example-20261018-dart-measurement-revision"
+        "transaction": "0x400cbad5bf439fd1de0847d00a8f364fc2dad9ce6b493c1b6bd956b8e91cec00",
+        "transactionUrl": "https://basescan.org/tx/0x400cbad5bf439fd1de0847d00a8f364fc2dad9ce6b493c1b6bd956b8e91cec00",
+        "requestId": "saver-professional-example-20261018-energy-capacity-check"
       },
       "request": {
-        "claim": "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
-        "context": "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
+        "claim": "IRENA's Renewable Capacity Statistics 2024 shows that renewables generated 86% of global electricity in 2023.",
+        "context": "An energy-sector briefing cites https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable . Independently check the attributed statistic against the original publication, including the year, measured quantity and denominator."
       },
       "response": {
         "schemaVersion": "2.0",
-        "requestId": "saver-research-example-20261018-dart-measurement-revision",
-        "status": "supported",
-        "confidence": 0.96,
-        "explanation": "Primary NASA sources support the claim. NASA’s Oct. 11, 2022 release reported that DART changed Dimorphos’s orbit around Didymos by 32 minutes, shortening the orbital period from 11 h 55 min to 11 h 23 min, with ±2 min uncertainty. NASA’s final technical report says this initial announcement was later improved, with additional observations, to an orbital-period change of about −33.24 minutes; NASA and the Nature DART results also summarize the refined result as about 33 minutes. The sources consistently describe a change in Dimorphos’s binary orbital period around Didymos, not a predicted Earth-impact time; NASA also stated Dimorphos and Didymos posed no hazard to Earth before or after the collision.",
+        "requestId": "saver-professional-example-20261018-energy-capacity-check",
+        "status": "contradicted",
+        "confidence": 0.98,
+        "explanation": "The attributed statistic is misread. IRENA's Renewable Capacity Statistics 2024 is a capacity publication, and its 86% figure refers to renewables' share of global power capacity additions in 2023, not electricity generated. The same IRENA publication says renewables were 43%/43.2% of global installed power capacity at the end of 2023. IRENA's separate Renewable Energy Statistics 2024 treats electricity production in GWh and its world renewable electricity production share table runs through 2022, showing 29.1% in 2022 rather than any 86% generation figure for 2023. Independent global electricity-generation sources report about 30% renewable generation in 2023, not 86%.",
         "domain": "general-verification",
-        "timestamp": "2026-10-18T11:10:12.212Z",
+        "timestamp": "2026-10-18T14:25:57.697Z",
         "confidenceType": "model_assessed",
         "evidence": [
           {
             "id": "e1",
-            "text": "NASA’s Oct. 11, 2022 release stated that before DART, Dimorphos took 11 hours 55 minutes to orbit Didymos, and that the impact altered Dimorphos’s orbit around Didymos by 32 minutes, shortening it to 11 hours 23 minutes, with an uncertainty of about plus or minus 2 minutes.",
+            "text": "IRENA's Renewable Capacity Statistics 2024 foreword says the publication illustrates growth in new installed power generation capacity in 2023; it states that by the end of 2023 renewables accounted for 43% of global installed power capacity, and that the 86% figure was renewables' share of global power additions after adding 473 GW of renewable capacity.",
+            "relation": "contradicts",
+            "sourceIds": [
+              "s1"
+            ]
+          },
+          {
+            "id": "e2",
+            "text": "The IRENA press release cited in the briefing likewise says Renewable Capacity Statistics 2024 showed total renewable capacity of 3,870 GW globally in 2023 and that renewables accounted for 86% of capacity additions; it does not describe the 86% as electricity generated.",
+            "relation": "contradicts",
+            "sourceIds": [
+              "s2"
+            ]
+          },
+          {
+            "id": "e3",
+            "text": "In Renewable Capacity Statistics 2024, IRENA's table for 'Renewable energy share of electricity capacity' lists the World row as 43.2% for 2023, confirming the publication is reporting installed electricity capacity shares, not generated electricity shares.",
+            "relation": "contradicts",
+            "sourceIds": [
+              "s1"
+            ]
+          },
+          {
+            "id": "e4",
+            "text": "IRENA's separate Renewable Energy Statistics 2024 explains that generation data are presented in GWh and includes an indicator for 'Renewable energy share of electricity production.' Its world production-share table covers 2014-2022 and reports 29.1% for 2022, not an 86% global generation share for 2023.",
+            "relation": "contradicts",
+            "sourceIds": [
+              "s3"
+            ]
+          },
+          {
+            "id": "e5",
+            "text": "Ember's Global Electricity Review 2024 reports that renewables reached 30% of global electricity generation in 2023; it further breaks out hydro at 14%, wind at 7.8%, solar at 5.5%, bioenergy at 2.4%, and other renewables at 0.3%.",
+            "relation": "contradicts",
+            "sourceIds": [
+              "s4"
+            ]
+          },
+          {
+            "id": "e6",
+            "text": "Our World in Data, using Ember's final 2023 global electricity generation data, says renewables produced just over 30% of the world's electricity in 2023.",
+            "relation": "contradicts",
+            "sourceIds": [
+              "s5"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "title": "irena.org",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2024/Mar/IRENA_RE_Capacity_Statistics_2024.pdf?rev=a587503ac9a2435c8d13e40081d2ec34"
+          },
+          {
+            "id": "s2",
+            "title": "irena.org",
+            "url": "https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable"
+          },
+          {
+            "id": "s3",
+            "title": "irena.org",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2024/Jul/IRENA_Renewable_Energy_Statistics_2024.pdf"
+          },
+          {
+            "id": "s4",
+            "title": "ember-energy.org",
+            "url": "https://ember-energy.org/latest-insights/global-electricity-review-2024/global-electricity-trends"
+          },
+          {
+            "id": "s5",
+            "title": "ourworldindata.org",
+            "url": "https://ourworldindata.org/data-insights/renewable-electricity-2023"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev-market-check",
+      "provenance": {
+        "kind": "paid_live_verification",
+        "serviceContractVersion": "1.1.1",
+        "callerSuppliedSource": true,
+        "operatorFunded": true,
+        "organicCustomer": false,
+        "capturedAt": "2026-10-18T14:26:21.157Z",
+        "endpoint": "https://api.saververify.com/v2/verify",
+        "priceUSDC": "0.20",
+        "network": "eip155:8453",
+        "transaction": "0x348f3159dbe4b945dfbd59eda43f15572a4567cd8e626189e8547567979b4932",
+        "transactionUrl": "https://basescan.org/tx/0x348f3159dbe4b945dfbd59eda43f15572a4567cd8e626189e8547567979b4932",
+        "requestId": "saver-professional-example-20261018-ev-market-check"
+      },
+      "request": {
+        "claim": "The IEA's Global EV Outlook 2024 reports that electric cars represented around 18% of new cars sold worldwide in 2023 and that the global electric-car stock reached about 40 million. The 18% figure is a sales share, not the share of all cars already on the road.",
+        "context": "Before publishing a transport-market briefing, check the sales and fleet figures against the cited original report: https://www.iea.org/reports/global-ev-outlook-2024/trends-in-electric-cars . Keep the reporting year and the distinction between sales and stock explicit."
+      },
+      "response": {
+        "schemaVersion": "2.0",
+        "requestId": "saver-professional-example-20261018-ev-market-check",
+        "status": "supported",
+        "confidence": 0.99,
+        "explanation": "The claim is supported by the cited IEA Global EV Outlook 2024 page. The report says almost 14 million new electric cars were registered globally in 2023 and that this brought the total number of electric cars on roads to 40 million. In the next sentence, it states that electric cars accounted for around 18% of all cars sold in 2023. Because the 18% is explicitly described as a share of cars sold in 2023, while the 40 million figure is described as the total number on the roads, the claim correctly distinguishes sales share from stock/fleet share.",
+        "domain": "general-verification",
+        "timestamp": "2026-10-18T14:26:20.190Z",
+        "confidenceType": "model_assessed",
+        "evidence": [
+          {
+            "id": "e1",
+            "text": "The IEA Global EV Outlook 2024 page says: 'Almost 14 million new electric cars were registered globally in 2023, bringing their total number on the roads to 40 million.' This supports the claim's 2023 global electric-car stock figure and identifies it as cars on the road.",
             "relation": "supports",
             "sourceIds": [
               "s1"
@@ -45,53 +164,15 @@
           },
           {
             "id": "e2",
-            "text": "NASA’s mission fact sheet described the planned measurement as telescopes observing the Didymos-Dimorphos system to measure the change in Dimorphos’s orbit around Didymos, and NASA’s Oct. 11 release stated neither Dimorphos nor Didymos posed any hazard to Earth before or after the controlled collision.",
+            "text": "The same IEA page says: 'Electric cars accounted for around 18% of all cars sold in 2023, up from 14% in 2022...' This supports the claim's 18% figure and shows it is a sales share for new cars sold in 2023, not the share of all cars already on the road.",
             "relation": "supports",
             "sourceIds": [
               "s1"
             ]
-          }
-        ],
-        "sources": [
+          },
           {
-            "id": "s1",
-            "title": "nasa.gov",
-            "url": "https://www.nasa.gov/news-release/nasa-confirms-dart-mission-impact-changed-asteroids-motion-in-space"
-          }
-        ]
-      }
-    },
-    {
-      "id": "renewables-capacity-vs-generation",
-      "provenance": {
-        "kind": "paid_live_verification",
-        "operatorFunded": true,
-        "organicCustomer": false,
-        "capturedAt": "2026-10-18T11:09:33.019Z",
-        "endpoint": "https://api.saververify.com/v2/verify",
-        "priceUSDC": "0.20",
-        "network": "eip155:8453",
-        "transaction": "0xb6c2a88bda4754f08f52c32ca7ebfa51389cbe68e084f4eab3fcb289f4cd63b0",
-        "transactionUrl": "https://basescan.org/tx/0xb6c2a88bda4754f08f52c32ca7ebfa51389cbe68e084f4eab3fcb289f4cd63b0",
-        "requestId": "saver-research-example-20261018-renewables-capacity-vs-generation"
-      },
-      "request": {
-        "claim": "IRENA's Renewable Capacity Statistics 2024 shows that renewable energy generated 86% of all electricity worldwide in 2023.",
-        "context": "Checking a sentence in an energy-sector research briefing before publication. Verify the cited statistic, its measurement and denominator against primary sources; explain any material distinction."
-      },
-      "response": {
-        "schemaVersion": "2.0",
-        "requestId": "saver-research-example-20261018-renewables-capacity-vs-generation",
-        "status": "insufficient_evidence",
-        "confidence": 0,
-        "explanation": "The returned evidence did not include a linked finding contradicting the claim.",
-        "domain": "general-verification",
-        "timestamp": "2026-10-18T11:09:32.063Z",
-        "confidenceType": "model_assessed",
-        "evidence": [
-          {
-            "id": "e1",
-            "text": "IRENA's Renewable Energy Statistics 2025 page distinguishes capacity and generation datasets: capacity is presented in MW, generation in GWh, and the 2025 publication contains actual power generation data for 2015-2023. This supports the distinction that IRENA's 'capacity' statistics are not themselves a generated-electricity share.",
+            "id": "e3",
+            "text": "The IEA page labels the relevant section 'Electric car sales' and includes a chart note stating that BEV and PHEV figures include passenger cars only, providing context for the scope of the sales and stock figures.",
             "relation": "context",
             "sourceIds": [
               "s1"
@@ -101,43 +182,69 @@
         "sources": [
           {
             "id": "s1",
-            "title": "irena.org",
-            "url": "https://www.irena.org//Publications/2025/Jul/Renewable-energy-statistics-2025"
+            "title": "iea.org",
+            "url": "https://www.iea.org/reports/global-ev-outlook-2024/trends-in-electric-cars"
           }
         ]
       }
     },
     {
-      "id": "webb-launch-date",
+      "id": "digital-access-check",
       "provenance": {
         "kind": "paid_live_verification",
+        "serviceContractVersion": "1.1.1",
+        "callerSuppliedSource": true,
         "operatorFunded": true,
         "organicCustomer": false,
-        "capturedAt": "2026-10-18T10:28:47.107Z",
+        "capturedAt": "2026-10-18T14:26:43.021Z",
         "endpoint": "https://api.saververify.com/v2/verify",
         "priceUSDC": "0.20",
         "network": "eip155:8453",
-        "transaction": "0x2c19eb3339f306b65682e3620b5ef20d0d8996d5da538718c95f332c08f8957e",
-        "transactionUrl": "https://basescan.org/tx/0x2c19eb3339f306b65682e3620b5ef20d0d8996d5da538718c95f332c08f8957e",
-        "requestId": "saver-paid-example-20261018-webb-launch-date"
+        "transaction": "0x0bf0d922c99a3482e037b5b7e7812d9161c9a4eec14fc9761a6104dc7f337f5e",
+        "transactionUrl": "https://basescan.org/tx/0x0bf0d922c99a3482e037b5b7e7812d9161c9a4eec14fc9761a6104dc7f337f5e",
+        "requestId": "saver-professional-example-20261018-digital-access-check"
       },
       "request": {
-        "claim": "The James Webb Space Telescope launched on December 25, 2021.",
-        "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
+        "claim": "ITU's Facts and Figures 2023 estimated that 67% of the global population used the Internet, but the corresponding figures were 93% in high-income countries and 27% in low-income countries. The global average therefore did not describe equal Internet use across these income groups.",
+        "context": "A digital-market research brief cites https://www.itu.int/itu-d/reports/statistics/2023/10/10/ff23-internet-use/ . Verify each attributed figure and the population groups against this original publication. Assess the historical 2023 claim rather than substituting current-year statistics."
       },
       "response": {
         "schemaVersion": "2.0",
-        "requestId": "saver-paid-example-20261018-webb-launch-date",
+        "requestId": "saver-professional-example-20261018-digital-access-check",
         "status": "supported",
         "confidence": 0.99,
-        "explanation": "Authoritative NASA sources state that the James Webb Space Telescope launched on Saturday, December 25, 2021, specifically at 7:20 a.m. EST / 12:20 UTC, from Europe’s Spaceport in French Guiana aboard an Ariane 5 rocket. This directly supports the claim.",
+        "explanation": "The original ITU Facts and Figures 2023 Internet use page reports the same 2023 figures cited in the claim: approximately 67% of the world's population online, 93% Internet use in high-income countries, and 27% in low-income countries. The page explicitly frames these as income-group comparisons, with income groups based on the World Bank classification. Because the reported high-income and low-income figures differ by 66 percentage points, the claim's conclusion that the global average did not describe equal Internet use across those income groups is supported by the source.",
         "domain": "general-verification",
-        "timestamp": "2026-10-18T10:28:46.217Z",
+        "timestamp": "2026-10-18T14:26:42.187Z",
         "confidenceType": "model_assessed",
         "evidence": [
           {
             "id": "e1",
-            "text": "A NASA news article says Arianespace’s Ariane 5 rocket launched with NASA’s James Webb Space Telescope onboard on Saturday, Dec. 25, 2021, from the Guiana Space Centre in Kourou, French Guiana.",
+            "text": "ITU Facts and Figures 2023 states that approximately 67% of the world's population, or 5.4 billion people, was online in 2023, while 33% was offline.",
+            "relation": "supports",
+            "sourceIds": [
+              "s1"
+            ]
+          },
+          {
+            "id": "e2",
+            "text": "The same ITU page states that in 2023 the share of people using the Internet in high-income countries rose to 93%.",
+            "relation": "supports",
+            "sourceIds": [
+              "s1"
+            ]
+          },
+          {
+            "id": "e3",
+            "text": "The same ITU page states that in low-income countries, 27% of the population uses the Internet, and identifies a 66 percentage-point gap between high-income and low-income countries and regions.",
+            "relation": "supports",
+            "sourceIds": [
+              "s1"
+            ]
+          },
+          {
+            "id": "e4",
+            "text": "The ITU page specifies that income groups are according to the World Bank classification, confirming that the cited high-income and low-income categories are income groups in the publication.",
             "relation": "supports",
             "sourceIds": [
               "s1"
@@ -147,119 +254,11 @@
         "sources": [
           {
             "id": "s1",
-            "title": "nasa.gov",
-            "url": "https://www.nasa.gov/solar-system/nasas-webb-telescope-launches-to-see-first-galaxies-distant-worlds"
+            "title": "itu.int",
+            "url": "https://www.itu.int/itu-d/reports/statistics/2023/10/10/ff23-internet-use"
           }
         ]
       }
-    },
-    {
-      "id": "webb-wrong-year",
-      "provenance": {
-        "kind": "paid_live_verification",
-        "operatorFunded": true,
-        "organicCustomer": false,
-        "capturedAt": "2026-10-18T10:29:02.809Z",
-        "endpoint": "https://api.saververify.com/v2/verify",
-        "priceUSDC": "0.20",
-        "network": "eip155:8453",
-        "transaction": "0x2ec38c4c9e566949212ee1dcc5f7c29d7182fbfc5908f9b1f6ebacd72a38ca81",
-        "transactionUrl": "https://basescan.org/tx/0x2ec38c4c9e566949212ee1dcc5f7c29d7182fbfc5908f9b1f6ebacd72a38ca81",
-        "requestId": "saver-paid-example-20261018-webb-wrong-year"
-      },
-      "request": {
-        "claim": "The James Webb Space Telescope was first launched in 2023.",
-        "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
-      },
-      "response": {
-        "schemaVersion": "2.0",
-        "requestId": "saver-paid-example-20261018-webb-wrong-year",
-        "status": "contradicted",
-        "confidence": 0.99,
-        "explanation": "The claim says the James Webb Space Telescope was first launched in 2023. Authoritative NASA sources state that Webb launched on December 25, 2021, not in 2023.",
-        "domain": "general-verification",
-        "timestamp": "2026-10-18T10:29:01.900Z",
-        "confidenceType": "model_assessed",
-        "evidence": [
-          {
-            "id": "e1",
-            "text": "A NASA news release published for the launch states that NASA’s James Webb Space Telescope launched at 7:20 a.m. EST on Saturday, December 25, 2021.",
-            "relation": "contradicts",
-            "sourceIds": [
-              "s1"
-            ]
-          }
-        ],
-        "sources": [
-          {
-            "id": "s1",
-            "title": "nasa.gov",
-            "url": "https://www.nasa.gov/solar-system/nasas-webb-telescope-launches-to-see-first-galaxies-distant-worlds"
-          }
-        ]
-      }
-    },
-    {
-      "id": "future-guarantee",
-      "provenance": {
-        "kind": "paid_live_verification",
-        "operatorFunded": true,
-        "organicCustomer": false,
-        "capturedAt": "2026-10-18T10:29:35.772Z",
-        "endpoint": "https://api.saververify.com/v2/verify",
-        "priceUSDC": "0.20",
-        "network": "eip155:8453",
-        "transaction": "0xedd1a785948a56e331753f829fb2a17b0570a62f57e8e623222a72f6e15004c4",
-        "transactionUrl": "https://basescan.org/tx/0xedd1a785948a56e331753f829fb2a17b0570a62f57e8e623222a72f6e15004c4",
-        "requestId": "saver-paid-example-20261018-future-guarantee"
-      },
-      "request": {
-        "claim": "The Ethereum network is guaranteed to experience no outages at any time during 2030.",
-        "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
-      },
-      "response": {
-        "schemaVersion": "2.0",
-        "requestId": "saver-paid-example-20261018-future-guarantee",
-        "status": "insufficient_evidence",
-        "confidence": 0,
-        "explanation": "No evidence could be linked to source URLs returned by web search. The claim could not be independently substantiated.",
-        "domain": "general-verification",
-        "timestamp": "2026-10-18T10:29:35.033Z",
-        "confidenceType": "model_assessed",
-        "evidence": [],
-        "sources": []
-      }
     }
-  ],
-  "operatorSourceReviews": [
-    {
-      "exampleId": "dart-measurement-revision",
-      "kind": "operator_source_review",
-      "label": "Correct conclusion; incomplete returned citation coverage",
-      "summary": "The NASA source review confirms the initial 32-minute estimate and the later 33-minute revision. The paid response links the initial NASA release, but its returned evidence does not separately link the revised measurement. The explanation is more comprehensive than the linked evidence.",
-      "sources": [
-        {
-          "title": "NASA mission retrospective: initial and revised measurements",
-          "url": "https://www.nasa.gov/science-research/planetary-science/from-impact-to-innovation-a-year-of-science-and-triumph-for-historic-dart-mission/"
-        }
-      ]
-    },
-    {
-      "exampleId": "renewables-capacity-vs-generation",
-      "kind": "operator_source_review",
-      "label": "An inconclusive paid response exposes a coverage limitation",
-      "summary": "IRENA states that 86% refers to capacity additions, not global electricity generated. The paid response returned background evidence and insufficient_evidence rather than completing that correction. This is a recorded limitation, not a successful fact-check demonstration.",
-      "sources": [
-        {
-          "title": "IRENA: Record Growth in Renewables, 27 March 2024",
-          "url": "https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable"
-        }
-      ]
-    }
-  ],
-  "subsequentServiceUpdate": {
-    "date": "2026-10-18",
-    "description": "V2 source handling was updated after these captures to preserve consulted source references and reject incomplete evidence links.",
-    "validation": "Offline regression tests cover the source-linking update. These five paid reports predate it; no new paid verification has been performed after the update."
-  }
+  ]
 }
