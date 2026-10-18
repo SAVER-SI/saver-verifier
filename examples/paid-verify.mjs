@@ -1,96 +1,40 @@
-import { wrapFetchWithPaymentFromConfig } from "@x402/fetch";
-import { ExactEvmScheme } from "@x402/evm";
-import { privateKeyToAccount } from "viem/accounts";
-
-const SAVER_URL = "https://api.saververify.com/v2/verify";
-const privateKey = process.env.SAVER_PRIVATE_KEY;
-
-if (!privateKey) {
-  console.error("Missing SAVER_PRIVATE_KEY.");
-  console.error("");
-  console.error("PowerShell:");
-  console.error('$env:SAVER_PRIVATE_KEY="0x..."');
-  console.error("node examples/paid-verify.mjs");
-  process.exit(1);
+import fs from "node:fs";
+import { createSaverClient, recoverResult } from "./saver-client.mjs";
+const file = process.env.SAVER_RECOVERY_FILE || ".saver-recovery.json";
+try {
+  let answer;
+  if (process.argv.includes("--recover"))
+    answer = await recoverResult(
+      JSON.parse(fs.readFileSync(file, "utf8")).token,
+    );
+  else {
+    if (fs.existsSync(file))
+      throw Error(
+        "A prior attempt exists. Use --recover; do not overwrite it or authorize another payment while its outcome is uncertain.",
+      );
+    if (!process.env.SAVER_PRIVATE_KEY)
+      throw Error(
+        "Set SAVER_PRIVATE_KEY for a funded, authorized payment wallet. Maximum charge: 0.20 USDC.",
+      );
+    const request = {
+      claim: "The Ethereum mainnet launched on July 30, 2015.",
+      context: "Independent factual verification.",
+    };
+    answer = await createSaverClient(process.env.SAVER_PRIVATE_KEY).verify(
+      request,
+      {
+        saveRecovery: (data) =>
+          fs.writeFileSync(file, JSON.stringify(data, null, 2) + "\n", {
+            flag: "wx",
+            mode: 0o600,
+          }),
+      },
+    );
+  }
+  console.log(JSON.stringify(answer, null, 2));
+} catch (error) {
+  console.error(
+    "Verification failed or its outcome is uncertain. Do not automatically pay again. Use --recover with the saved recovery file.",
+  );
+  process.exitCode = 1;
 }
-
-const account = privateKeyToAccount(privateKey);
-
-const fetchWithPayment = wrapFetchWithPaymentFromConfig(fetch, {
-  schemes: [
-    {
-      network: "eip155:8453",
-      client: new ExactEvmScheme(account),
-    },
-  ],
-});
-
-async function main() {
-  console.log("SAVER Verifier — paid x402 example");
-  console.log("--------------------------------");
-  console.log("Payer:", account.address);
-  console.log("Network: Base Mainnet");
-  console.log("Price: 0.20 USDC");
-  console.log("");
-
-  const response = await fetchWithPayment(SAVER_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      claim: "IRENA's Renewable Capacity Statistics 2024 shows that renewables generated 86% of global electricity in 2023.",
-      context: "An energy-sector briefing cites https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable . Independently check the attributed statistic against the original publication, including the year, measured quantity and denominator.",
-    }),
-  });
-
-  const text = await response.text();
-
-  if (!response.ok) {
-    console.error(`Request failed with HTTP ${response.status}`);
-    console.error(text);
-    process.exit(1);
-  }
-
-  let result;
-
-  try {
-    result = JSON.parse(text);
-  } catch {
-    console.error("SAVER returned a non-JSON response:");
-    console.error(text);
-    process.exit(1);
-  }
-
-  console.log("Verification complete");
-  console.log("---------------------");
-  console.log("Status:", result.status);
-  console.log("Confidence:", result.confidence);
-  console.log("Explanation:", result.explanation);
-
-  console.log("");
-  console.log("Evidence:");
-  for (const item of result.evidence ?? []) {
-    console.log(`- ${item.text} (${item.relation}; sources: ${item.sourceIds.join(", ")})`);
-  }
-
-  console.log("");
-  console.log("Sources:");
-  for (const source of result.sources ?? []) {
-    console.log(`- [${source.id}] ${source.title}: ${source.url}`);
-  }
-
-  const paymentResponse = response.headers.get("payment-response");
-
-  if (paymentResponse) {
-    console.log("");
-    console.log("x402 payment settled.");
-  }
-}
-
-main().catch((error) => {
-  console.error("Paid verification failed:");
-  console.error(error?.message ?? error);
-  process.exit(1);
-});
-

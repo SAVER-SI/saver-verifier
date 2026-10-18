@@ -16,7 +16,7 @@ V2 requires explicit evidence/source linkage and handles incomplete linkage more
 
 `POST /verify` remains supported with its original response format. It is not redirected to v2. Historical directory links continue to work. New directory submissions should use the canonical v2 URL, the POST method and the example body above, and link to OpenAPI and the three actual paid examples at https://saververify.com/examples/.
 
-Client samples in this repository use v2. Do not automatically sign another payment after an ambiguous timeout; no idempotency or result recovery endpoint is advertised.
+Client samples in this repository use v2. Do not automatically sign another payment after an ambiguous timeout; use the original recovery token with `GET /results` before considering another payment.
 
 ## Correcting a request automatically
 

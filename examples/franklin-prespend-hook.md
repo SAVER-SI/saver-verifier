@@ -1,119 +1,45 @@
-# Franklin PreSpend Integration
+# Franklin factual-precondition gate
 
-This example shows how Franklin can use SAVER Verifier as an independent evidence check before a money-moving tool executes.
+This sample checks an explicit external factual claim before a proposed action. It does not assess whether spending money is safe, affordable or authorized. Existing wallet, budget, permission and execution controls must remain in force.
 
-Franklin's `PreSpend` lifecycle hook is blocking. The hook receives a JSON envelope on stdin, for example:
+A trusted adapter must supply `spend.verification`; this is an integration contract for this example, not an assertion that Franklin automatically provides these fields:
 
 ```json
 {
   "hookEventName": "PreSpend",
   "spend": {
-    "estimatedUsd": 20,
-    "tool": "ExamplePurchase",
-    "params": {}
+    "tool": "PublishReport",
+    "verification": {
+      "claim": "The Ethereum mainnet launched on July 30, 2015.",
+      "context": "A factual precondition for the proposed report."
+    }
   }
 }
 ```
 
-The SAVER hook:
+Missing or malformed PreSpend data returns `deny` before any payment. Only the explicit claim/context is sent to SAVER; arbitrary tool parameters are excluded. A `supported` result with linked supporting evidence passes this factual gate. Other outcomes and failures deny. Model confidence is not treated as a calibrated probability or a spending authorization.
 
-1. reads the Franklin `PreSpend` envelope from stdin
-2. converts the proposed paid action into a verification request
-3. calls `https://api.saververify.com/v2/verify`
-4. evaluates SAVER's structured `status` and `confidence`
-5. prints a Franklin-compatible `allow` or `deny` decision
+## Installation
 
-## Files
+From the repository root, install into the hook directory with the same dependency lock:
 
-- `franklin-prespend-hook.mjs` — reads Franklin's `PreSpend` envelope and calls SAVER
-- `franklin-prespend-hook.sh` — launches the Node.js hook from the hook directory
-- `franklin-prespend-hook.json` — Franklin hook configuration
-
-## Install
-
-Copy all three files into Franklin's user hook directory:
-
-```bash
+```sh
 mkdir -p ~/.blockrun/hooks
-cp franklin-prespend-hook.mjs ~/.blockrun/hooks/
-cp franklin-prespend-hook.sh ~/.blockrun/hooks/
-cp franklin-prespend-hook.json ~/.blockrun/hooks/
-chmod +x ~/.blockrun/hooks/franklin-prespend-hook.sh
+cp examples/franklin-prespend-hook.mjs examples/franklin-prespend-hook.sh examples/franklin-prespend-hook.json examples/saver-client.mjs ~/.blockrun/hooks/
+cp package.json package-lock.json ~/.blockrun/hooks/
 cd ~/.blockrun/hooks
-npm install @x402/fetch@^2.28.0 @x402/evm@^2.28.0 viem@^2.57.4
+npm ci
+chmod +x franklin-prespend-hook.sh
 ```
 
-Project-scoped hooks can instead be installed in:
+Preserve the executable mode of the shell launcher. Configure a dedicated funded wallet through `SAVER_X402_PRIVATE_KEY`; never put it in input JSON, logs or source control.
 
-```text
-<project>/.franklin/hooks/
-```
+The shared client enforces Base USDC, the expected SAVER recipient, exactly 0.20 USDC, one signed payment send and a validated settlement receipt. This charge is separate from the action being evaluated. Each invocation requires applicable spending authorization or a bounded runtime budget.
 
-Project hooks require the Franklin project to be trusted.
+The configuration permits 180 seconds; the HTTP client stops after 170 seconds. Verify that the installed Franklin runtime accepts that timeout and retains its existing fail behavior. A host that crashes or ignores hook decisions cannot be secured by this sample.
 
-## Decision policy
+## Recovery and failures
 
-The example allows a proposed spend only when SAVER returns:
+Before sending a request, the hook writes a private recovery record under `.saver-hook-recovery/`, or `SAVER_HOOK_RECOVERY_DIR`. Keep these files private. To recover with the CLI example, set `SAVER_RECOVERY_FILE` to that record and run `node examples/paid-verify.mjs --recover` from the repository. Recovery does not authorize another payment.
 
-```text
-status = supported
-confidence >= 0.80
-```
-
-Other verification outcomes are denied.
-
-The `0.80` confidence threshold is an example integration policy and can be changed by the integrator.
-
-SAVER should be treated as an independent evidence signal. It does not replace Franklin's own wallet, budget, permission, security, or execution controls.
-
-## x402 payment
-
-SAVER Verifier is a paid x402 service.
-
-A completed verification costs:
-
-```text
-0.20 USDC
-```
-
-on Base Mainnet.
-
-The hook includes x402 payment support using `@x402/fetch`, `@x402/evm`, and `viem`.
-
-Provide a dedicated Base wallet private key through:
-
-```text
-SAVER_X402_PRIVATE_KEY
-```
-
-Do not commit this value to the repository.
-
-When configured, the hook:
-
-1. calls SAVER
-2. receives the x402 payment requirements
-3. authorizes the `0.20 USDC` SAVER payment
-4. retries the verification request automatically
-5. evaluates the returned SAVER result
-
-If `SAVER_X402_PRIVATE_KEY` is not present, the hook returns an explicit Franklin `deny` decision and does not attempt a payment.
-
-The SAVER verification payment is separate from the spend Franklin is evaluating.
-
-## Fail behavior
-
-The example returns an explicit Franklin `deny` decision when SAVER cannot provide an acceptable verification result.
-
-Franklin's lifecycle-hook engine has its own fail-open behavior when the hook process itself crashes, times out, or cannot be executed.
-
-Review Franklin's hook security model before relying on lifecycle hooks as a security boundary.
-
-## SAVER
-
-- Website: `https://saververify.com`
-- API: `https://api.saververify.com`
-- Verification endpoint: `POST https://api.saververify.com/v2/verify`
-- Price: `0.20 USDC`
-- Network: Base Mainnet (`eip155:8453`)
-- Protocol: x402 v2
-
+Retained results are released only after settlement. Inspect `resultRecovery.durable` in API discovery before depending on recovery across restarts. A timeout, 202 or 404 must never cause the host to rerun the hook and sign a replacement payment blindly. The host's own retry and fail-open policies remain its responsibility.

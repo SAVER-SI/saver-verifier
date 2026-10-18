@@ -242,7 +242,7 @@ The production implementation is maintained separately.
 
 For HTTP 400, check the response `message`, JSON formatting, required `claim`, field types and extra fields. Application validation errors include `error`, `message` and `requestId`. Preserve `x-request-id` for support. Payment-layer errors may have a different response format.
 
-For HTTP 413, reduce claim, context or body size. For 429, respect the indicated wait. Do not repeatedly sign new payments after a timeout or lost connection: the original request may have settled. The API does not advertise an idempotency key or result-recovery endpoint.
+For HTTP 413, reduce claim, context or body size. For 429, respect the indicated wait. Do not repeatedly sign new payments after a timeout or lost connection: the original request may have settled. Use a saved `SAVER-RECOVERY-TOKEN` with `GET /results` before considering another payment.
 
 An `insufficient_evidence` result is a completed verification, not a payment failure. Server-side fetch clients are the demonstrated integration; browser clients must separately check CORS support.
 
@@ -267,7 +267,7 @@ Read https://saververify.com/agent-tool.json. Send its input fields as JSON dire
 
 These three source-guided production records were captured after the source-linking update. Each contains the original request, complete unedited response and a successful 0.20 USDC Base settlement transaction. The public [collection](https://saververify.com/examples.json) contains exactly these three examples. Input and output examples in OpenAPI use the first record.
 
-V2 preserves consulted sources before linking evidence, and incomplete finding/source linkage prevents a confident full verdict. The request/response formats, price and original `/verify` behavior are unchanged. Offline validation passes 39 tests; the three current paid records additionally demonstrate actual post-update outputs, not an independent accuracy benchmark.
+V2 preserves consulted sources before linking evidence, and incomplete finding/source linkage prevents a confident full verdict. The request/response formats, price and original `/verify` behavior are unchanged. Offline validation passes 49 server tests and 7 public-client tests; the three current paid records additionally demonstrate actual post-update outputs, not an independent accuracy benchmark.
 
 ## Correcting a request automatically
 
@@ -281,8 +281,15 @@ GET/HEAD on `/verify` and `/v2/verify` return HTTP 405 with `Allow: POST`. GET i
 
 ## Concurrent requests and temporary unavailability
 
-HTTP 409 with `code: payment_authorization_in_use` means the same verified authorization is already being processed. It does not include a new `PAYMENT-REQUIRED` challenge and starts no additional AI call or settlement. Do not authorize a replacement while the original outcome is uncertain. This is concurrent-request protection, not a result-recovery API or durable idempotency guarantee.
+HTTP 409 with `code: payment_authorization_in_use` means the same verified authorization is already being processed. It does not include a new `PAYMENT-REQUIRED` challenge and starts no additional AI call or settlement. Do not authorize a replacement while the original outcome is uncertain. Concurrent-request protection and opt-in result recovery are separate. Recovery durability is advertised dynamically in discovery.
 
-HTTP 503 can report verification-capacity limits or service shutdown. That rejected request starts no AI work and is not settled. Capacity responses include `Retry-After`. The current OpenAPI contract is 1.1.3; response schema v2 and the payment protocol remain unchanged.
+HTTP 503 can report verification-capacity limits or service shutdown. That rejected request starts no AI work and is not settled. Capacity responses include `Retry-After`. The current OpenAPI contract is 1.2.0; response schema v2 and the payment protocol remain unchanged.
 
 A v2 `mixed` verdict requires linked evidence with both `supports` and `contradicts` relations. Background-only or one-sided evidence cannot substantiate that verdict.
+
+
+## Opt-in settled-result recovery
+
+Generate and save a cryptographically random 32-byte hexadecimal secret before POST, then send it in `SAVER-RECOVERY-TOKEN`. Retrieve through `GET https://api.saververify.com/results` with the same header. No wallet key, signature or new payment is required for retrieval. A completed response includes the original settlement receipt and `SAVER-RESULT-REPLAY: true`.
+
+Retention is up to 24 hours. Check `resultRecovery.durable` in `/.well-known/x402` before depending on restart persistence. Pending/uncertain outcomes return 202 without evidence. A missing/expired record returns 404, which does not prove nonpayment. Never put the bearer token in URLs, public logs or source control, and never automatically create another payment after an ambiguous result.

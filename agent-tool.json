@@ -162,12 +162,22 @@
     "Confidence is model-assessed, not calibrated.",
     "Source-link checks do not establish correctness of interpretation.",
     "An insufficient_evidence result is a completed paid verification.",
-    "No idempotency or result-recovery endpoint is currently offered."
+    "Save a SAVER-RECOVERY-TOKEN before POST and recover retained settled results with GET /results, without another payment."
   ],
   "requestRecovery": {
     "validation": "HTTP 400/413 responses include code and help. Correct the content type or JSON using help; validation happens before payment.",
     "method": "GET/HEAD return 405 with Allow: POST. HEAD has no body; GET includes JSON guidance. OPTIONS returns 200.",
     "retry": "Use help.endpoint to preserve the original response version. Only sign after receiving and validating a 402 challenge under the existing spending policy.",
     "health": "https://api.saververify.com/healthz"
+  },
+  "resultRecovery": {
+    "endpoint": "https://api.saververify.com/results",
+    "method": "GET",
+    "tokenHeader": "SAVER-RECOVERY-TOKEN",
+    "tokenFormat": "Random 32-byte hexadecimal secret, saved before POST; never use a wallet key.",
+    "retentionSeconds": 86400,
+    "persistenceDiscovery": "https://api.saververify.com/.well-known/x402",
+    "notice": "Inspect resultRecovery.durable before relying on recovery across restarts. 202/404 is not proof of nonpayment; do not automatically sign again.",
+    "tokenPattern": "^[a-fA-F0-9]{64}$"
   }
 }

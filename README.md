@@ -50,7 +50,7 @@ Invalid input is rejected before payment. HTTP 400/413 includes a machine-readab
 
 Concurrent reuse of an authorization already being processed returns HTTP 409 with `code: payment_authorization_in_use`, without another AI call or a new payment challenge. Do not sign a replacement payment while the first outcome is uncertain. HTTP 503 can indicate temporary capacity limits or shutdown; no AI work or settlement starts for that rejected request.
 
-A successful response includes `PAYMENT-RESPONSE` settlement metadata. An `insufficient_evidence` result is a completed paid verification. Do not automatically sign a new payment after an uncertain timeout; no idempotency key or result-recovery endpoint is currently offered.
+A successful response includes `PAYMENT-RESPONSE` settlement metadata. An `insufficient_evidence` result is a completed paid verification. Do not automatically sign a new payment after an uncertain timeout; Opt-in recovery uses a saved `SAVER-RECOVERY-TOKEN` and `GET /results` without another payment.
 
 ## Use the result
 
@@ -74,10 +74,22 @@ Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API 
 
 ## Source-linked evidence
 
-V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. A v2 `mixed` verdict additionally requires linked findings both supporting and contradicting the claim; background-only and one-sided findings become `insufficient_evidence`. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The offline suite passes 39 tests.
+V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. A v2 `mixed` verdict additionally requires linked findings both supporting and contradicting the claim; background-only and one-sided findings become `insufficient_evidence`. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The offline suite passes 49 server tests and 7 public-client tests.
 
 New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported. API response v2, payment protocol x402 v2 and ClawHub skill 1.1.0 have separate version numbers.
 
 
 
-The current service contract is OpenAPI 1.1.3. Both payment challenges include machine-readable input/output declarations and an actual paid output example. The offline suite also covers concurrent authorization reuse, release after upstream/settlement failures and graceful shutdown with an active paid request. These are simulated payment tests, not new real purchases or an accuracy benchmark.
+The current service contract is OpenAPI 1.2.0. Both payment challenges include machine-readable input/output declarations and an actual paid output example. The offline suite also covers concurrent authorization reuse, release after upstream/settlement failures and graceful shutdown with an active paid request. These are simulated payment tests, not new real purchases or an accuracy benchmark.
+
+
+## Safe payment and result recovery
+
+The paid example uses a shared bounded client: exactly 0.20 USDC on Base, the advertised recipient and token, one signed payment send, and a validated settlement receipt. It saves a private recovery file before the request. If the outcome is uncertain, run `node examples/paid-verify.mjs --recover`; this does not authorize another payment. Keep the file private and retain it until the outcome is resolved. A new approved purchase should use a distinct `SAVER_RECOVERY_FILE`.
+
+Recovery requires the original random token in the `SAVER-RECOVERY-TOKEN` header; never use a wallet private key or a URL parameter. Records are retained for up to 24 hours. Inspect `resultRecovery.durable` in API discovery: process-only recovery does not survive restarts, while a configured persistent store does. 202 means pending/uncertain; 404 is not proof of nonpayment. Never automatically repay after either.
+
+The Franklin sample now requires an explicit factual `spend.verification.claim` from a trusted adapter and rejects malformed PreSpend input. A supported factual result does not replace the integrator's wallet, budget or execution policies. See its integration guide before enabling it.
+
+
+The published ClawHub release remains 1.1.0 and continues to work with the unchanged paid endpoint. Repository skill source 1.1.1 adds optional recovery guidance; it requires a separate authenticated registry release and security scan before publication.

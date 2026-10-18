@@ -6,7 +6,7 @@
           {
             "type": "command",
             "command": "franklin-prespend-hook.sh",
-            "timeout": 30
+            "timeout": 180
           }
         ]
       }
