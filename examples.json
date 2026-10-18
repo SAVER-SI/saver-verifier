@@ -2,7 +2,111 @@
   "service": "SAVER Verifier",
   "kind": "paid_verification_examples",
   "notice": "Actual operator-funded paid SAVER runs. These illustrate returned outputs, not an independent accuracy benchmark or organic customer demand.",
+  "featuredExampleIds": [
+    "dart-measurement-revision",
+    "renewables-capacity-vs-generation"
+  ],
   "examples": [
+    {
+      "id": "dart-measurement-revision",
+      "provenance": {
+        "kind": "paid_live_verification",
+        "operatorFunded": true,
+        "organicCustomer": false,
+        "capturedAt": "2026-10-18T11:10:12.943Z",
+        "endpoint": "https://api.saververify.com/v2/verify",
+        "priceUSDC": "0.20",
+        "network": "eip155:8453",
+        "transaction": "0x2495ff98b5448b22f0c94ffe83ccec472a24fd7bb118783faa84fbaf7f6885cd",
+        "transactionUrl": "https://basescan.org/tx/0x2495ff98b5448b22f0c94ffe83ccec472a24fd7bb118783faa84fbaf7f6885cd",
+        "requestId": "saver-research-example-20261018-dart-measurement-revision"
+      },
+      "request": {
+        "claim": "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
+        "context": "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
+      },
+      "response": {
+        "schemaVersion": "2.0",
+        "requestId": "saver-research-example-20261018-dart-measurement-revision",
+        "status": "supported",
+        "confidence": 0.96,
+        "explanation": "Primary NASA sources support the claim. NASA’s Oct. 11, 2022 release reported that DART changed Dimorphos’s orbit around Didymos by 32 minutes, shortening the orbital period from 11 h 55 min to 11 h 23 min, with ±2 min uncertainty. NASA’s final technical report says this initial announcement was later improved, with additional observations, to an orbital-period change of about −33.24 minutes; NASA and the Nature DART results also summarize the refined result as about 33 minutes. The sources consistently describe a change in Dimorphos’s binary orbital period around Didymos, not a predicted Earth-impact time; NASA also stated Dimorphos and Didymos posed no hazard to Earth before or after the collision.",
+        "domain": "general-verification",
+        "timestamp": "2026-10-18T11:10:12.212Z",
+        "confidenceType": "model_assessed",
+        "evidence": [
+          {
+            "id": "e1",
+            "text": "NASA’s Oct. 11, 2022 release stated that before DART, Dimorphos took 11 hours 55 minutes to orbit Didymos, and that the impact altered Dimorphos’s orbit around Didymos by 32 minutes, shortening it to 11 hours 23 minutes, with an uncertainty of about plus or minus 2 minutes.",
+            "relation": "supports",
+            "sourceIds": [
+              "s1"
+            ]
+          },
+          {
+            "id": "e2",
+            "text": "NASA’s mission fact sheet described the planned measurement as telescopes observing the Didymos-Dimorphos system to measure the change in Dimorphos’s orbit around Didymos, and NASA’s Oct. 11 release stated neither Dimorphos nor Didymos posed any hazard to Earth before or after the controlled collision.",
+            "relation": "supports",
+            "sourceIds": [
+              "s1"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "title": "nasa.gov",
+            "url": "https://www.nasa.gov/news-release/nasa-confirms-dart-mission-impact-changed-asteroids-motion-in-space"
+          }
+        ]
+      }
+    },
+    {
+      "id": "renewables-capacity-vs-generation",
+      "provenance": {
+        "kind": "paid_live_verification",
+        "operatorFunded": true,
+        "organicCustomer": false,
+        "capturedAt": "2026-10-18T11:09:33.019Z",
+        "endpoint": "https://api.saververify.com/v2/verify",
+        "priceUSDC": "0.20",
+        "network": "eip155:8453",
+        "transaction": "0xb6c2a88bda4754f08f52c32ca7ebfa51389cbe68e084f4eab3fcb289f4cd63b0",
+        "transactionUrl": "https://basescan.org/tx/0xb6c2a88bda4754f08f52c32ca7ebfa51389cbe68e084f4eab3fcb289f4cd63b0",
+        "requestId": "saver-research-example-20261018-renewables-capacity-vs-generation"
+      },
+      "request": {
+        "claim": "IRENA's Renewable Capacity Statistics 2024 shows that renewable energy generated 86% of all electricity worldwide in 2023.",
+        "context": "Checking a sentence in an energy-sector research briefing before publication. Verify the cited statistic, its measurement and denominator against primary sources; explain any material distinction."
+      },
+      "response": {
+        "schemaVersion": "2.0",
+        "requestId": "saver-research-example-20261018-renewables-capacity-vs-generation",
+        "status": "insufficient_evidence",
+        "confidence": 0,
+        "explanation": "The returned evidence did not include a linked finding contradicting the claim.",
+        "domain": "general-verification",
+        "timestamp": "2026-10-18T11:09:32.063Z",
+        "confidenceType": "model_assessed",
+        "evidence": [
+          {
+            "id": "e1",
+            "text": "IRENA's Renewable Energy Statistics 2025 page distinguishes capacity and generation datasets: capacity is presented in MW, generation in GWh, and the 2025 publication contains actual power generation data for 2015-2023. This supports the distinction that IRENA's 'capacity' statistics are not themselves a generated-electricity share.",
+            "relation": "context",
+            "sourceIds": [
+              "s1"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "title": "irena.org",
+            "url": "https://www.irena.org//Publications/2025/Jul/Renewable-energy-statistics-2025"
+          }
+        ]
+      }
+    },
     {
       "id": "webb-launch-date",
       "provenance": {
@@ -125,6 +229,32 @@
         "evidence": [],
         "sources": []
       }
+    }
+  ],
+  "operatorSourceReviews": [
+    {
+      "exampleId": "dart-measurement-revision",
+      "kind": "operator_source_review",
+      "label": "Correct conclusion; incomplete returned citation coverage",
+      "summary": "The NASA source review confirms the initial 32-minute estimate and the later 33-minute revision. The paid response links the initial NASA release, but its returned evidence does not separately link the revised measurement. The explanation is more comprehensive than the linked evidence.",
+      "sources": [
+        {
+          "title": "NASA mission retrospective: initial and revised measurements",
+          "url": "https://www.nasa.gov/science-research/planetary-science/from-impact-to-innovation-a-year-of-science-and-triumph-for-historic-dart-mission/"
+        }
+      ]
+    },
+    {
+      "exampleId": "renewables-capacity-vs-generation",
+      "kind": "operator_source_review",
+      "label": "An inconclusive paid response exposes a coverage limitation",
+      "summary": "IRENA states that 86% refers to capacity additions, not global electricity generated. The paid response returned background evidence and insufficient_evidence rather than completing that correction. This is a recorded limitation, not a successful fact-check demonstration.",
+      "sources": [
+        {
+          "title": "IRENA: Record Growth in Renewables, 27 March 2024",
+          "url": "https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable"
+        }
+      ]
     }
   ]
 }

@@ -2,8 +2,8 @@ async function main() {
   const SAVER_URL = "https://api.saververify.com/verify";
 
   const request = {
-    claim: "The Ethereum mainnet launched on July 30, 2015.",
-    context: "Demo AI agent verification request"
+    claim: "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
+    context: "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
   };
 
   console.log("🤖 Demo AI Agent");
@@ -74,3 +74,4 @@ main().catch((error) => {
   console.error("Demo failed:");
   console.error(error.message);
 });
+

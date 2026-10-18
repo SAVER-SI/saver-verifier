@@ -25,14 +25,21 @@ This is the official public documentation repository. Production server code and
 
 Published result examples are actual operator-funded purchases. They are not simulated, independent accuracy benchmarks or evidence of organic customer demand. Reading stored examples is free and does not run a verification.
 
+## Featured paid research checks
+
+- [Capacity versus generation](https://saververify.com/examples/renewables-capacity-vs-generation.json): checks whether a reported percentage uses the correct metric and denominator.
+- [Revised DART measurement](https://saververify.com/examples/dart-measurement-revision.json): checks why two published figures differ and what they measure.
+
+Both records contain the original paid request, full response and settlement transaction. Separate operator source reviews identify incomplete citation coverage in the DART response and an inconclusive energy response despite an available primary-source correction. These limitations are displayed openly; the original responses are unchanged. The earlier three integration checks are retained separately on the [examples page](https://saververify.com/examples/). The questions were selected by the operator; returned answers were not edited. Five paid demonstration runs are not an accuracy benchmark.
+
 ## Send a claim
 
 Use `POST https://api.saververify.com/v2/verify` with `Content-Type: application/json`:
 
 ```json
 {
-  "claim": "The James Webb Space Telescope launched on December 25, 2021.",
-  "context": "Check the date before including it in a research report."
+  "claim": "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
+  "context": "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
 }
 ```
 

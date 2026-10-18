@@ -40,8 +40,8 @@ Example request:
 
 ```json
 {
-  "claim": "The Ethereum mainnet launched on July 30, 2015.",
-  "context": ""
+  "claim": "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
+  "context": "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
 }
 ```
 
@@ -256,3 +256,7 @@ Confidence is model-assessed and uncalibrated in both formats. The original `/ve
 ## Flat agent interface
 
 Read https://saververify.com/agent-tool.json. Send its input fields as JSON directly to the advertised transport URL. The surrounding transport/discovery objects are metadata, not request-body fields. All payment calls use api.saververify.com, even when discovering the service through the website or an older Railway-host listing.
+
+## Recorded research checks
+
+The featured paid examples examine [capacity versus generation](https://saververify.com/examples/renewables-capacity-vs-generation.json) and [revised scientific measurements](https://saververify.com/examples/dart-measurement-revision.json). Inspect the original requests and returned source-linked evidence. All five operator-funded records, including the three earlier integration checks, remain in [examples.json](https://saververify.com/examples.json). No returned answer was edited for presentation.

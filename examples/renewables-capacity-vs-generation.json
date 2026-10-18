@@ -1,0 +1,46 @@
+{
+  "id": "renewables-capacity-vs-generation",
+  "provenance": {
+    "kind": "paid_live_verification",
+    "operatorFunded": true,
+    "organicCustomer": false,
+    "capturedAt": "2026-10-18T11:09:33.019Z",
+    "endpoint": "https://api.saververify.com/v2/verify",
+    "priceUSDC": "0.20",
+    "network": "eip155:8453",
+    "transaction": "0xb6c2a88bda4754f08f52c32ca7ebfa51389cbe68e084f4eab3fcb289f4cd63b0",
+    "transactionUrl": "https://basescan.org/tx/0xb6c2a88bda4754f08f52c32ca7ebfa51389cbe68e084f4eab3fcb289f4cd63b0",
+    "requestId": "saver-research-example-20261018-renewables-capacity-vs-generation"
+  },
+  "request": {
+    "claim": "IRENA's Renewable Capacity Statistics 2024 shows that renewable energy generated 86% of all electricity worldwide in 2023.",
+    "context": "Checking a sentence in an energy-sector research briefing before publication. Verify the cited statistic, its measurement and denominator against primary sources; explain any material distinction."
+  },
+  "response": {
+    "schemaVersion": "2.0",
+    "requestId": "saver-research-example-20261018-renewables-capacity-vs-generation",
+    "status": "insufficient_evidence",
+    "confidence": 0,
+    "explanation": "The returned evidence did not include a linked finding contradicting the claim.",
+    "domain": "general-verification",
+    "timestamp": "2026-10-18T11:09:32.063Z",
+    "confidenceType": "model_assessed",
+    "evidence": [
+      {
+        "id": "e1",
+        "text": "IRENA's Renewable Energy Statistics 2025 page distinguishes capacity and generation datasets: capacity is presented in MW, generation in GWh, and the 2025 publication contains actual power generation data for 2015-2023. This supports the distinction that IRENA's 'capacity' statistics are not themselves a generated-electricity share.",
+        "relation": "context",
+        "sourceIds": [
+          "s1"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "s1",
+        "title": "irena.org",
+        "url": "https://www.irena.org//Publications/2025/Jul/Renewable-energy-statistics-2025"
+      }
+    ]
+  }
+}
