@@ -62,7 +62,7 @@ SAVER follows these principles:
 
 The published SAVER Verifier skill is scanned by ClawHub security tooling.
 
-Published skill checked on 2026-10-18: v1.0.3. The previously reported ClawHub Pass applies only to that artifact. The v1.1.0 source requires its own registry publication and security checks; no audit result is claimed for it.
+Published skill checked on 2026-10-18: v1.1.0. ClawHub reports the exact version security status as clean, with no warnings and completed VirusTotal and LLM checks. The website displays Pass. This status applies to that skill artifact, not API accuracy or future revisions.
 
 A previous audit warning identified that payment authorization guidance did not explicitly require a user confirmation gate or bounded spending policy. Version 1.0.2 addresses that guidance.
 
