@@ -7,7 +7,7 @@ Use SAVER when a report, tool result or external statement needs a cited second 
 | Service | Value |
 |---|---|
 | Canonical API | https://api.saververify.com |
-| Linked-evidence endpoint | `POST /v2/verify` |
+| Recommended endpoint | `POST /v2/verify` |
 | Original response format | `POST /verify` |
 | Payment | x402 v2 exact, USDC on Base Mainnet (`eip155:8453`) |
 | Price | 0.20 USDC per completed verification |
@@ -52,7 +52,7 @@ A successful response includes `PAYMENT-RESPONSE` settlement metadata. An `insuf
 
 ## Use the result
 
-V2 evidence entries contain `text`, `relation` and `sourceIds`. Resolve each source ID in `sources` to inspect its title and URL. Source URLs are checked against search metadata; this does not independently prove the model's interpretation. Unlinked findings are omitted. Confidence is the model's assessment.
+V2 evidence entries contain `text`, `relation` and `sourceIds`. Resolve each source ID in `sources` to inspect its title and URL. Source URLs are checked against the provider's consulted-source metadata; this does not independently prove the model's interpretation. Unlinked findings are omitted. Confidence is the model's assessment.
 
 `POST /verify` keeps the original string-evidence response shape. See the [API guide](docs/api.md) and [payment guide](docs/x402.md).
 
@@ -68,10 +68,10 @@ The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.1.0 and re
 
 ## Security and license
 
-Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API credentials. Public documentation and examples are Apache-2.0 licensed; this does not publish the private server implementation.
+Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API credentials. Public repository documentation and examples are Apache-2.0 licensed; this does not publish the private server implementation. The skill artifact published on ClawHub is distributed there under MIT-0.
 
 ## Source-linked evidence
 
 V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The offline suite passes 24 tests.
 
-New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported.
+New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported. API response v2, payment protocol x402 v2 and ClawHub skill 1.1.0 have separate version numbers.
