@@ -48,6 +48,8 @@ Send `claim` and optional `context` directly. Do not send transport fields (`typ
 
 Invalid input is rejected before payment. HTTP 400/413 includes a machine-readable `code` and `help` with the expected content type, same-route endpoint, minimal JSON example and OpenAPI URL. Correct the request and retry `help.endpoint`; send only claim/context as the body. GET/HEAD returns 405 with `Allow: POST` (HEAD has no body); OPTIONS returns 200. Use `/healthz` for liveness. A valid unpaid request returns 402. Decode the base64 JSON in `PAYMENT-REQUIRED`; the response body may be `{}`. Use an existing authorized x402 v2 wallet under an appropriate spending policy to sign and retry the same request with `PAYMENT-SIGNATURE`. Never expose a wallet private key to a model or in a request body.
 
+Concurrent reuse of an authorization already being processed returns HTTP 409 with `code: payment_authorization_in_use`, without another AI call or a new payment challenge. Do not sign a replacement payment while the first outcome is uncertain. HTTP 503 can indicate temporary capacity limits or shutdown; no AI work or settlement starts for that rejected request.
+
 A successful response includes `PAYMENT-RESPONSE` settlement metadata. An `insufficient_evidence` result is a completed paid verification. Do not automatically sign a new payment after an uncertain timeout; no idempotency key or result-recovery endpoint is currently offered.
 
 ## Use the result
@@ -72,6 +74,10 @@ Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API 
 
 ## Source-linked evidence
 
-V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The offline suite passes 25 tests.
+V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. A v2 `mixed` verdict additionally requires linked findings both supporting and contradicting the claim; background-only and one-sided findings become `insufficient_evidence`. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The offline suite passes 39 tests.
 
 New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported. API response v2, payment protocol x402 v2 and ClawHub skill 1.1.0 have separate version numbers.
+
+
+
+The current service contract is OpenAPI 1.1.3. Both payment challenges include machine-readable input/output declarations and an actual paid output example. The offline suite also covers concurrent authorization reuse, release after upstream/settlement failures and graceful shutdown with an active paid request. These are simulated payment tests, not new real purchases or an accuracy benchmark.

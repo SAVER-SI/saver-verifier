@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "SAVER Verifier",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "description": "Independently check externally sourced factual claims in agent research and reports. Returns supported, contradicted, mixed or insufficient_evidence with web sources. Use when a claim needs a cited second check; not for transaction simulation, wallet risk or deterministic arithmetic. Live verification costs 0.20 USDC on Base via x402 v2."
   },
   "servers": [
@@ -147,6 +147,34 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The same verified payment authorization is already being processed. No additional AI work or payment is started for this duplicate. Do not create a replacement payment while the first outcome is uncertain.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Verification capacity is exhausted or the service is shutting down. This request starts no AI work and is not settled. Capacity responses include Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "Retry-After": {
+                "description": "Present on temporary verification-capacity responses, in seconds.",
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -448,6 +476,34 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The same verified payment authorization is already being processed. No additional AI work or payment is started for this duplicate. Do not create a replacement payment while the first outcome is uncertain.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Verification capacity is exhausted or the service is shutting down. This request starts no AI work and is not settled. Capacity responses include Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "Retry-After": {
+                "description": "Present on temporary verification-capacity responses, in seconds.",
+                "schema": {
+                  "type": "string"
                 }
               }
             }

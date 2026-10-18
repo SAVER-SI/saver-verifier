@@ -267,7 +267,7 @@ Read https://saververify.com/agent-tool.json. Send its input fields as JSON dire
 
 These three source-guided production records were captured after the source-linking update. Each contains the original request, complete unedited response and a successful 0.20 USDC Base settlement transaction. The public [collection](https://saververify.com/examples.json) contains exactly these three examples. Input and output examples in OpenAPI use the first record.
 
-V2 preserves consulted sources before linking evidence, and incomplete finding/source linkage prevents a confident full verdict. The request/response formats, price and original `/verify` behavior are unchanged. Offline validation passes 24 tests; the three current paid records additionally demonstrate actual post-update outputs, not an independent accuracy benchmark.
+V2 preserves consulted sources before linking evidence, and incomplete finding/source linkage prevents a confident full verdict. The request/response formats, price and original `/verify` behavior are unchanged. Offline validation passes 39 tests; the three current paid records additionally demonstrate actual post-update outputs, not an independent accuracy benchmark.
 
 ## Correcting a request automatically
 
@@ -276,3 +276,13 @@ Both verification routes reject invalid input before payment. HTTP 400/413 respo
 Correct the request and retry `help.endpoint` to preserve the response version. Only authorize payment after a valid HTTP 402 challenge and within the existing wallet spending policy. Wrong content types remain HTTP 400; form data is not silently converted.
 
 GET/HEAD on `/verify` and `/v2/verify` return HTTP 405 with `Allow: POST`. GET includes JSON guidance; HEAD has no body. OPTIONS returns HTTP 200 with `Allow: POST`. Use `/healthz` or `/readyz` for health checks. These guidance responses do not perform verification or charge a payment.
+
+
+
+## Concurrent requests and temporary unavailability
+
+HTTP 409 with `code: payment_authorization_in_use` means the same verified authorization is already being processed. It does not include a new `PAYMENT-REQUIRED` challenge and starts no additional AI call or settlement. Do not authorize a replacement while the original outcome is uncertain. This is concurrent-request protection, not a result-recovery API or durable idempotency guarantee.
+
+HTTP 503 can report verification-capacity limits or service shutdown. That rejected request starts no AI work and is not settled. Capacity responses include `Retry-After`. The current OpenAPI contract is 1.1.3; response schema v2 and the payment protocol remain unchanged.
+
+A v2 `mixed` verdict requires linked evidence with both `supports` and `contradicts` relations. Background-only or one-sided evidence cannot substantiate that verdict.
