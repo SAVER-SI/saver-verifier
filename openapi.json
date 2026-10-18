@@ -55,8 +55,8 @@
                 "additionalProperties": false
               },
               "example": {
-                "claim": "The James Webb Space Telescope launched on December 25, 2021.",
-                "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
+                "claim": "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
+                "context": "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
               }
             }
           }
@@ -201,8 +201,8 @@
                 "additionalProperties": false
               },
               "example": {
-                "claim": "The James Webb Space Telescope launched on December 25, 2021.",
-                "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
+                "claim": "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
+                "context": "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
               }
             }
           }
@@ -217,17 +217,25 @@
                 },
                 "example": {
                   "schemaVersion": "2.0",
-                  "requestId": "saver-paid-example-20261018-webb-launch-date",
+                  "requestId": "saver-research-example-20261018-dart-measurement-revision",
                   "status": "supported",
-                  "confidence": 0.99,
-                  "explanation": "Authoritative NASA sources state that the James Webb Space Telescope launched on Saturday, December 25, 2021, specifically at 7:20 a.m. EST / 12:20 UTC, from Europe’s Spaceport in French Guiana aboard an Ariane 5 rocket. This directly supports the claim.",
+                  "confidence": 0.96,
+                  "explanation": "Primary NASA sources support the claim. NASA’s Oct. 11, 2022 release reported that DART changed Dimorphos’s orbit around Didymos by 32 minutes, shortening the orbital period from 11 h 55 min to 11 h 23 min, with ±2 min uncertainty. NASA’s final technical report says this initial announcement was later improved, with additional observations, to an orbital-period change of about −33.24 minutes; NASA and the Nature DART results also summarize the refined result as about 33 minutes. The sources consistently describe a change in Dimorphos’s binary orbital period around Didymos, not a predicted Earth-impact time; NASA also stated Dimorphos and Didymos posed no hazard to Earth before or after the collision.",
                   "domain": "general-verification",
-                  "timestamp": "2026-10-18T10:28:46.217Z",
+                  "timestamp": "2026-10-18T11:10:12.212Z",
                   "confidenceType": "model_assessed",
                   "evidence": [
                     {
                       "id": "e1",
-                      "text": "A NASA news article says Arianespace’s Ariane 5 rocket launched with NASA’s James Webb Space Telescope onboard on Saturday, Dec. 25, 2021, from the Guiana Space Centre in Kourou, French Guiana.",
+                      "text": "NASA’s Oct. 11, 2022 release stated that before DART, Dimorphos took 11 hours 55 minutes to orbit Didymos, and that the impact altered Dimorphos’s orbit around Didymos by 32 minutes, shortening it to 11 hours 23 minutes, with an uncertainty of about plus or minus 2 minutes.",
+                      "relation": "supports",
+                      "sourceIds": [
+                        "s1"
+                      ]
+                    },
+                    {
+                      "id": "e2",
+                      "text": "NASA’s mission fact sheet described the planned measurement as telescopes observing the Didymos-Dimorphos system to measure the change in Dimorphos’s orbit around Didymos, and NASA’s Oct. 11 release stated neither Dimorphos nor Didymos posed any hazard to Earth before or after the controlled collision.",
                       "relation": "supports",
                       "sourceIds": [
                         "s1"
@@ -238,7 +246,7 @@
                     {
                       "id": "s1",
                       "title": "nasa.gov",
-                      "url": "https://www.nasa.gov/solar-system/nasas-webb-telescope-launches-to-see-first-galaxies-distant-worlds"
+                      "url": "https://www.nasa.gov/news-release/nasa-confirms-dart-mission-impact-changed-asteroids-motion-in-space"
                     }
                   ]
                 }

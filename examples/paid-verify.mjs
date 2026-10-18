@@ -39,8 +39,8 @@ async function main() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      claim: "The Ethereum mainnet launched on July 30, 2015.",
-      context: "Paid SAVER Verifier integration example",
+      claim: "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
+      context: "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources.",
     }),
   });
 
@@ -93,3 +93,4 @@ main().catch((error) => {
   console.error(error?.message ?? error);
   process.exit(1);
 });
+
