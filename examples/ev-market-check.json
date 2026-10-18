@@ -1,0 +1,64 @@
+{
+  "id": "ev-market-check",
+  "provenance": {
+    "kind": "paid_live_verification",
+    "serviceContractVersion": "1.1.1",
+    "callerSuppliedSource": true,
+    "operatorFunded": true,
+    "organicCustomer": false,
+    "capturedAt": "2026-10-18T14:26:21.157Z",
+    "endpoint": "https://api.saververify.com/v2/verify",
+    "priceUSDC": "0.20",
+    "network": "eip155:8453",
+    "transaction": "0x348f3159dbe4b945dfbd59eda43f15572a4567cd8e626189e8547567979b4932",
+    "transactionUrl": "https://basescan.org/tx/0x348f3159dbe4b945dfbd59eda43f15572a4567cd8e626189e8547567979b4932",
+    "requestId": "saver-professional-example-20261018-ev-market-check"
+  },
+  "request": {
+    "claim": "The IEA's Global EV Outlook 2024 reports that electric cars represented around 18% of new cars sold worldwide in 2023 and that the global electric-car stock reached about 40 million. The 18% figure is a sales share, not the share of all cars already on the road.",
+    "context": "Before publishing a transport-market briefing, check the sales and fleet figures against the cited original report: https://www.iea.org/reports/global-ev-outlook-2024/trends-in-electric-cars . Keep the reporting year and the distinction between sales and stock explicit."
+  },
+  "response": {
+    "schemaVersion": "2.0",
+    "requestId": "saver-professional-example-20261018-ev-market-check",
+    "status": "supported",
+    "confidence": 0.99,
+    "explanation": "The claim is supported by the cited IEA Global EV Outlook 2024 page. The report says almost 14 million new electric cars were registered globally in 2023 and that this brought the total number of electric cars on roads to 40 million. In the next sentence, it states that electric cars accounted for around 18% of all cars sold in 2023. Because the 18% is explicitly described as a share of cars sold in 2023, while the 40 million figure is described as the total number on the roads, the claim correctly distinguishes sales share from stock/fleet share.",
+    "domain": "general-verification",
+    "timestamp": "2026-10-18T14:26:20.190Z",
+    "confidenceType": "model_assessed",
+    "evidence": [
+      {
+        "id": "e1",
+        "text": "The IEA Global EV Outlook 2024 page says: 'Almost 14 million new electric cars were registered globally in 2023, bringing their total number on the roads to 40 million.' This supports the claim's 2023 global electric-car stock figure and identifies it as cars on the road.",
+        "relation": "supports",
+        "sourceIds": [
+          "s1"
+        ]
+      },
+      {
+        "id": "e2",
+        "text": "The same IEA page says: 'Electric cars accounted for around 18% of all cars sold in 2023, up from 14% in 2022...' This supports the claim's 18% figure and shows it is a sales share for new cars sold in 2023, not the share of all cars already on the road.",
+        "relation": "supports",
+        "sourceIds": [
+          "s1"
+        ]
+      },
+      {
+        "id": "e3",
+        "text": "The IEA page labels the relevant section 'Electric car sales' and includes a chart note stating that BEV and PHEV figures include passenger cars only, providing context for the scope of the sales and stock figures.",
+        "relation": "context",
+        "sourceIds": [
+          "s1"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "s1",
+        "title": "iea.org",
+        "url": "https://www.iea.org/reports/global-ev-outlook-2024/trends-in-electric-cars"
+      }
+    ]
+  }
+}

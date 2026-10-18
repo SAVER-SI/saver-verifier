@@ -1,0 +1,108 @@
+{
+  "id": "energy-capacity-check",
+  "provenance": {
+    "kind": "paid_live_verification",
+    "serviceContractVersion": "1.1.1",
+    "callerSuppliedSource": true,
+    "operatorFunded": true,
+    "organicCustomer": false,
+    "capturedAt": "2026-10-18T14:25:58.717Z",
+    "endpoint": "https://api.saververify.com/v2/verify",
+    "priceUSDC": "0.20",
+    "network": "eip155:8453",
+    "transaction": "0x400cbad5bf439fd1de0847d00a8f364fc2dad9ce6b493c1b6bd956b8e91cec00",
+    "transactionUrl": "https://basescan.org/tx/0x400cbad5bf439fd1de0847d00a8f364fc2dad9ce6b493c1b6bd956b8e91cec00",
+    "requestId": "saver-professional-example-20261018-energy-capacity-check"
+  },
+  "request": {
+    "claim": "IRENA's Renewable Capacity Statistics 2024 shows that renewables generated 86% of global electricity in 2023.",
+    "context": "An energy-sector briefing cites https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable . Independently check the attributed statistic against the original publication, including the year, measured quantity and denominator."
+  },
+  "response": {
+    "schemaVersion": "2.0",
+    "requestId": "saver-professional-example-20261018-energy-capacity-check",
+    "status": "contradicted",
+    "confidence": 0.98,
+    "explanation": "The attributed statistic is misread. IRENA's Renewable Capacity Statistics 2024 is a capacity publication, and its 86% figure refers to renewables' share of global power capacity additions in 2023, not electricity generated. The same IRENA publication says renewables were 43%/43.2% of global installed power capacity at the end of 2023. IRENA's separate Renewable Energy Statistics 2024 treats electricity production in GWh and its world renewable electricity production share table runs through 2022, showing 29.1% in 2022 rather than any 86% generation figure for 2023. Independent global electricity-generation sources report about 30% renewable generation in 2023, not 86%.",
+    "domain": "general-verification",
+    "timestamp": "2026-10-18T14:25:57.697Z",
+    "confidenceType": "model_assessed",
+    "evidence": [
+      {
+        "id": "e1",
+        "text": "IRENA's Renewable Capacity Statistics 2024 foreword says the publication illustrates growth in new installed power generation capacity in 2023; it states that by the end of 2023 renewables accounted for 43% of global installed power capacity, and that the 86% figure was renewables' share of global power additions after adding 473 GW of renewable capacity.",
+        "relation": "contradicts",
+        "sourceIds": [
+          "s1"
+        ]
+      },
+      {
+        "id": "e2",
+        "text": "The IRENA press release cited in the briefing likewise says Renewable Capacity Statistics 2024 showed total renewable capacity of 3,870 GW globally in 2023 and that renewables accounted for 86% of capacity additions; it does not describe the 86% as electricity generated.",
+        "relation": "contradicts",
+        "sourceIds": [
+          "s2"
+        ]
+      },
+      {
+        "id": "e3",
+        "text": "In Renewable Capacity Statistics 2024, IRENA's table for 'Renewable energy share of electricity capacity' lists the World row as 43.2% for 2023, confirming the publication is reporting installed electricity capacity shares, not generated electricity shares.",
+        "relation": "contradicts",
+        "sourceIds": [
+          "s1"
+        ]
+      },
+      {
+        "id": "e4",
+        "text": "IRENA's separate Renewable Energy Statistics 2024 explains that generation data are presented in GWh and includes an indicator for 'Renewable energy share of electricity production.' Its world production-share table covers 2014-2022 and reports 29.1% for 2022, not an 86% global generation share for 2023.",
+        "relation": "contradicts",
+        "sourceIds": [
+          "s3"
+        ]
+      },
+      {
+        "id": "e5",
+        "text": "Ember's Global Electricity Review 2024 reports that renewables reached 30% of global electricity generation in 2023; it further breaks out hydro at 14%, wind at 7.8%, solar at 5.5%, bioenergy at 2.4%, and other renewables at 0.3%.",
+        "relation": "contradicts",
+        "sourceIds": [
+          "s4"
+        ]
+      },
+      {
+        "id": "e6",
+        "text": "Our World in Data, using Ember's final 2023 global electricity generation data, says renewables produced just over 30% of the world's electricity in 2023.",
+        "relation": "contradicts",
+        "sourceIds": [
+          "s5"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "s1",
+        "title": "irena.org",
+        "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2024/Mar/IRENA_RE_Capacity_Statistics_2024.pdf?rev=a587503ac9a2435c8d13e40081d2ec34"
+      },
+      {
+        "id": "s2",
+        "title": "irena.org",
+        "url": "https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable"
+      },
+      {
+        "id": "s3",
+        "title": "irena.org",
+        "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2024/Jul/IRENA_Renewable_Energy_Statistics_2024.pdf"
+      },
+      {
+        "id": "s4",
+        "title": "ember-energy.org",
+        "url": "https://ember-energy.org/latest-insights/global-electricity-review-2024/global-electricity-trends"
+      },
+      {
+        "id": "s5",
+        "title": "ourworldindata.org",
+        "url": "https://ourworldindata.org/data-insights/renewable-electricity-2023"
+      }
+    ]
+  }
+}

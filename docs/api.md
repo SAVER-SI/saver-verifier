@@ -40,8 +40,8 @@ Example request:
 
 ```json
 {
-  "claim": "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
-  "context": "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
+  "claim": "IRENA's Renewable Capacity Statistics 2024 shows that renewables generated 86% of global electricity in 2023.",
+  "context": "An energy-sector briefing cites https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable . Independently check the attributed statistic against the original publication, including the year, measured quantity and denominator."
 }
 ```
 
@@ -257,12 +257,12 @@ Confidence is model-assessed and uncalibrated in both formats. The original `/ve
 
 Read https://saververify.com/agent-tool.json. Send its input fields as JSON directly to the advertised transport URL. The surrounding transport/discovery objects are metadata, not request-body fields. All payment calls use api.saververify.com, even when discovering the service through the website or an older Railway-host listing.
 
-## Recorded research checks
+## Current paid examples
 
-The featured paid examples examine [capacity versus generation](https://saververify.com/examples/renewables-capacity-vs-generation.json) and [revised scientific measurements](https://saververify.com/examples/dart-measurement-revision.json). Inspect the original requests and returned source-linked evidence. All five operator-funded records, including the three earlier integration checks, remain in [examples.json](https://saververify.com/examples.json). No returned answer was edited for presentation.
+- [Energy: capacity versus generation](https://saververify.com/examples/energy-capacity-check.json) — `contradicted`, six linked findings and five sources.
+- [Electric cars: sales versus fleet](https://saververify.com/examples/ev-market-check.json) — `supported`, three linked findings and one source.
+- [Internet use: global and income-group figures](https://saververify.com/examples/digital-access-check.json) — `supported`, four linked findings and one source.
 
-## Source-linking update after the paid examples
+These three source-guided production records were captured after the source-linking update. Each contains the original request, complete unedited response and a successful 0.20 USDC Base settlement transaction. The public [collection](https://saververify.com/examples.json) contains exactly these three examples. Input and output examples in OpenAPI use the first record.
 
-V2 source handling now preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict; valid remaining evidence is retained with an inconclusive result. The request and response formats, price and original `/verify` behavior are unchanged.
-
-All five recorded purchases predate this correction. Their responses remain unchanged and are not evidence of post-update accuracy. The update is covered by 24 offline tests; no additional paid post-update run has been performed.
+V2 preserves consulted sources before linking evidence, and incomplete finding/source linkage prevents a confident full verdict. The request/response formats, price and original `/verify` behavior are unchanged. Offline validation passes 24 tests; the three current paid records additionally demonstrate actual post-update outputs, not an independent accuracy benchmark.

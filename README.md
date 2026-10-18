@@ -25,12 +25,13 @@ This is the official public documentation repository. Production server code and
 
 Published result examples are actual operator-funded purchases. They are not simulated, independent accuracy benchmarks or evidence of organic customer demand. Reading stored examples is free and does not run a verification.
 
-## Featured paid research checks
+## Three real paid examples
 
-- [Capacity versus generation](https://saververify.com/examples/renewables-capacity-vs-generation.json): checks whether a reported percentage uses the correct metric and denominator.
-- [Revised DART measurement](https://saververify.com/examples/dart-measurement-revision.json): checks why two published figures differ and what they measure.
+- [Energy: capacity versus generation](https://saververify.com/examples/energy-capacity-check.json) — `contradicted`, six linked findings and five sources.
+- [Electric cars: sales versus fleet](https://saververify.com/examples/ev-market-check.json) — `supported`, three linked findings and one source.
+- [Internet use: global and income-group figures](https://saververify.com/examples/digital-access-check.json) — `supported`, four linked findings and one source.
 
-Both records contain the original paid request, full response and settlement transaction. Separate operator source reviews identify incomplete citation coverage in the DART response and an inconclusive energy response despite an available primary-source correction. These limitations are displayed openly; the original responses are unchanged. The earlier three integration checks are retained separately on the [examples page](https://saververify.com/examples/). The questions were selected by the operator; returned answers were not edited. Five paid demonstration runs are not an accuracy benchmark.
+All three were captured from the live v2 API after the source-linking update on 2026-10-18, with 0.20 USDC paid per request. Source URLs were supplied in the requests, and the main figures and evidence were compared with the original publications. Original requests, responses and transaction references are unchanged. The public collection contains only these three current examples; older reports are no longer published.
 
 ## Send a claim
 
@@ -38,8 +39,8 @@ Use `POST https://api.saververify.com/v2/verify` with `Content-Type: application
 
 ```json
 {
-  "claim": "NASA initially reported that DART shortened Dimorphos's orbital period around Didymos by 32 minutes, and later refined that measurement to 33 minutes. These figures describe an orbital-period change, not a change in a predicted Earth-impact time.",
-  "context": "Checking apparently conflicting figures in a science and engineering briefing. Assess the original and revised measurements and what they measure, using primary sources."
+  "claim": "IRENA's Renewable Capacity Statistics 2024 shows that renewables generated 86% of global electricity in 2023.",
+  "context": "An energy-sector briefing cites https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable . Independently check the attributed statistic against the original publication, including the year, measured quantity and denominator."
 }
 ```
 
@@ -69,8 +70,6 @@ The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.0.3. Its r
 
 Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API credentials. Public documentation and examples are Apache-2.0 licensed; this does not publish the private server implementation.
 
-## Source-linking update after the paid examples
+## Source-linked evidence
 
-V2 source handling now preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict; valid remaining evidence is retained with an inconclusive result. The request and response formats, price and original `/verify` behavior are unchanged.
-
-All five recorded purchases predate this correction. Their responses remain unchanged and are not evidence of post-update accuracy. The update is covered by 24 offline tests; no additional paid post-update run has been performed.
+V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The offline suite passes 24 tests.
