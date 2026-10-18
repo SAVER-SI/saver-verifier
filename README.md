@@ -62,7 +62,7 @@ Use SAVER for external factual claims. Use dedicated tools for wallet risk, tran
 
 Existing integration examples live in `examples/`. The unpaid demo stops at 402; the paid example performs a real payment when supplied with a funded wallet. Never run a paid example as an unattended smoke test.
 
-The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.0.3. Its reported audit applies to that published skill, not to API accuracy or newer source revisions. The updated v1.0.4 source in this repository requires a separate registry release and audit.
+The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.0.3. Its reported audit applies to that published skill, not to API accuracy or newer source revisions. The updated v1.1.0 source in this repository requires a separate registry release and audit.
 
 [Skill source](skills/saver-verifier/SKILL.md) · [Published ClawHub skill](https://clawhub.ai/saver-si/skills/saver-verifier)
 
@@ -73,3 +73,5 @@ Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API 
 ## Source-linked evidence
 
 V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The offline suite passes 24 tests.
+
+New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported.

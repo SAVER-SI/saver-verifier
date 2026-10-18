@@ -2,7 +2,7 @@ import { wrapFetchWithPaymentFromConfig } from "@x402/fetch";
 import { ExactEvmScheme } from "@x402/evm";
 import { privateKeyToAccount } from "viem/accounts";
 
-const SAVER_URL = "https://api.saververify.com/verify";
+const SAVER_URL = "https://api.saververify.com/v2/verify";
 const MIN_CONFIDENCE = 0.8;
 const NETWORK = "eip155:8453";
 
@@ -116,3 +116,4 @@ async function main() {
 main().catch((error) => {
   decide("deny", `SAVER PreSpend hook failed: ${error.message}`);
 });
+

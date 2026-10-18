@@ -14,19 +14,21 @@ https://api.saververify.com
 
 ---
 
-## Verify Endpoint
+## Recommended endpoint
 
 ```http
-POST /verify
+POST /v2/verify
 ```
 
 Full URL:
 
 ```text
-https://api.saververify.com/verify
+https://api.saververify.com/v2/verify
 ```
 
 ---
+
+The request below works with both routes. V2 is recommended for new clients; the original `/verify` response examples below remain documented for compatibility. See [V2 migration](migration-v2.md) for linked evidence.
 
 ## Request
 

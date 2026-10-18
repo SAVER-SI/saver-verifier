@@ -1,5 +1,5 @@
 async function main() {
-  const SAVER_URL = "https://api.saververify.com/verify";
+  const SAVER_URL = "https://api.saververify.com/v2/verify";
 
   const request = {
     claim: "IRENA's Renewable Capacity Statistics 2024 shows that renewables generated 86% of global electricity in 2023.",
