@@ -1,7 +1,7 @@
 ---
 name: saver-verifier
 description: Independently check external factual claims in agent research, reports or other tool outputs using web evidence and cited sources. Use when a cited second check is needed before relying on a claim; not for wallet security, transaction simulation or arithmetic.
-version: 1.0.4
+version: 1.1.0
 metadata:
   openclaw:
     emoji: "🛡️"

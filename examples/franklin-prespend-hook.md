@@ -19,7 +19,7 @@ The SAVER hook:
 
 1. reads the Franklin `PreSpend` envelope from stdin
 2. converts the proposed paid action into a verification request
-3. calls `https://api.saververify.com/verify`
+3. calls `https://api.saververify.com/v2/verify`
 4. evaluates SAVER's structured `status` and `confidence`
 5. prints a Franklin-compatible `allow` or `deny` decision
 
@@ -112,7 +112,8 @@ Review Franklin's hook security model before relying on lifecycle hooks as a sec
 
 - Website: `https://saververify.com`
 - API: `https://api.saververify.com`
-- Verification endpoint: `POST https://api.saververify.com/verify`
+- Verification endpoint: `POST https://api.saververify.com/v2/verify`
 - Price: `0.20 USDC`
 - Network: Base Mainnet (`eip155:8453`)
 - Protocol: x402 v2
+

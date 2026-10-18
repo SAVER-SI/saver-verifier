@@ -2,7 +2,7 @@ import { wrapFetchWithPaymentFromConfig } from "@x402/fetch";
 import { ExactEvmScheme } from "@x402/evm";
 import { privateKeyToAccount } from "viem/accounts";
 
-const SAVER_URL = "https://api.saververify.com/verify";
+const SAVER_URL = "https://api.saververify.com/v2/verify";
 const privateKey = process.env.SAVER_PRIVATE_KEY;
 
 if (!privateKey) {
@@ -71,13 +71,13 @@ async function main() {
   console.log("");
   console.log("Evidence:");
   for (const item of result.evidence ?? []) {
-    console.log("-", item);
+    console.log(`- ${item.text} (${item.relation}; sources: ${item.sourceIds.join(", ")})`);
   }
 
   console.log("");
   console.log("Sources:");
   for (const source of result.sources ?? []) {
-    console.log(`- ${source.title}: ${source.url}`);
+    console.log(`- [${source.id}] ${source.title}: ${source.url}`);
   }
 
   const paymentResponse = response.headers.get("payment-response");
