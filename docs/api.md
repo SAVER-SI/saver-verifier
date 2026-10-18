@@ -108,26 +108,7 @@ HTTP:
 200 OK
 ```
 
-Example:
-
-```json
-{
-  "status": "supported",
-  "confidence": 0.98,
-  "explanation": "The available evidence supports the claim.",
-  "evidence": [
-    "Relevant authoritative sources support the claim."
-  ],
-  "sources": [
-    {
-      "title": "Example source",
-      "url": "https://example.com"
-    }
-  ],
-  "domain": "general-verification",
-  "timestamp": "2026-10-06T12:43:02.565Z"
-}
-```
+Actual paid request/response records are published at [saververify.com/examples/](https://saververify.com/examples/) and [examples.json](https://saververify.com/examples.json). They are operator-funded tests, not synthetic responses or organic demand. Use the OpenAPI schema for the original response format.
 
 ---
 
@@ -262,3 +243,16 @@ For HTTP 400, check the response `message`, JSON formatting, required `claim`, f
 For HTTP 413, reduce claim, context or body size. For 429, respect the indicated wait. Do not repeatedly sign new payments after a timeout or lost connection: the original request may have settled. The API does not advertise an idempotency key or result-recovery endpoint.
 
 An `insufficient_evidence` result is a completed verification, not a payment failure. Server-side fetch clients are the demonstrated integration; browser clients must separately check CORS support.
+
+
+## Version 2: linked evidence
+
+`POST /v2/verify` uses the same flat request schema, price, network and payment policy as `/verify`. It adds `schemaVersion: "2.0"`, `requestId` and `confidenceType: "model_assessed"`.
+
+Each evidence object has `id`, `text`, `relation` (`supports`, `contradicts`, `context`) and non-empty `sourceIds`. Each source has `id`, `title` and `url`. Resolve each evidence source ID against the response's sources. URLs not present in returned search metadata are excluded. Findings without linked sources cannot support a definitive verdict. The model still interprets the source content; URL membership is not independent verification of its interpretation.
+
+Confidence is model-assessed and uncalibrated in both formats. The original `/verify` endpoint retains its response shape, with string evidence and title/URL source objects. Existing clients keep the original v1 evidence behavior; choose v2 to require explicit evidence/source links.
+
+## Flat agent interface
+
+Read https://saververify.com/agent-tool.json. Send its input fields as JSON directly to the advertised transport URL. The surrounding transport/discovery objects are metadata, not request-body fields. All payment calls use api.saververify.com, even when discovering the service through the website or an older Railway-host listing.

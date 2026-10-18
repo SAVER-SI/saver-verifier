@@ -1,0 +1,130 @@
+{
+  "service": "SAVER Verifier",
+  "kind": "paid_verification_examples",
+  "notice": "Actual operator-funded paid SAVER runs. These illustrate returned outputs, not an independent accuracy benchmark or organic customer demand.",
+  "examples": [
+    {
+      "id": "webb-launch-date",
+      "provenance": {
+        "kind": "paid_live_verification",
+        "operatorFunded": true,
+        "organicCustomer": false,
+        "capturedAt": "2026-10-18T10:28:47.107Z",
+        "endpoint": "https://api.saververify.com/v2/verify",
+        "priceUSDC": "0.20",
+        "network": "eip155:8453",
+        "transaction": "0x2c19eb3339f306b65682e3620b5ef20d0d8996d5da538718c95f332c08f8957e",
+        "transactionUrl": "https://basescan.org/tx/0x2c19eb3339f306b65682e3620b5ef20d0d8996d5da538718c95f332c08f8957e",
+        "requestId": "saver-paid-example-20261018-webb-launch-date"
+      },
+      "request": {
+        "claim": "The James Webb Space Telescope launched on December 25, 2021.",
+        "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
+      },
+      "response": {
+        "schemaVersion": "2.0",
+        "requestId": "saver-paid-example-20261018-webb-launch-date",
+        "status": "supported",
+        "confidence": 0.99,
+        "explanation": "Authoritative NASA sources state that the James Webb Space Telescope launched on Saturday, December 25, 2021, specifically at 7:20 a.m. EST / 12:20 UTC, from Europe’s Spaceport in French Guiana aboard an Ariane 5 rocket. This directly supports the claim.",
+        "domain": "general-verification",
+        "timestamp": "2026-10-18T10:28:46.217Z",
+        "confidenceType": "model_assessed",
+        "evidence": [
+          {
+            "id": "e1",
+            "text": "A NASA news article says Arianespace’s Ariane 5 rocket launched with NASA’s James Webb Space Telescope onboard on Saturday, Dec. 25, 2021, from the Guiana Space Centre in Kourou, French Guiana.",
+            "relation": "supports",
+            "sourceIds": [
+              "s1"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "title": "nasa.gov",
+            "url": "https://www.nasa.gov/solar-system/nasas-webb-telescope-launches-to-see-first-galaxies-distant-worlds"
+          }
+        ]
+      }
+    },
+    {
+      "id": "webb-wrong-year",
+      "provenance": {
+        "kind": "paid_live_verification",
+        "operatorFunded": true,
+        "organicCustomer": false,
+        "capturedAt": "2026-10-18T10:29:02.809Z",
+        "endpoint": "https://api.saververify.com/v2/verify",
+        "priceUSDC": "0.20",
+        "network": "eip155:8453",
+        "transaction": "0x2ec38c4c9e566949212ee1dcc5f7c29d7182fbfc5908f9b1f6ebacd72a38ca81",
+        "transactionUrl": "https://basescan.org/tx/0x2ec38c4c9e566949212ee1dcc5f7c29d7182fbfc5908f9b1f6ebacd72a38ca81",
+        "requestId": "saver-paid-example-20261018-webb-wrong-year"
+      },
+      "request": {
+        "claim": "The James Webb Space Telescope was first launched in 2023.",
+        "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
+      },
+      "response": {
+        "schemaVersion": "2.0",
+        "requestId": "saver-paid-example-20261018-webb-wrong-year",
+        "status": "contradicted",
+        "confidence": 0.99,
+        "explanation": "The claim says the James Webb Space Telescope was first launched in 2023. Authoritative NASA sources state that Webb launched on December 25, 2021, not in 2023.",
+        "domain": "general-verification",
+        "timestamp": "2026-10-18T10:29:01.900Z",
+        "confidenceType": "model_assessed",
+        "evidence": [
+          {
+            "id": "e1",
+            "text": "A NASA news release published for the launch states that NASA’s James Webb Space Telescope launched at 7:20 a.m. EST on Saturday, December 25, 2021.",
+            "relation": "contradicts",
+            "sourceIds": [
+              "s1"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "title": "nasa.gov",
+            "url": "https://www.nasa.gov/solar-system/nasas-webb-telescope-launches-to-see-first-galaxies-distant-worlds"
+          }
+        ]
+      }
+    },
+    {
+      "id": "future-guarantee",
+      "provenance": {
+        "kind": "paid_live_verification",
+        "operatorFunded": true,
+        "organicCustomer": false,
+        "capturedAt": "2026-10-18T10:29:35.772Z",
+        "endpoint": "https://api.saververify.com/v2/verify",
+        "priceUSDC": "0.20",
+        "network": "eip155:8453",
+        "transaction": "0xedd1a785948a56e331753f829fb2a17b0570a62f57e8e623222a72f6e15004c4",
+        "transactionUrl": "https://basescan.org/tx/0xedd1a785948a56e331753f829fb2a17b0570a62f57e8e623222a72f6e15004c4",
+        "requestId": "saver-paid-example-20261018-future-guarantee"
+      },
+      "request": {
+        "claim": "The Ethereum network is guaranteed to experience no outages at any time during 2030.",
+        "context": "Operator-funded paid example capture for the SAVER website. Assess the claim normally; do not tailor the verdict to an expected example category."
+      },
+      "response": {
+        "schemaVersion": "2.0",
+        "requestId": "saver-paid-example-20261018-future-guarantee",
+        "status": "insufficient_evidence",
+        "confidence": 0,
+        "explanation": "No evidence could be linked to source URLs returned by web search. The claim could not be independently substantiated.",
+        "domain": "general-verification",
+        "timestamp": "2026-10-18T10:29:35.033Z",
+        "confidenceType": "model_assessed",
+        "evidence": [],
+        "sources": []
+      }
+    }
+  ]
+}
