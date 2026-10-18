@@ -256,5 +256,10 @@
         }
       ]
     }
-  ]
+  ],
+  "subsequentServiceUpdate": {
+    "date": "2026-10-18",
+    "description": "V2 source handling was updated after these captures to preserve consulted source references and reject incomplete evidence links.",
+    "validation": "Offline regression tests cover the source-linking update. These five paid reports predate it; no new paid verification has been performed after the update."
+  }
 }

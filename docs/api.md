@@ -260,3 +260,9 @@ Read https://saververify.com/agent-tool.json. Send its input fields as JSON dire
 ## Recorded research checks
 
 The featured paid examples examine [capacity versus generation](https://saververify.com/examples/renewables-capacity-vs-generation.json) and [revised scientific measurements](https://saververify.com/examples/dart-measurement-revision.json). Inspect the original requests and returned source-linked evidence. All five operator-funded records, including the three earlier integration checks, remain in [examples.json](https://saververify.com/examples.json). No returned answer was edited for presentation.
+
+## Source-linking update after the paid examples
+
+V2 source handling now preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict; valid remaining evidence is retained with an inconclusive result. The request and response formats, price and original `/verify` behavior are unchanged.
+
+All five recorded purchases predate this correction. Their responses remain unchanged and are not evidence of post-update accuracy. The update is covered by 24 offline tests; no additional paid post-update run has been performed.

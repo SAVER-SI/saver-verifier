@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "SAVER Verifier",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Independently check externally sourced factual claims in agent research and reports. Returns supported, contradicted, mixed or insufficient_evidence with web sources. Use when a claim needs a cited second check; not for transaction simulation, wallet risk or deterministic arithmetic. Live verification costs 0.20 USDC on Base via x402 v2."
   },
   "servers": [
