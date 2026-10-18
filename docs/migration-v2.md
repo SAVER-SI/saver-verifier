@@ -17,3 +17,11 @@ V2 requires explicit evidence/source linkage and handles incomplete linkage more
 `POST /verify` remains supported with its original response format. It is not redirected to v2. Historical directory links continue to work. New directory submissions should use the canonical v2 URL, the POST method and the example body above, and link to OpenAPI and the three actual paid examples at https://saververify.com/examples/.
 
 Client samples in this repository use v2. Do not automatically sign another payment after an ambiguous timeout; no idempotency or result recovery endpoint is advertised.
+
+## Correcting a request automatically
+
+Both verification routes reject invalid input before payment. HTTP 400/413 responses preserve `error`, `message` and `requestId`, and add a machine-readable `code` and `help`. The help object supplies `method`, `contentType`, a minimal JSON `example`, the same-route `endpoint`, the recommended v2 endpoint and the OpenAPI URL. Send only the example/input fields as the body, not the help object.
+
+Correct the request and retry `help.endpoint` to preserve the response version. Only authorize payment after a valid HTTP 402 challenge and within the existing wallet spending policy. Wrong content types remain HTTP 400; form data is not silently converted.
+
+GET/HEAD on `/verify` and `/v2/verify` return HTTP 405 with `Allow: POST`. GET includes JSON guidance; HEAD has no body. OPTIONS returns HTTP 200 with `Allow: POST`. Use `/healthz` or `/readyz` for health checks. These guidance responses do not perform verification or charge a payment.

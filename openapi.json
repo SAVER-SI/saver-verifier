@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "SAVER Verifier",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Independently check externally sourced factual claims in agent research and reports. Returns supported, contradicted, mixed or insufficient_evidence with web sources. Use when a claim needs a cited second check; not for transaction simulation, wallet risk or deterministic arithmetic. Live verification costs 0.20 USDC on Base via x402 v2."
   },
   "servers": [
@@ -81,7 +81,7 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Invalid request, rejected before payment. Includes code and help with expected JSON content type, same-route endpoint, example body and OpenAPI URL.",
             "content": {
               "application/json": {
                 "schema": {
@@ -155,6 +155,74 @@
         "tags": [
           "Claim verification"
         ]
+      },
+      "get": {
+        "summary": "Method guidance; does not verify claims",
+        "operationId": "originalGetGuidance",
+        "responses": {
+          "405": {
+            "description": "Use POST for verification. This response performs no AI work and requires no payment. HEAD returns headers without a body.",
+            "headers": {
+              "Allow": {
+                "description": "Only POST performs verification.",
+                "schema": {
+                  "type": "string",
+                  "const": "POST"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "summary": "Method guidance; does not verify claims",
+        "operationId": "originalHeadGuidance",
+        "responses": {
+          "405": {
+            "description": "Use POST for verification. This response performs no AI work and requires no payment. HEAD returns headers without a body.",
+            "headers": {
+              "Allow": {
+                "description": "Only POST performs verification.",
+                "schema": {
+                  "type": "string",
+                  "const": "POST"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options": {
+        "summary": "Free capability probe",
+        "responses": {
+          "200": {
+            "description": "Supported verification method.",
+            "headers": {
+              "Allow": {
+                "description": "Only POST performs verification.",
+                "schema": {
+                  "type": "string",
+                  "const": "POST"
+                }
+              }
+            },
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "const": "POST"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v2/verify": {
@@ -314,7 +382,7 @@
             }
           },
           "400": {
-            "description": "Invalid request",
+            "description": "Invalid request, rejected before payment. Includes code and help with expected JSON content type, same-route endpoint, example body and OpenAPI URL.",
             "content": {
               "application/json": {
                 "schema": {
@@ -388,6 +456,74 @@
         "tags": [
           "Claim verification"
         ]
+      },
+      "get": {
+        "summary": "Method guidance; does not verify claims",
+        "operationId": "linkedGetGuidance",
+        "responses": {
+          "405": {
+            "description": "Use POST for verification. This response performs no AI work and requires no payment. HEAD returns headers without a body.",
+            "headers": {
+              "Allow": {
+                "description": "Only POST performs verification.",
+                "schema": {
+                  "type": "string",
+                  "const": "POST"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "summary": "Method guidance; does not verify claims",
+        "operationId": "linkedHeadGuidance",
+        "responses": {
+          "405": {
+            "description": "Use POST for verification. This response performs no AI work and requires no payment. HEAD returns headers without a body.",
+            "headers": {
+              "Allow": {
+                "description": "Only POST performs verification.",
+                "schema": {
+                  "type": "string",
+                  "const": "POST"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options": {
+        "summary": "Free capability probe",
+        "responses": {
+          "200": {
+            "description": "Supported verification method.",
+            "headers": {
+              "Allow": {
+                "description": "Only POST performs verification.",
+                "schema": {
+                  "type": "string",
+                  "const": "POST"
+                }
+              }
+            },
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "const": "POST"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/examples.json": {
@@ -492,6 +628,13 @@
           },
           "requestId": {
             "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "description": "Machine-readable validation or method error code, when applicable."
+          },
+          "help": {
+            "$ref": "#/components/schemas/RequestGuidance"
           }
         },
         "required": [
@@ -613,6 +756,53 @@
           "schemaVersion",
           "requestId",
           "confidenceType"
+        ],
+        "additionalProperties": false
+      },
+      "RequestGuidance": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "const": "POST"
+          },
+          "endpoint": {
+            "type": "string",
+            "format": "uri",
+            "description": "Same verification route as the failed request; preserve its response version when retrying."
+          },
+          "recommendedEndpoint": {
+            "type": "string",
+            "format": "uri"
+          },
+          "contentType": {
+            "type": "string",
+            "const": "application/json"
+          },
+          "example": {
+            "type": "object",
+            "properties": {
+              "claim": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "claim"
+            ],
+            "additionalProperties": false
+          },
+          "openapi": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "method",
+          "endpoint",
+          "recommendedEndpoint",
+          "contentType",
+          "example",
+          "openapi"
         ],
         "additionalProperties": false
       }
