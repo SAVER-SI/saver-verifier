@@ -80,7 +80,7 @@ New integrations should follow the [v2 migration guide](docs/migration-v2.md). E
 
 
 
-The current service contract is OpenAPI 1.2.0. Both payment challenges include machine-readable input/output declarations and an actual paid output example. The offline suite also covers concurrent authorization reuse, release after upstream/settlement failures and graceful shutdown with an active paid request. These are simulated payment tests, not new real purchases or an accuracy benchmark.
+The current service contract is OpenAPI 1.2.1. Both payment challenges include machine-readable input/output declarations and an actual paid output example. The offline suite also covers concurrent authorization reuse, release after upstream/settlement failures and graceful shutdown with an active paid request. These are simulated payment tests, not new real purchases or an accuracy benchmark.
 
 
 ## Safe payment and result recovery
@@ -93,3 +93,10 @@ The Franklin sample now requires an explicit factual `spend.verification.claim` 
 
 
 The published ClawHub release remains 1.1.0 and continues to work with the unchanged paid endpoint. Repository skill source 1.1.1 adds optional recovery guidance; it requires a separate authenticated registry release and security scan before publication.
+
+
+### Completion and retention safeguards (OpenAPI 1.2.1)
+
+A provider response that did not finish safely is rejected with HTTP 502 before settlement. Codes `verification_incomplete` and `verification_research_limit` identify incomplete or research-limited responses, even if partial text looks like valid JSON. These are service failures, not paid `insufficient_evidence` verdicts. Do not automatically authorize another payment after an uncertain outcome.
+
+`context: null` is accepted as absent context. Recovery results become unavailable after 24 hours; expired files are physically swept approximately once a minute while the service is running. Canonical API discovery reports the current persistence capability. No additional client service or subscription is required.

@@ -283,7 +283,7 @@ GET/HEAD on `/verify` and `/v2/verify` return HTTP 405 with `Allow: POST`. GET i
 
 HTTP 409 with `code: payment_authorization_in_use` means the same verified authorization is already being processed. It does not include a new `PAYMENT-REQUIRED` challenge and starts no additional AI call or settlement. Do not authorize a replacement while the original outcome is uncertain. Concurrent-request protection and opt-in result recovery are separate. Recovery durability is advertised dynamically in discovery.
 
-HTTP 503 can report verification-capacity limits or service shutdown. That rejected request starts no AI work and is not settled. Capacity responses include `Retry-After`. The current OpenAPI contract is 1.2.0; response schema v2 and the payment protocol remain unchanged.
+HTTP 503 can report verification-capacity limits or service shutdown. That rejected request starts no AI work and is not settled. Capacity responses include `Retry-After`. The current OpenAPI contract is 1.2.1; response schema v2 and the payment protocol remain unchanged.
 
 A v2 `mixed` verdict requires linked evidence with both `supports` and `contradicts` relations. Background-only or one-sided evidence cannot substantiate that verdict.
 
@@ -293,3 +293,10 @@ A v2 `mixed` verdict requires linked evidence with both `supports` and `contradi
 Generate and save a cryptographically random 32-byte hexadecimal secret before POST, then send it in `SAVER-RECOVERY-TOKEN`. Retrieve through `GET https://api.saververify.com/results` with the same header. No wallet key, signature or new payment is required for retrieval. A completed response includes the original settlement receipt and `SAVER-RESULT-REPLAY: true`.
 
 Retention is up to 24 hours. Check `resultRecovery.durable` in `/.well-known/x402` before depending on restart persistence. Pending/uncertain outcomes return 202 without evidence. A missing/expired record returns 404, which does not prove nonpayment. Never put the bearer token in URLs, public logs or source control, and never automatically create another payment after an ambiguous result.
+
+
+### Completion and retention safeguards (OpenAPI 1.2.1)
+
+A provider response that did not finish safely is rejected with HTTP 502 before settlement. Codes `verification_incomplete` and `verification_research_limit` identify incomplete or research-limited responses, even if partial text looks like valid JSON. These are service failures, not paid `insufficient_evidence` verdicts. Do not automatically authorize another payment after an uncertain outcome.
+
+`context: null` is accepted as absent context. Recovery results become unavailable after 24 hours; expired files are physically swept approximately once a minute while the service is running. Canonical API discovery reports the current persistence capability. No additional client service or subscription is required.

@@ -25,3 +25,6 @@ Both verification routes reject invalid input before payment. HTTP 400/413 respo
 Correct the request and retry `help.endpoint` to preserve the response version. Only authorize payment after a valid HTTP 402 challenge and within the existing wallet spending policy. Wrong content types remain HTTP 400; form data is not silently converted.
 
 GET/HEAD on `/verify` and `/v2/verify` return HTTP 405 with `Allow: POST`. GET includes JSON guidance; HEAD has no body. OPTIONS returns HTTP 200 with `Allow: POST`. Use `/healthz` or `/readyz` for health checks. These guidance responses do not perform verification or charge a payment.
+
+
+OpenAPI 1.2.1 is a compatible maintenance update: context may explicitly be null, incomplete research returns HTTP 502 without settlement, and retained recovery files receive periodic cleanup. Paid response schemas and the payment policy are unchanged.
