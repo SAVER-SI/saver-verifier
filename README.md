@@ -64,7 +64,7 @@ Use SAVER for external factual claims. Use dedicated tools for wallet risk, tran
 
 Existing integration examples live in `examples/`. The unpaid demo stops at 402; the paid example performs a real payment when supplied with a funded wallet. Never run a paid example as an unattended smoke test.
 
-The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.1.0 and recommends `/v2/verify`. ClawHub reports the exact 1.1.0 release security status as clean (checked 2026-10-18). This scans the skill artifact; it is not an audit of API accuracy or a guarantee about verification results.
+The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.1.1 and recommends `/v2/verify`. The operator's exact-version CLI output confirms latest 1.1.1, security status clean and no warnings (checked 2026-10-19). This scans the skill artifact; it is not an audit of API accuracy or a guarantee about verification results.
 
 [Skill source](skills/saver-verifier/SKILL.md) · [Published ClawHub skill](https://clawhub.ai/saver-si/skills/saver-verifier)
 
@@ -76,7 +76,7 @@ Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API 
 
 V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. A v2 `mixed` verdict additionally requires linked findings both supporting and contradicting the claim; background-only and one-sided findings become `insufficient_evidence`. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The 1.2.2 release passes 66 server tests and 7 public-client tests.
 
-New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported. API response v2, payment protocol x402 v2 and ClawHub skill 1.1.0 have separate version numbers.
+New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported. API response v2, payment protocol x402 v2 and ClawHub skill 1.1.1 have separate version numbers.
 
 
 
@@ -92,7 +92,7 @@ Recovery requires the original random token in the `SAVER-RECOVERY-TOKEN` header
 The Franklin sample now requires an explicit factual `spend.verification.claim` from a trusted adapter and rejects malformed PreSpend input. A supported factual result does not replace the integrator's wallet, budget or execution policies. See its integration guide before enabling it.
 
 
-The published ClawHub release remains 1.1.0 and continues to work with the unchanged paid endpoint. Repository skill source 1.1.1 adds optional recovery guidance; it requires a separate authenticated registry release and security scan before publication.
+ClawHub skill 1.1.1 is now published as latest with security status clean and no warnings (checked 2026-10-19). It adds result-recovery and service-failure guidance; the paid endpoint and price remain unchanged.
 
 
 ### Completion and retention safeguards (OpenAPI 1.2.1)
@@ -110,4 +110,4 @@ An unreadable recovery record returns 503 for that token rather than being treat
 
 ## ClawHub skill source 1.1.1
 
-The skill source documents request correction, explicit recovery-token headers on the first POST and signed retry, 24-hour recovery, strict payment terms and handling of invalid/incomplete provider responses. Skill version 1.1.1 and API contract 1.2.2 are separately versioned. A ClawHub CLI dry-run validated the one-file artifact; registry publication and its exact-version security scan are separate steps. The published-version and audit statements above remain tied to 1.1.0 until a newer public release is verified.
+The skill source documents request correction, explicit recovery-token headers on the first POST and signed retry, 24-hour recovery, strict payment terms and handling of invalid/incomplete provider responses. Skill version 1.1.1 and API contract 1.2.2 are separately versioned. A ClawHub CLI dry-run validated the one-file artifact. The operator then published it from PowerShell; exact-version registry output confirms latest 1.1.1, clean security status and no warnings. The 4412-byte SKILL.md has SHA256 `99390c37fae7218a816f7f67f4d2902a198241edb88ca0e4349c4dd26f8380a7`, matching the committed source.
