@@ -300,3 +300,10 @@ Retention is up to 24 hours. Check `resultRecovery.durable` in `/.well-known/x40
 A provider response that did not finish safely is rejected with HTTP 502 before settlement. Codes `verification_incomplete` and `verification_research_limit` identify incomplete or research-limited responses, even if partial text looks like valid JSON. These are service failures, not paid `insufficient_evidence` verdicts. Do not automatically authorize another payment after an uncertain outcome.
 
 `context: null` is accepted as absent context. Recovery results become unavailable after 24 hours; expired files are physically swept approximately once a minute while the service is running. Canonical API discovery reports the current persistence capability. No additional client service or subscription is required.
+
+
+## Contract 1.2.2 clarifications
+
+Use the canonical verification URL. Accepted case/trailing-slash variants retain the corresponding v1 or v2 response format and share its recovery identity. `context: null` is equivalent to omitting context.
+
+HTTP 502 with `code: verification_invalid_response` means provider output failed structural validation; this request is not settled. A valid `insufficient_evidence` response is still a completed paid assessment. An unreadable recovery record returns 503 for its token and must not trigger automatic repayment.

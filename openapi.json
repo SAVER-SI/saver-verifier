@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "SAVER Verifier",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "Independently check externally sourced factual claims in agent research and reports. Returns supported, contradicted, mixed or insufficient_evidence with web sources. Use when a claim needs a cited second check; not for transaction simulation, wallet risk or deterministic arithmetic. Live verification costs 0.20 USDC on Base via x402 v2."
   },
   "servers": [
@@ -135,7 +135,7 @@
             }
           },
           "502": {
-            "description": "Verification failed or research did not complete safely. Incomplete or research-limited provider responses are not settled. Codes verification_incomplete and verification_research_limit identify those cases; never automatically authorize another payment after an uncertain outcome.",
+            "description": "The provider response is invalid, incomplete, failed or research-limited. No verification result is delivered and this request is not settled. code may be verification_invalid_response, verification_incomplete or verification_research_limit. Do not automatically authorize another payment.",
             "content": {
               "application/json": {
                 "schema": {
@@ -479,7 +479,7 @@
             }
           },
           "502": {
-            "description": "Verification failed or research did not complete safely. Incomplete or research-limited provider responses are not settled. Codes verification_incomplete and verification_research_limit identify those cases; never automatically authorize another payment after an uncertain outcome.",
+            "description": "The provider response is invalid, incomplete, failed or research-limited. No verification result is delivered and this request is not settled. code may be verification_invalid_response, verification_incomplete or verification_research_limit. Do not automatically authorize another payment.",
             "content": {
               "application/json": {
                 "schema": {

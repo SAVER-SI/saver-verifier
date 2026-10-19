@@ -12,9 +12,12 @@
         "description": "Claim or factual statement to verify"
       },
       "context": {
-        "type": "string",
+        "type": [
+          "string",
+          "null"
+        ],
         "maxLength": 12000,
-        "description": "Optional additional context"
+        "description": "Optional additional context; null is treated as absent. At most 12000 UTF-16 code units."
       }
     },
     "required": [

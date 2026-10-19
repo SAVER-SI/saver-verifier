@@ -74,13 +74,13 @@ Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API 
 
 ## Source-linked evidence
 
-V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. A v2 `mixed` verdict additionally requires linked findings both supporting and contradicting the claim; background-only and one-sided findings become `insufficient_evidence`. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The offline suite passes 49 server tests and 7 public-client tests.
+V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. A v2 `mixed` verdict additionally requires linked findings both supporting and contradicting the claim; background-only and one-sided findings become `insufficient_evidence`. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The 1.2.2 release passes 66 server tests and 7 public-client tests.
 
 New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported. API response v2, payment protocol x402 v2 and ClawHub skill 1.1.0 have separate version numbers.
 
 
 
-The current service contract is OpenAPI 1.2.1. Both payment challenges include machine-readable input/output declarations and an actual paid output example. The offline suite also covers concurrent authorization reuse, release after upstream/settlement failures and graceful shutdown with an active paid request. These are simulated payment tests, not new real purchases or an accuracy benchmark.
+The current service contract is OpenAPI 1.2.2. Both payment challenges include machine-readable input/output declarations and an actual paid output example. The offline suite also covers concurrent authorization reuse, release after upstream/settlement failures and graceful shutdown with an active paid request. These are simulated payment tests, not new real purchases or an accuracy benchmark.
 
 
 ## Safe payment and result recovery
@@ -100,3 +100,10 @@ The published ClawHub release remains 1.1.0 and continues to work with the uncha
 A provider response that did not finish safely is rejected with HTTP 502 before settlement. Codes `verification_incomplete` and `verification_research_limit` identify incomplete or research-limited responses, even if partial text looks like valid JSON. These are service failures, not paid `insufficient_evidence` verdicts. Do not automatically authorize another payment after an uncertain outcome.
 
 `context: null` is accepted as absent context. Recovery results become unavailable after 24 hours; expired files are physically swept approximately once a minute while the service is running. Canonical API discovery reports the current persistence capability. No additional client service or subscription is required.
+
+
+## Contract 1.2.2
+
+Malformed provider output returns HTTP 502 with `verification_invalid_response` before settlement. It is distinct from a completed paid `insufficient_evidence` assessment. Accepted case/trailing-slash variants of the verification URLs preserve their response version. Prefer the canonical URLs above. `context: null` is accepted as absent in both OpenAPI and the flat tool definition.
+
+An unreadable recovery record returns 503 for that token rather than being treated as a new request. Do not automatically authorize a replacement payment. See [SECURITY.md](SECURITY.md) for the current support and security contact process. The three public paid examples are unchanged.

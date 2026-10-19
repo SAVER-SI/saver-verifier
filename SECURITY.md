@@ -18,9 +18,9 @@ Older versions may not receive security fixes.
 
 ## Reporting a Security Issue
 
-If you discover a potential security vulnerability, please report it privately.
+If you discover a potential security vulnerability, do not publish technical details in a public issue.
 
-Please do not create a public GitHub issue for security-related problems.
+To arrange a private reporting channel, open a minimal [contact request](https://github.com/SAVER-SI/saver-verifier/issues/new?title=Private%20security%20contact%20request) with the title "Private security contact request" and no vulnerability details or secrets. The operator will agree a private channel before you send the report. A dedicated security mailbox is not currently published.
 
 Include:
 
@@ -108,10 +108,11 @@ The following are generally not considered security vulnerabilities:
 
 ## Contact
 
-Report security vulnerabilities privately by email:
+General support and listing corrections: [GitHub Issues](https://github.com/SAVER-SI/saver-verifier/issues).
 
-rjp.saver@gmail.com
+For security matters, use the minimal contact-request process above. Do not put vulnerability details, personal information or credentials in that public request.
 
 Please do not include private keys, wallet seed phrases, API credentials, or other secrets in the initial report.
+
 
 
