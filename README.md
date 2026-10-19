@@ -107,3 +107,7 @@ A provider response that did not finish safely is rejected with HTTP 502 before 
 Malformed provider output returns HTTP 502 with `verification_invalid_response` before settlement. It is distinct from a completed paid `insufficient_evidence` assessment. Accepted case/trailing-slash variants of the verification URLs preserve their response version. Prefer the canonical URLs above. `context: null` is accepted as absent in both OpenAPI and the flat tool definition.
 
 An unreadable recovery record returns 503 for that token rather than being treated as a new request. Do not automatically authorize a replacement payment. See [SECURITY.md](SECURITY.md) for the current support and security contact process. The three public paid examples are unchanged.
+
+## ClawHub skill source 1.1.1
+
+The skill source documents request correction, explicit recovery-token headers on the first POST and signed retry, 24-hour recovery, strict payment terms and handling of invalid/incomplete provider responses. Skill version 1.1.1 and API contract 1.2.2 are separately versioned. A ClawHub CLI dry-run validated the one-file artifact; registry publication and its exact-version security scan are separate steps. The published-version and audit statements above remain tied to 1.1.0 until a newer public release is verified.
