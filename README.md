@@ -111,3 +111,9 @@ An unreadable recovery record returns 503 for that token rather than being treat
 ## ClawHub skill source 1.1.1
 
 The skill source documents request correction, explicit recovery-token headers on the first POST and signed retry, 24-hour recovery, strict payment terms and handling of invalid/incomplete provider responses. Skill version 1.1.1 and API contract 1.2.2 are separately versioned. A ClawHub CLI dry-run validated the one-file artifact. The operator then published it from PowerShell; exact-version registry output confirms latest 1.1.1, clean security status and no warnings. The 4412-byte SKILL.md has SHA256 `99390c37fae7218a816f7f67f4d2902a198241edb88ca0e4349c4dd26f8380a7`, matching the committed source.
+
+## Bazaar probe compatibility
+
+Bazaar transport metadata is restricted to `POST` with JSON: `info.input.bodyType` is `json`, and `schema.properties.input.properties.bodyType.enum` is `["json"]`. A probe should send `info.input.body` as the request body with `Content-Type: application/json`; transport fields are not claim fields. GET/HEAD correctly returns 405 and is not a payment challenge.
+
+The facilitator's Bazaar catalog is a cached snapshot and can retain older descriptions/examples after a service deployment. Check the current endpoint's unpaid 402 header separately from the catalog record. Deploying a metadata correction does not prove that third-party indexes have refreshed. No supported free forced-refresh operation has been confirmed; do not make an unapproved payment to refresh an index.
