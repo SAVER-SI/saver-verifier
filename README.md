@@ -54,7 +54,7 @@ A successful response includes `PAYMENT-RESPONSE` settlement metadata. An `insuf
 
 ## Use the result
 
-V2 evidence entries contain `text`, `relation` and `sourceIds`. Resolve each source ID in `sources` to inspect its title and URL. Source URLs are checked against the provider's consulted-source metadata; this does not independently prove the model's interpretation. Unlinked findings are omitted. Confidence is the model's assessment.
+V2 evidence entries contain `text`, `relation` and `sourceIds`. Resolve each source ID in `sources` to inspect its title and URL. Source URLs are checked against the provider's consulted-source metadata; this does not independently prove the model's interpretation. A finding or declared source reference that cannot be linked makes v2 return HTTP 502 with `verification_invalid_response` before settlement. This is a service failure, not a paid `insufficient_evidence` assessment. Confidence is the model's assessment.
 
 `POST /verify` keeps the original string-evidence response shape. See the [API guide](docs/api.md) and [payment guide](docs/x402.md).
 
@@ -74,7 +74,7 @@ Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API 
 
 ## Source-linked evidence
 
-V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage prevents a confident full verdict. A v2 `mixed` verdict additionally requires linked findings both supporting and contradicting the claim; background-only and one-sided findings become `insufficient_evidence`. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The 1.2.2 release passes 66 server tests and 7 public-client tests.
+V2 preserves consulted source references and completed page visits before assembling evidence. Incomplete finding/source linkage returns HTTP 502 before settlement. A v2 `mixed` verdict additionally requires linked findings both supporting and contradicting the claim; background-only and one-sided findings become `insufficient_evidence`. The current three paid records demonstrate returned outputs after that update; they do not establish general accuracy. The 1.2.2 release passes 70 server tests; the public client remains unchanged (7 client tests passed for release 1.2.2).
 
 New integrations should follow the [v2 migration guide](docs/migration-v2.md). Existing `/verify` clients remain supported. API response v2, payment protocol x402 v2 and ClawHub skill 1.1.1 have separate version numbers.
 
@@ -104,7 +104,7 @@ A provider response that did not finish safely is rejected with HTTP 502 before 
 
 ## Contract 1.2.2
 
-Malformed provider output returns HTTP 502 with `verification_invalid_response` before settlement. It is distinct from a completed paid `insufficient_evidence` assessment. Accepted case/trailing-slash variants of the verification URLs preserve their response version. Prefer the canonical URLs above. `context: null` is accepted as absent in both OpenAPI and the flat tool definition.
+Malformed provider output or incomplete v2 source linkage returns HTTP 502 with `verification_invalid_response` before settlement. It is distinct from a completed paid `insufficient_evidence` assessment. Accepted case/trailing-slash variants of the verification URLs preserve their response version. Prefer the canonical URLs above. `context: null` is accepted as absent in both OpenAPI and the flat tool definition.
 
 An unreadable recovery record returns 503 for that token rather than being treated as a new request. Do not automatically authorize a replacement payment. See [SECURITY.md](SECURITY.md) for the current support and security contact process. The three public paid examples are unchanged.
 
