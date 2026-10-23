@@ -18,14 +18,11 @@
       "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security.",
       "mimeType": "application/json",
       "tags": [
-        "fact-verification",
-        "claim-verification",
-        "web-evidence",
-        "ai-agents",
         "fact-checking",
-        "research-reports",
+        "claim-verification",
         "statistics",
-        "source-attribution"
+        "source-attribution",
+        "research-reports"
       ],
       "accepts": [
         {
@@ -300,14 +297,11 @@
       "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security.",
       "mimeType": "application/json",
       "tags": [
-        "fact-verification",
-        "claim-verification",
-        "web-evidence",
-        "ai-agents",
         "fact-checking",
-        "research-reports",
+        "claim-verification",
         "statistics",
-        "source-attribution"
+        "source-attribution",
+        "research-reports"
       ],
       "accepts": [
         {

@@ -145,3 +145,7 @@ The website and discovery metadata describe the same existing claim-verification
 The free [x402 import manifest](https://api.saververify.com/x402-manifest.json), also served at `https://api.saververify.com/.well-known/x402.json`, describes both POST resources with x402 v2 `accepts`, request schemas, input examples and recorded output examples. The existing `/.well-known/x402` overview remains available.
 
 The manifest is a public production snapshot, not a payment authorization. Clients validate the current 402 challenge before signing. Keep all repository copies aligned when payment terms or schemas change. Importers must retain the POST method and request schema; a listing or code sample that substitutes GET cannot execute these resources.
+
+## x402 metadata compatibility
+
+Payment-resource metadata uses at most five printable ASCII tags, each no longer than 32 characters, as required by the x402 SDK schema. The canonical tags are `fact-checking`, `claim-verification`, `statistics`, `source-attribution` and `research-reports`. Keep payment challenges and all import-manifest copies aligned. A successful payment with a permissive client does not establish that a strict client's schema validation will accept the same challenge.
