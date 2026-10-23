@@ -15,6 +15,13 @@ Use SAVER for an important figure, date or source attribution when a factual err
 
 This is the official public documentation repository. Production server code and business logic are maintained separately and are not published here.
 
+
+## Choosing a claim review
+
+Use the free `selectionGuide` in [agent-tool.json](https://saververify.com/agent-tool.json) to inspect the concrete checks and the three recorded findings before buying. It distinguishes measurement and denominator errors, sales versus stock, and population scope. Every demonstration links to its unchanged paid record.
+
+SAVER offers a separately cited assessment of one material claim. If the existing workflow has already resolved the original source and relevant definitions, another paid assessment may add little value. These examples show the output format and scope; they do not prove superior accuracy or verify an entire report.
+
 ## Discover and inspect
 
 - [Agent tool definition](https://saververify.com/agent-tool.json): flat input schema, canonical endpoint, response schema and payment instructions.

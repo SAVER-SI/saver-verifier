@@ -1,6 +1,6 @@
 {
   "name": "saver_verify_claim",
-  "description": "Fact-check claims before they are used in AI-generated research, reports or decisions. Checks figures, dates and source attributions against web evidence; returns a verdict, explanation and cited sources. 0.20 USDC per completed verification via x402 v2 on Base. Confidence is model-assessed; wallet security and arithmetic require dedicated tools. V2 evidence items link to source IDs.",
+  "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security.",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -182,5 +182,50 @@
     "persistenceDiscovery": "https://api.saververify.com/.well-known/x402",
     "notice": "Inspect resultRecovery.durable before relying on recovery across restarts. 202/404 is not proof of nonpayment; do not automatically sign again.",
     "tokenPattern": "^[a-fA-F0-9]{64}$"
+  },
+  "selectionGuide": {
+    "purpose": "A separately cited review of one material claim before it is used in a report or decision.",
+    "considerWhen": [
+      "A cited statistic may describe a different measure, denominator, reporting period or population than the claim.",
+      "An external factual claim needs a second assessment with explicit evidence-to-source links."
+    ],
+    "existingToolsMaySuffice": [
+      "The existing workflow has already checked the original source and resolved the relevant definitions and scope.",
+      "The task is source discovery alone, deterministic arithmetic, or a low-impact fact the agent can adequately check with its existing tools."
+    ],
+    "expectedOutput": "A supported, contradicted, mixed or insufficient_evidence assessment; explanation; evidence with sourceIds; and cited source URLs. One assessment does not verify an entire report.",
+    "inspection": {
+      "url": "https://saververify.com/examples.json",
+      "costUSDC": "0",
+      "runsVerification": false,
+      "notice": "Three source-guided operator-funded paid records. They illustrate output and scope; they do not establish comparative accuracy or customer adoption."
+    },
+    "demonstratedCases": [
+      {
+        "exampleId": "energy-capacity-check",
+        "issue": "Measured quantity and denominator",
+        "recordedFinding": "The cited 86% describes renewable capacity additions, not electricity generated.",
+        "recordedVerdict": "contradicted",
+        "reportUrl": "https://saververify.com/examples/#energy-capacity-check",
+        "recordCollectionUrl": "https://saververify.com/examples.json"
+      },
+      {
+        "exampleId": "ev-market-check",
+        "issue": "Sales flow versus fleet stock",
+        "recordedFinding": "The 18% figure describes new-car sales; 40 million describes electric cars on the road.",
+        "recordedVerdict": "supported",
+        "reportUrl": "https://saververify.com/examples/#ev-market-check",
+        "recordCollectionUrl": "https://saververify.com/examples.json"
+      },
+      {
+        "exampleId": "digital-access-check",
+        "issue": "Global average versus population subgroups",
+        "recordedFinding": "The 67% global figure differs from the 93% high-income and 27% low-income figures.",
+        "recordedVerdict": "supported",
+        "reportUrl": "https://saververify.com/examples/#digital-access-check",
+        "recordCollectionUrl": "https://saververify.com/examples.json"
+      }
+    ],
+    "workflowGuide": "https://github.com/SAVER-SI/saver-verifier/blob/main/docs/research-report-review.md"
   }
 }

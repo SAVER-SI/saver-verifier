@@ -3,7 +3,7 @@
   "info": {
     "title": "SAVER Verifier",
     "version": "1.2.2",
-    "description": "Fact-check claims before they are used in AI-generated research, reports or decisions. Checks figures, dates and source attributions against web evidence; returns a verdict, explanation and cited sources. 0.20 USDC per completed verification via x402 v2 on Base. Confidence is model-assessed; wallet security and arithmetic require dedicated tools."
+    "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security."
   },
   "servers": [
     {
@@ -15,7 +15,7 @@
       "post": {
         "operationId": "verifyClaim",
         "summary": "Check an external factual claim with web evidence",
-        "description": "Fact-check claims before they are used in AI-generated research, reports or decisions. Checks figures, dates and source attributions against web evidence; returns a verdict, explanation and cited sources. 0.20 USDC per completed verification via x402 v2 on Base. Confidence is model-assessed; wallet security and arithmetic require dedicated tools. This endpoint keeps the original response shape; use /v2/verify for explicit evidence-to-source links.",
+        "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security. This endpoint keeps the original string-evidence response shape; use /v2/verify for explicit evidence-to-source links.",
         "security": [
           {
             "x402": []
@@ -272,7 +272,7 @@
       "post": {
         "operationId": "verifyClaimWithSources",
         "summary": "Verify a claim with explicit evidence-to-source links",
-        "description": "Fact-check claims before they are used in AI-generated research, reports or decisions. Checks figures, dates and source attributions against web evidence; returns a verdict, explanation and cited sources. 0.20 USDC per completed verification via x402 v2 on Base. Confidence is model-assessed; wallet security and arithmetic require dedicated tools. Evidence references source IDs. Source membership does not prove that each interpretation is correct.",
+        "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security. Evidence references source IDs. Source membership does not prove that each interpretation is correct. See agent-tool.json selectionGuide for free recorded examples and fit criteria.",
         "security": [
           {
             "x402": []
