@@ -86,6 +86,14 @@ The published ClawHub/OpenClaw skill is `@saver-si/saver-verifier` v1.1.1 and re
 
 [Skill source](skills/saver-verifier/SKILL.md) · [Published ClawHub skill](https://clawhub.ai/saver-si/skills/saver-verifier)
 
+For runtimes using the Skills CLI, the same public skill is available directly from this repository:
+
+```sh
+npx skills add SAVER-SI/saver-verifier --skill saver-verifier
+```
+
+Inspect without installing with `npx skills add SAVER-SI/saver-verifier --list`. The CLI discovers the skill; this does not imply a listing or ranking on Skills.sh. Installation does not authorize payments: the runtime still needs an authorized x402 wallet and a bounded spending policy.
+
 ## Security and license
 
 Read [SECURITY.md](SECURITY.md). Never submit private keys, seed phrases or API credentials. Public repository documentation and examples are Apache-2.0 licensed; this does not publish the private server implementation. The skill artifact published on ClawHub is distributed there under MIT-0.
