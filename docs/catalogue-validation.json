@@ -1,0 +1,279 @@
+{
+  "checkedAt": "2026-10-23T21:08:10.318066+00:00",
+  "validator": "https://api.cdp.coinbase.com/platform/v2/x402/validate",
+  "notice": "Read-only technical validation; no payment, curation, uptime history or accuracy certification.",
+  "resources": [
+    {
+      "url": "https://api.saververify.com/verify",
+      "method": "POST",
+      "valid": true,
+      "statusCode": 402,
+      "simulation": {
+        "outcome": "accepted"
+      },
+      "checks": [
+        {
+          "check": "url_valid",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "url_https",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "endpoint_reachable",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "returns_402",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "valid_json",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "x402_version",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "payment_required_header",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "has_accepts",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].scheme",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].network",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].asset",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].amount",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].payTo",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].maxTimeoutSeconds",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "has_resource",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "has_bazaar_extension",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.input",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.input.type",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.input.method",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.input.method.matches_request",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.output",
+          "passed": true,
+          "severity": "advisory"
+        },
+        {
+          "check": "bazaar.info.output.example",
+          "passed": true,
+          "severity": "advisory"
+        },
+        {
+          "check": "bazaar.schema",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "parse",
+          "passed": true,
+          "severity": "required"
+        }
+      ]
+    },
+    {
+      "url": "https://api.saververify.com/v2/verify",
+      "method": "POST",
+      "valid": true,
+      "statusCode": 402,
+      "simulation": {
+        "outcome": "accepted"
+      },
+      "checks": [
+        {
+          "check": "url_valid",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "url_https",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "endpoint_reachable",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "returns_402",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "valid_json",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "x402_version",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "payment_required_header",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "has_accepts",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].scheme",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].network",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].asset",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].amount",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].payTo",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "accepts[0].maxTimeoutSeconds",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "has_resource",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "has_bazaar_extension",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.input",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.input.type",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.input.method",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.input.method.matches_request",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "bazaar.info.output",
+          "passed": true,
+          "severity": "advisory"
+        },
+        {
+          "check": "bazaar.info.output.example",
+          "passed": true,
+          "severity": "advisory"
+        },
+        {
+          "check": "bazaar.schema",
+          "passed": true,
+          "severity": "required"
+        },
+        {
+          "check": "parse",
+          "passed": true,
+          "severity": "required"
+        }
+      ]
+    }
+  ]
+}

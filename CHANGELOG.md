@@ -1,5 +1,10 @@
 # Changes
 
+## 2026-10-23 — catalogue review evidence
+
+- Publish a reproducible POST probe, dated CDP validation and transparent operator-funded payment evidence for directory reviewers.
+- Link the review material from the README. API and skill versions are unchanged.
+
 ## 2026-10-23 — claim and citation discovery wording
 
 - Describe factual-claim and cited-source checks directly while preserving the statistics, dates and reporting-scope focus.

@@ -85,3 +85,7 @@ Inspect without installing by replacing `--skill saver-verifier` with `--list`. 
 Read [SECURITY.md](SECURITY.md), [CONTRIBUTING.md](CONTRIBUTING.md), the [v2 migration guide](docs/migration-v2.md) and [CHANGELOG.md](CHANGELOG.md). Keep secrets and recovery tokens out of repositories and logs.
 
 Public documentation and examples are Apache-2.0 licensed. The skill artifact is distributed on ClawHub under MIT-0. Publishing integration code does not publish the private server implementation.
+
+## Catalogue review
+
+[Service facts and reproducible checks](docs/catalogue-review.md) include the correct unpaid POST probe, CDP validation snapshot and explicitly operator-funded settlement receipts. Use these when reviewing or correcting a directory listing. A listing or validation pass is not an accuracy audit or proof of customer adoption.
