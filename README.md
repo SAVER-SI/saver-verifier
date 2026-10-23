@@ -139,3 +139,9 @@ The facilitator's Bazaar catalog is a cached snapshot and can retain older descr
 ## Buyer-facing descriptions
 
 The website and discovery metadata describe the same existing claim-verification service: figures, dates and source attributions checked before use in research, reports or decisions. Three stored operator-funded reports provide free inspection of actual paid outputs; they are not customer reviews or an independent accuracy benchmark. Price remains 0.20 USDC per completed verification. No new verification features, research calls or payment permissions are introduced by this wording update.
+
+## Directory import manifest
+
+The free [x402 import manifest](https://api.saververify.com/x402-manifest.json), also served at `https://api.saververify.com/.well-known/x402.json`, describes both POST resources with x402 v2 `accepts`, request schemas, input examples and recorded output examples. The existing `/.well-known/x402` overview remains available.
+
+The manifest is a public production snapshot, not a payment authorization. Clients validate the current 402 challenge before signing. Keep all repository copies aligned when payment terms or schemas change. Importers must retain the POST method and request schema; a listing or code sample that substitutes GET cannot execute these resources.
