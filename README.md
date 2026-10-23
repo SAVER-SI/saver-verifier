@@ -89,3 +89,8 @@ Public documentation and examples are Apache-2.0 licensed. The skill artifact is
 ## Catalogue review
 
 [Service facts and reproducible checks](docs/catalogue-review.md) include the correct unpaid POST probe, CDP validation snapshot and explicitly operator-funded settlement receipts. Use these when reviewing or correcting a directory listing. A listing or validation pass is not an accuracy audit or proof of customer adoption.
+
+## Include a selected-claim assessment in a report
+
+The [research checkpoint](docs/research-report-review.md#optional-local-report-export) can export a saved v2 assessment as Markdown with clickable source references and tool attribution. Formatting is local and free; it does not publish the report or start another paid verification. The assessment covers one selected claim.
+

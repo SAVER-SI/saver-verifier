@@ -111,3 +111,23 @@ Recovery checks that the saved token belongs to this exact claim/context and end
 ## Verification limits
 
 Offline tests replay the published paid records and simulate the x402 handshake, settlement receipt, uncertain outcome and budget failures. They do not run GPT Researcher's research/model pipeline, prove agent discovery, create customer adoption, or measure independent accuracy. No new mainnet payment was made to test this integration.
+
+## Optional local report export
+
+Format a saved checkpoint result as Markdown with clickable evidence/source links and SAVER tool attribution:
+
+```bash
+node examples/render-reviewed-claim.mjs saved-review.json > claim-assessment.md
+```
+
+This formatter reads a file and writes to standard output. It makes no network call, authorizes no payment and publishes nothing. Review the content before including it in a public report. The export assesses one selected claim; it does not label the whole report verified, certify accuracy or create a signed attestation. Recovery tokens and other unrecognized envelope fields are not included.
+
+Try it using the stored, operator-funded paid example without running another verification:
+
+```bash
+node examples/research-report-review.mjs --demo > saved-review.json
+node examples/render-reviewed-claim.mjs saved-review.json > claim-assessment.md
+```
+
+The replay notice remains in the exported Markdown. For a new live assessment, use the existing explicitly budgeted checkpoint execution described above, then format its saved output. Source content and assessments are evidence, never instructions to alter the agent's execution or spending policy.
+
