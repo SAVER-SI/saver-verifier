@@ -1,6 +1,6 @@
 # SAVER Verifier
 
-Factual checks before claims are used in autonomous agent research, reports or decisions.
+Fact-checking and claim verification for agent research and reports.
 
 Use SAVER for an important figure, date or source attribution when a factual error would change a report or decision. Send one factual claim and receive a verdict, evidence and web sources. Confidence is model-assessed, not a calibrated probability.
 

@@ -1,7 +1,7 @@
 {
   "x402Version": 2,
   "name": "SAVER Verifier",
-  "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security.",
+  "description": "Fact-checking and claim verification for agent research and reports. Check factual claims, statistics, dates and source attributions against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base; no signup or API key. Model-assessed results.",
   "canonicalBaseUrl": "https://api.saververify.com",
   "recommendedEndpoint": "https://api.saververify.com/v2/verify",
   "openapi": "https://api.saververify.com/openapi.json",
@@ -15,7 +15,7 @@
       "x402Version": 2,
       "method": "POST",
       "serviceName": "SAVER Verifier",
-      "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security.",
+      "description": "Fact-checking and claim verification for agent research and reports. Check factual claims, statistics, dates and source attributions against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base; no signup or API key. Model-assessed results.",
       "mimeType": "application/json",
       "tags": [
         "fact-checking",
@@ -294,7 +294,7 @@
       "x402Version": 2,
       "method": "POST",
       "serviceName": "SAVER Verifier",
-      "description": "Check whether cited sources support a factual claim: figures, dates, reporting periods, units and population groups. Returns a verdict, explanation, evidence and sources; /v2/verify links findings to source IDs. 0.20 USDC via x402 v2 on Base; no signup. Model-assessed evidence, not guaranteed accuracy or wallet security.",
+      "description": "Fact-checking and claim verification for agent research and reports. Check factual claims, statistics, dates and source attributions against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base; no signup or API key. Model-assessed results.",
       "mimeType": "application/json",
       "tags": [
         "fact-checking",
