@@ -30,6 +30,17 @@ SAVER offers a separately cited assessment of one material claim. If the existin
 - [Agent guide](https://saververify.com/llms.txt).
 - [Actual paid results](https://saververify.com/examples/), also [JSON](https://saververify.com/examples.json).
 
+Inspect the live payment challenge without a wallet or payment:
+
+```sh
+npm ci
+node examples/verify-agent.mjs --json
+# Or supply your own valid request:
+node examples/verify-agent.mjs examples/verify-request.json --json
+```
+
+This sends one valid unsigned POST, checks the exact payment terms and returns machine-readable JSON with `paymentsAuthorized: 0`. It never signs or retries a payment. See [bodyless-inspector compatibility](docs/x402.md#bodyless-inspector-compatibility) if a generic tool reports that no payment requirements exist.
+
 Published result examples are actual operator-funded purchases. They are not simulated, independent accuracy benchmarks or evidence of organic customer demand. Reading stored examples is free and does not run a verification.
 
 ## Three real paid examples

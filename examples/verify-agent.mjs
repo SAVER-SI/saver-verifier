@@ -1,77 +1,42 @@
-async function main() {
-  const SAVER_URL = "https://api.saververify.com/v2/verify";
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import { ENDPOINT, validateChallenge } from './saver-client.mjs';
 
-  const request = {
-    claim: "IRENA's Renewable Capacity Statistics 2024 shows that renewables generated 86% of global electricity in 2023.",
-    context: "An energy-sector briefing cites https://www.irena.org/News/pressreleases/2024/Mar/Record-Growth-in-Renewables-but-Progress-Needs-to-be-Equitable . Independently check the attributed statistic against the original publication, including the year, measured quantity and denominator."
-  };
-
-  console.log("🤖 Demo AI Agent");
-  console.log("----------------");
-  console.log("Sending claim to SAVER:\n");
-  console.log(request);
-
-  const response = await fetch(SAVER_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(request)
-  });
-
-  console.log("\nSAVER status:", response.status);
-
-  if (response.status === 402) {
-    console.log("\n💳 Payment required");
-    console.log("-------------------");
-
-    const paymentHeader = response.headers.get("payment-required");
-
-    if (paymentHeader) {
-      try {
-        const decoded = JSON.parse(
-          Buffer.from(paymentHeader, "base64").toString("utf8")
-        );
-
-        const payment = decoded.accepts?.[0];
-
-        console.log("Protocol: x402");
-        console.log("Network:", payment?.network || "unknown");
-
-        console.log(
-          "Amount:",
-          payment?.amount
-            ? `${Number(payment.amount) / 1000000} USDC`
-            : "unknown"
-        );
-
-        console.log("Pay to:", payment?.payTo || "unknown");
-
-        console.log("\nService:");
-        console.log(
-          decoded.resource?.description || "SAVER Verifier"
-        );
-
-      } catch (error) {
-        console.log("Could not decode payment challenge.");
-      }
-    } else {
-      console.log("No x402 payment metadata found.");
-    }
-
-    console.log("\nA compatible x402 agent can now authorize payment and retry.");
-    return;
+// Inspection never creates a signer or sends a payment header.
+export async function inspectPayment(request, fetchImpl = fetch) {
+  if (!request || Array.isArray(request) || typeof request !== 'object' ||
+      Object.keys(request).some(k => !['claim', 'context'].includes(k)) ||
+      typeof request.claim !== 'string' || !request.claim.trim() || request.claim.length > 8000 ||
+      (request.context != null && (typeof request.context !== 'string' || request.context.length > 12000))) {
+    throw Error('Supply a valid claim and optional context as top-level JSON fields.');
   }
-
-  const result = await response.json();
-
-  console.log("\n✅ Verification result:");
-  console.log("----------------------");
-  console.log(JSON.stringify(result, null, 2));
+  const body = JSON.stringify(request);
+  if (Buffer.byteLength(body, 'utf8') > 128 * 1024) throw Error('Request exceeds 128 KiB.');
+  const response = await fetchImpl(ENDPOINT, {
+    method: 'POST', headers: { 'content-type': 'application/json' }, body,
+    redirect: 'error', signal: AbortSignal.timeout(20000),
+  });
+  if (response.status !== 402) throw Error(`Inspection returned HTTP ${response.status}; no payment was authorized.`);
+  const encoded = response.headers.get('payment-required');
+  if (!encoded) throw Error('Missing PAYMENT-REQUIRED header; no payment was authorized.');
+  const challenge = JSON.parse(Buffer.from(encoded, 'base64').toString('utf8'));
+  validateChallenge(challenge);
+  return { inspectionOnly: true, paymentsAuthorized: 0, httpStatus: 402,
+    method: 'POST', url: ENDPOINT, paymentRequired: challenge };
 }
 
-main().catch((error) => {
-  console.error("Demo failed:");
-  console.error(error.message);
-});
-
+async function main() {
+  const args = process.argv.slice(2).filter(a => a !== '--json');
+  if (args.length > 1 || args.some(a => a.startsWith('-'))) throw Error('Usage: node examples/verify-agent.mjs [request.json] [--json]');
+  const file = args.length ? resolve(args[0]) : new URL('./verify-request.json', import.meta.url);
+  const request = JSON.parse(await readFile(file, 'utf8'));
+  console.log(JSON.stringify(await inspectPayment(request), null, 2));
+}
+if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
+  main().catch(() => {
+    console.error(JSON.stringify({ inspectionOnly: true, paymentsAuthorized: 0,
+      error: 'Inspection failed. Check the request, endpoint response and published contract; no payment was authorized.' }));
+    process.exitCode = 1;
+  });
+}
