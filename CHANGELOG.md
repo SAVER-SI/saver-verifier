@@ -1,5 +1,10 @@
 # Changes
 
+## 2026-10-23 — claim and citation discovery wording
+
+- Describe factual-claim and cited-source checks directly while preserving the statistics, dates and reporting-scope focus.
+- Synchronize service metadata and documentation; payment terms, response schemas, model and recorded paid examples are unchanged.
+
 ## 23 October 2026 — public integration maintenance
 
 - Replace the informal discovery demo with a valid-POST, unsigned payment inspector and machine-readable output; document the reproduced bodyless-inspector limitation.

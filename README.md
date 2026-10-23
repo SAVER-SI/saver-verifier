@@ -1,6 +1,6 @@
 # SAVER Verifier
 
-Fact-checking and claim verification for agent research and reports. Check an important statistic, date or source attribution against web evidence before relying on it. Receive a verdict, explanation, cited sources and evidence-to-source links.
+Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports. Check an important statistic, date or source attribution against web evidence before relying on it. Receive a verdict, explanation, cited sources and evidence-to-source links.
 
 This is the official public repository for contracts, client examples and the skill. The production server implementation is private.
 

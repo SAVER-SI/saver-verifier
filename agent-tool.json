@@ -1,6 +1,6 @@
 {
   "name": "saver_verify_claim",
-  "description": "Fact-checking and claim verification for agent research and reports. Check factual claims, statistics, dates and source attributions against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base; no signup or API key. Model-assessed results.",
+  "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key.",
   "inputSchema": {
     "type": "object",
     "properties": {

@@ -3,7 +3,7 @@
   "info": {
     "title": "SAVER Verifier",
     "version": "1.2.2",
-    "description": "Fact-checking and claim verification for agent research and reports. Check factual claims, statistics, dates and source attributions against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base; no signup or API key. Model-assessed results."
+    "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key."
   },
   "servers": [
     {
@@ -15,7 +15,7 @@
       "post": {
         "operationId": "verifyClaim",
         "summary": "Check an external factual claim with web evidence",
-        "description": "Fact-checking and claim verification for agent research and reports. Check factual claims, statistics, dates and source attributions against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base; no signup or API key. Model-assessed results. This endpoint keeps the original string-evidence response shape; use /v2/verify for explicit evidence-to-source links.",
+        "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key. This endpoint keeps the original string-evidence response shape; use /v2/verify for explicit evidence-to-source links.",
         "security": [
           {
             "x402": []
@@ -272,7 +272,7 @@
       "post": {
         "operationId": "verifyClaimWithSources",
         "summary": "Verify a claim with explicit evidence-to-source links",
-        "description": "Fact-checking and claim verification for agent research and reports. Check factual claims, statistics, dates and source attributions against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base; no signup or API key. Model-assessed results. Evidence references source IDs. Source membership does not prove that each interpretation is correct. See agent-tool.json selectionGuide for free recorded examples and fit criteria.",
+        "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key. Evidence references source IDs. Source membership does not prove that each interpretation is correct. See agent-tool.json selectionGuide for free recorded examples and fit criteria.",
         "security": [
           {
             "x402": []
