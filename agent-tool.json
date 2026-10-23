@@ -1,6 +1,6 @@
 {
   "name": "saver_verify_claim",
-  "description": "Independently check externally sourced factual claims in agent research and reports. Returns supported, contradicted, mixed or insufficient_evidence with web sources. Use when a claim needs a cited second check; not for transaction simulation, wallet risk or deterministic arithmetic. Live verification costs 0.20 USDC on Base via x402 v2.",
+  "description": "Fact-check claims before they are used in AI-generated research, reports or decisions. Checks figures, dates and source attributions against web evidence; returns a verdict, explanation and cited sources. 0.20 USDC per completed verification via x402 v2 on Base. Confidence is model-assessed; wallet security and arithmetic require dedicated tools. V2 evidence items link to source IDs.",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -9,7 +9,7 @@
         "minLength": 1,
         "maxLength": 8000,
         "pattern": "\\S",
-        "description": "Claim or factual statement to verify"
+        "description": "One factual claim to check, preserving its figures, dates and qualifications."
       },
       "context": {
         "type": [
@@ -17,7 +17,7 @@
           "null"
         ],
         "maxLength": 12000,
-        "description": "Optional additional context; null is treated as absent. At most 12000 UTF-16 code units."
+        "description": "Optional source URL, publication date, reporting period, jurisdiction or definitions needed to assess the claim; null is absent. At most 12000 UTF-16 code units."
       }
     },
     "required": [

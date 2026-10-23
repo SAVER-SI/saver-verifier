@@ -1,8 +1,8 @@
 # SAVER Verifier
 
-Independent factual checks for autonomous agent research and reports.
+Factual checks before claims are used in autonomous agent research, reports or decisions.
 
-Use SAVER when a report, tool result or external statement needs a cited second check. Send one factual claim and receive a verdict, evidence and web sources. Confidence is model-assessed, not a calibrated probability.
+Use SAVER for an important figure, date or source attribution when a factual error would change a report or decision. Send one factual claim and receive a verdict, evidence and web sources. Confidence is model-assessed, not a calibrated probability.
 
 | Service | Value |
 |---|---|
@@ -117,3 +117,7 @@ The skill source documents request correction, explicit recovery-token headers o
 Bazaar transport metadata is restricted to `POST` with JSON: `info.input.bodyType` is `json`, and `schema.properties.input.properties.bodyType.enum` is `["json"]`. A probe should send `info.input.body` as the request body with `Content-Type: application/json`; transport fields are not claim fields. GET/HEAD correctly returns 405 and is not a payment challenge.
 
 The facilitator's Bazaar catalog is a cached snapshot and can retain older descriptions/examples after a service deployment. Check the current endpoint's unpaid 402 header separately from the catalog record. Deploying a metadata correction does not prove that third-party indexes have refreshed. No supported free forced-refresh operation has been confirmed; do not make an unapproved payment to refresh an index.
+
+## Buyer-facing descriptions
+
+The website and discovery metadata describe the same existing claim-verification service: figures, dates and source attributions checked before use in research, reports or decisions. Three stored operator-funded reports provide free inspection of actual paid outputs; they are not customer reviews or an independent accuracy benchmark. Price remains 0.20 USDC per completed verification. No new verification features, research calls or payment permissions are introduced by this wording update.
