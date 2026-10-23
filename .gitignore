@@ -4,3 +4,7 @@ node_modules/
 
 .saver-recovery*.json
 .saver-hook-recovery/
+
+# Local report content and private recovery bearer tokens
+research-check.json
+.saver-research-recovery*.json

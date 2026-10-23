@@ -60,6 +60,17 @@ V2 evidence entries contain `text`, `relation` and `sourceIds`. Resolve each sou
 
 Use SAVER for external factual claims. Use dedicated tools for wallet risk, transaction simulation, token contracts, sanctions screening and deterministic arithmetic. SAVER is an evidence signal, not permission to bypass your execution policy.
 
+## Research-report checkpoint
+
+The [research-report integration](docs/research-report-review.md) adds a bounded check of one agent-selected factual passage before a report is delivered. GPT Researcher is the first documented consumer; this is our reference adapter, not an upstream plugin or a partnership.
+
+```sh
+npm ci
+node examples/research-report-review.mjs --demo
+```
+
+The demo replays the existing operator-funded energy report locally: no new payment, model call or verification request. Live execution requires an explicit 0.20-USDC budget and a new private recovery file. The original report remains unchanged; a supported passage never labels the entire report verified. The public client suite now passes 15 offline tests, including a simulated report → 402 → signed retry → settlement receipt flow.
+
 ## Client examples and skill
 
 Existing integration examples live in `examples/`. The unpaid demo stops at 402; the paid example performs a real payment when supplied with a funded wallet. Never run a paid example as an unattended smoke test.
