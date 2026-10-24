@@ -8,3 +8,7 @@ node_modules/
 # Local report content and private recovery bearer tokens
 research-check.json
 .saver-research-recovery*.json
+
+# Private manifests and recovery for the optional Python bridge
+.saver-research/
+__pycache__/
