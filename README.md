@@ -59,6 +59,8 @@ Expected terms are 200000 USDC base units, Base `eip155:8453`, token `0x833589fC
 
 V2 returns `supported`, `contradicted`, `mixed` or `insufficient_evidence`. Resolve evidence `sourceIds` against `sources.id` and inspect the sources. URL membership is checked against consulted-source metadata; the interpretation remains model-assessed. Confidence is not a calibrated probability, and no verdict authorizes bypassing execution policy.
 
+For compound claims, `mixed` means material parts are supported and refuted, or reliable evidence conflicts about the same assertion. If a material part remains unresolved, the result is `insufficient_evidence`. Supporting background alone does not make a refuted assertion `mixed`.
+
 A valid `insufficient_evidence` assessment is a completed paid verification. HTTP 400/413 means correct the request before paying; a 405 means use POST. Invalid/incomplete provider responses fail before settlement. A lost response, timeout or uncertain outcome is not permission to sign another payment.
 
 For opt-in recovery, persist a random 32-byte hexadecimal secret before the first POST and send it in `SAVER-RECOVERY-TOKEN` on both that POST and its signed retry. GET `/results` with the same header retrieves a retained settled result without another charge. Retention is 24 hours; inspect live `resultRecovery.durable` before relying on restart persistence. Never put this token in a URL or use a wallet key as the token. A pending/missing result is not proof of nonpayment. [Recovery and failure handling](docs/x402.md).

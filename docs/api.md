@@ -129,10 +129,10 @@ Meaning:
 
 | Status | Description |
 |---|---|
-| `supported` | Available evidence supports the claim |
-| `contradicted` | Available evidence conflicts with the claim |
-| `mixed` | Evidence contains conflicting information |
-| `insufficient_evidence` | Available evidence is not enough to determine |
+| `supported` | Evidence supports the material assertions in the claim |
+| `contradicted` | Evidence refutes the claim; compound claims with supported and refuted parts use `mixed` |
+| `mixed` | Material parts are supported and refuted, or reliable evidence conflicts about the same assertion |
+| `insufficient_evidence` | At least one material assertion remains unresolved with the available evidence |
 
 ---
 
