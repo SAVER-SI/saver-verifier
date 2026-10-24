@@ -46,6 +46,23 @@ node examples/verify-agent.mjs examples/verify-request.json --json
 
 The inspector sends one valid unsigned POST, validates the exact payment terms and returns JSON with `paymentsAuthorized: 0`. It never signs or retries a payment. Bodyless probes can produce false negatives; see [client compatibility](docs/x402.md#bodyless-inspector-compatibility). GET/HEAD on verification routes returns 405; use `/healthz` for free liveness checks.
 
+## Run your own selected claim
+
+From a checkout of this repository, after `npm ci`, save your own claim and optional context in `request.json`. Use the existing request example as a structural reference, not as a claim to buy unnecessarily.
+
+```sh
+# Local plan: no network, wallet or payment.
+node examples/paid-verify.mjs request.json
+# Free live challenge inspection: one unsigned POST, no payment.
+node examples/verify-agent.mjs request.json --json
+# Only with explicit approval or an existing bounded spending policy:
+node examples/paid-verify.mjs request.json --execute --max-usdc=0.20
+# Reconcile the original attempt without signing again:
+node examples/paid-verify.mjs --recover
+```
+
+Live execution uses the runtime's existing authorized `SAVER_PRIVATE_KEY` wallet. Keep the key outside model context. The recovery file defaults to `.saver-recovery.json`; configure `SAVER_RECOVERY_FILE` for a separate, approved purchase. Never overwrite a prior attempt or choose a new file merely to retry an uncertain payment. The CLI requires a request file and explicit budget for live execution; it no longer buys a hard-coded sample claim.
+
 ## Send a claim
 
 ```http
@@ -101,4 +118,5 @@ Public documentation and examples are Apache-2.0 licensed. The skill artifact is
 ## Include a selected-claim assessment in a report
 
 The [research checkpoint](docs/research-report-review.md#optional-local-report-export) can export a saved v2 assessment as Markdown with clickable source references and tool attribution. Formatting is local and free; it does not publish the report or start another paid verification. The assessment covers one selected claim.
+
 

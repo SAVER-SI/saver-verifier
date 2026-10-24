@@ -1,18 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { ENDPOINT, validateChallenge } from './saver-client.mjs';
+import { ENDPOINT, validateChallenge, validateRequest } from './saver-client.mjs';
 
 // Inspection never creates a signer or sends a payment header.
 export async function inspectPayment(request, fetchImpl = fetch) {
-  if (!request || Array.isArray(request) || typeof request !== 'object' ||
-      Object.keys(request).some(k => !['claim', 'context'].includes(k)) ||
-      typeof request.claim !== 'string' || !request.claim.trim() || request.claim.length > 8000 ||
-      (request.context != null && (typeof request.context !== 'string' || request.context.length > 12000))) {
-    throw Error('Supply a valid claim and optional context as top-level JSON fields.');
-  }
+  validateRequest(request);
   const body = JSON.stringify(request);
-  if (Buffer.byteLength(body, 'utf8') > 128 * 1024) throw Error('Request exceeds 128 KiB.');
   const response = await fetchImpl(ENDPOINT, {
     method: 'POST', headers: { 'content-type': 'application/json' }, body,
     redirect: 'error', signal: AbortSignal.timeout(20000),
@@ -40,3 +34,4 @@ if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.m
     process.exitCode = 1;
   });
 }
+

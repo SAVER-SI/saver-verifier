@@ -37,3 +37,22 @@ Correct 400/413 using code/help before paying. Treat invalid source mapping, inc
 https://github.com/SAVER-SI/saver-verifier/blob/main/docs/research-report-review.md
 
 The reference adapter checks one selected passage and can export a saved assessment locally. It is a SAVER reference implementation, not a claimed upstream partnership.
+
+
+## Use the reference CLI with your own request
+
+From a checkout of https://github.com/SAVER-SI/saver-verifier after `npm ci`, save the selected claim and optional context in `request.json`:
+
+```sh
+node examples/paid-verify.mjs request.json
+node examples/verify-agent.mjs request.json --json
+```
+
+The first command is a local plan with no network or payment. The second inspects one live unsigned challenge for free. Only under explicit approval or an existing spending policy, with the runtime's authorized wallet already configured, run:
+
+```sh
+node examples/paid-verify.mjs request.json --execute --max-usdc=0.20
+```
+
+Persist the recovery file and use `node examples/paid-verify.mjs --recover` for the original attempt. Do not overwrite it or create a new payment after an uncertain outcome. Wallet secrets stay outside model context. See the repository README for configuration and recovery-file handling.
+
