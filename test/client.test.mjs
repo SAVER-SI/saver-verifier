@@ -28,9 +28,12 @@ const challenge = () => ({
 });
 const result = {
   schemaVersion: "2.0",
+  requestId: "offline-client-test", confidenceType: "model_assessed",
+  explanation: "The source supports the claim.", domain: "general-verification",
+  timestamp: "2026-10-24T00:00:00.000Z",
   status: "supported",
   confidence: 0.9,
-  evidence: [{ text: "A finding", relation: "supports", sourceIds: ["s1"] }],
+  evidence: [{ id: "e1", text: "A finding", relation: "supports", sourceIds: ["s1"] }],
   sources: [{ id: "s1", title: "Source", url: "https://example.com" }],
 };
 const receipt = (payer) => ({
@@ -110,6 +113,20 @@ test("recovery uses only its bearer token and never sends a payment", async () =
   assert.equal(answer.replay, true);
   assert.equal(calls, 1);
 });
+test("malformed settled assessment is rejected after one paid send without automatic repayment", async () => {
+  const key=generatePrivateKey(), payer=privateKeyToAccount(key).address;
+  let signed=0;
+  const client=createSaverClient(key,async input=>{
+    const req=new Request(input);
+    if(req.headers.has('payment-signature')) {
+      signed++;
+      return Response.json({...result,evidence:[],sources:[]},{headers:{'payment-response':encode(receipt(payer))}});
+    }
+    return Response.json({},{status:402,headers:{'payment-required':encode(challenge())}});
+  });
+  await assert.rejects(client.verify({claim:'A fact'},{saveRecovery:()=>{}}),/Invalid SAVER result/);
+  assert.equal(signed,1);
+});
 test("malformed PreSpend events deny before a paid call", async () => {
   for (const input of [
     null,
@@ -180,3 +197,4 @@ test("unsupported outcomes and service failure deny rather than bypassing contro
     "deny",
   );
 });
+

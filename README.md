@@ -138,3 +138,7 @@ Plugin package version is 1.0.0; skill source remains 1.1.1 and the API contract
 ## OpenAI directory status
 
 Not submitted. OpenAI supports importing skill packages, but its current directory commerce rules do not clear our paid x402 digital-service workflow. No ChatGPT wallet support or directory approval is claimed. See [readiness review and prerequisites](docs/openai-plugin-readiness.md).
+
+## Result validation
+
+The reference client validates every required v2 result field, unique IDs, evidence-to-source links and HTTP(S) source URLs. Supported, contradicted and mixed verdicts require the corresponding linked findings; valid empty-evidence abstentions remain supported. A valid payment receipt does not make a malformed assessment valid. Validation failure never authorizes a replacement payment.

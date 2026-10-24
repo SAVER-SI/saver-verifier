@@ -36,8 +36,12 @@ test("budget must be explicit and request contains no complete report or transpo
   assert.equal(calls,1);
 });
 test("mixed and insufficient evidence require review even with high confidence", () => {
-  for(const status of ["mixed","insufficient_evidence"])
-    assert.equal(summarizeResearchReview(input(energy),{result:{...energy.response,status,confidence:1}}).reviewStatus,"review_required");
+  for(const status of ["mixed","insufficient_evidence"]) {
+    // Synthetic verdict fixture; original stored paid records remain unchanged.
+    const result=structuredClone(energy.response);result.status=status;result.confidence=1;
+    if(status==='mixed') result.evidence[0].relation='supports';
+    assert.equal(summarizeResearchReview(input(energy),{result}).reviewStatus,"review_required");
+  }
 });
 test("lost response or invalid evidence remains unresolved with no second call", async () => {
   for(const verifyResult of [null,{result:{...energy.response,evidence:[{sourceIds:["missing"]}]}}]){
@@ -69,3 +73,4 @@ test("research passage traverses 402, one signed retry and receipt validation wi
   assert.equal(r.reviewStatus,"review_required");assert.equal(r.receipt.success,true);
   assert.equal(unsigned,1);assert.equal(signed,1);
 });
+

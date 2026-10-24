@@ -1,5 +1,10 @@
 # Changes
 
+## 2026-10-24 — strict public result validation
+
+- Validate complete v2 results, source URLs, unique IDs and linked verdict relations without adding dependencies.
+- Preserve the three actual stored paid examples and valid empty-evidence abstentions. Reject malformed recovered results even with a valid settlement receipt; never automatically repay.
+
 ## 2026-10-24 — dependency-free challenge inspection
 
 - Remove wallet/SDK imports from the free inspector by sharing request and payment-term validation in a dependency-free module. Paid clients retain the same validation and exports.
