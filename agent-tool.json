@@ -1,6 +1,6 @@
 {
   "name": "saver_verify_claim",
-  "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key.",
+  "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key.",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -228,6 +228,20 @@
     ],
     "workflowGuide": "https://github.com/SAVER-SI/saver-verifier/blob/main/docs/research-report-review.md",
     "buyerGuide": "https://saververify.com/fact-checking-api/",
-    "agentWorkflow": "https://saververify.com/fact-checking-api/agent-workflow.md"
+    "agentWorkflow": "https://saververify.com/fact-checking-api/agent-workflow.md",
+    "useCases": [
+      {
+        "task": "Claim verification",
+        "scope": "Assess one external factual claim against web evidence."
+      },
+      {
+        "task": "Cited-source support",
+        "scope": "Check whether the cited source supports the stated figure, date, attribution and qualifications; not a DOI or retraction database check."
+      },
+      {
+        "task": "Research report fact-checking",
+        "scope": "Review a material statistic before publication, preserving the measurement, reporting period, denominator and population."
+      }
+    ]
   }
 }

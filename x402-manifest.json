@@ -1,7 +1,7 @@
 {
   "x402Version": 2,
   "name": "SAVER Verifier",
-  "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key.",
+  "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key.",
   "canonicalBaseUrl": "https://api.saververify.com",
   "recommendedEndpoint": "https://api.saververify.com/v2/verify",
   "openapi": "https://api.saververify.com/openapi.json",
@@ -15,7 +15,7 @@
       "x402Version": 2,
       "method": "POST",
       "serviceName": "SAVER Verifier",
-      "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key.",
+      "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key.",
       "mimeType": "application/json",
       "tags": [
         "fact-checking",
@@ -294,7 +294,7 @@
       "x402Version": 2,
       "method": "POST",
       "serviceName": "SAVER Verifier",
-      "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key.",
+      "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key.",
       "mimeType": "application/json",
       "tags": [
         "fact-checking",

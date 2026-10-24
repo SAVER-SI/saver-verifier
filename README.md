@@ -1,6 +1,6 @@
 # SAVER Verifier
 
-Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports. Check an important statistic, date or source attribution against web evidence before relying on it. Receive a verdict, explanation, cited sources and evidence-to-source links.
+Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key.
 
 This is the official public repository for contracts, client examples and the skill. The production server implementation is private.
 
