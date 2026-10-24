@@ -285,7 +285,8 @@
             ]
           }
         }
-      }
+      },
+      "iconUrl": "https://saververify.com/icon.png"
     },
     {
       "url": "https://api.saververify.com/verify",
@@ -490,7 +491,8 @@
             ]
           }
         }
-      }
+      },
+      "iconUrl": "https://saververify.com/icon.png"
     }
   ]
 }
