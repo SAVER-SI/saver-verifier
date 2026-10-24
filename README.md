@@ -19,6 +19,12 @@ This is the official public repository for contracts, client examples and the sk
 
 Use SAVER when a factual error would change a report or decision. The stored cases distinguish capacity from generation, sales from fleet stock, and global averages from income-group figures. Use dedicated tools for arithmetic, wallet risk, token security, sanctions and transaction simulation.
 
+## For agents reviewing research reports
+
+[When a separate claim check is useful](https://saververify.com/fact-checking-api/) · [Machine-readable agent workflow](https://saververify.com/fact-checking-api/agent-workflow.md)
+
+The workflow helps an authorized agent select one material claim, inspect the free contract and stored reports, purchase one bounded check, and keep its evidence with the report. Reading the guide does not authorize payment.
+
 ## Discover and inspect
 
 - [Agent tool](https://saververify.com/agent-tool.json): input/output schemas and transport.

@@ -226,6 +226,8 @@
         "recordCollectionUrl": "https://saververify.com/examples.json"
       }
     ],
-    "workflowGuide": "https://github.com/SAVER-SI/saver-verifier/blob/main/docs/research-report-review.md"
+    "workflowGuide": "https://github.com/SAVER-SI/saver-verifier/blob/main/docs/research-report-review.md",
+    "buyerGuide": "https://saververify.com/fact-checking-api/",
+    "agentWorkflow": "https://saververify.com/fact-checking-api/agent-workflow.md"
   }
 }

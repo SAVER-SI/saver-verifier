@@ -1,5 +1,7 @@
 # Check a research claim before the report is delivered
 
+See the [agent workflow and fit guide](https://saververify.com/fact-checking-api/) before authorizing a check. A [plain Markdown workflow](agent-research-workflow.md) is included in this repository.
+
 SAVER can provide a separately cited assessment of one important factual claim in an agent-generated report. The report remains unchanged. A supported claim is not a verified report, and a confidence value is not a calibrated probability.
 
 ## First integration: GPT Researcher
