@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { createSaverClient, recoverResult, validateResult, ENDPOINT } from "./saver-client.mjs";
+import { ENDPOINT } from "./saver-contract.mjs";
+import { validateResult } from "./saver-result.mjs";
 
 // The research agent selects an exact factual passage. No extraction model or
 // automatic report rewrite is hidden in this adapter.
@@ -68,6 +69,7 @@ async function main(args) {
     const saved = JSON.parse(fs.readFileSync(take("--recover"), "utf8"));
     if (saved.endpoint !== plan.endpoint || JSON.stringify(saved.request) !== JSON.stringify(plan.request))
       throw Error("Recovery record belongs to a different request.");
+    const { recoverResult } = await import("./saver-client.mjs");
     console.log(JSON.stringify({ mode: "free_recovery", review: summarizeResearchReview(input, await recoverResult(saved.token)) }, null, 2));
     return;
   }
@@ -79,6 +81,7 @@ async function main(args) {
   const recoveryFile = take("--recovery-file");
   if (!recoveryFile || fs.existsSync(recoveryFile)) throw Error("A new recovery file is required; recover prior attempts instead.");
   if (!process.env.SAVER_PRIVATE_KEY) throw Error("No authorized wallet is configured.");
+  const { createSaverClient } = await import("./saver-client.mjs");
   const client = createSaverClient(process.env.SAVER_PRIVATE_KEY);
   const review = await reviewResearchClaim(input, request => client.verify(request, {
     saveRecovery: record => fs.writeFileSync(recoveryFile, JSON.stringify(record) + "\n", { flag: "wx", mode: 0o600 }),
@@ -92,3 +95,4 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
     console.error("Research review stopped. Keep recovery records private; do not automatically authorize another payment.");
     process.exitCode = 1;
   });
+

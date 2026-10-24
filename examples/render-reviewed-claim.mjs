@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { validateResult } from './saver-client.mjs';
+import { validateResult } from './saver-result.mjs';
 
 const text = value => String(value).replace(/\r/g, '').replace(/[\\`*_{}\[\]<>]/g, '\\$&');
 const quote = value => text(value).split('\n').map(line => `> ${line}`).join('\n');
@@ -53,3 +53,4 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
     process.stdout.write(renderReviewedClaim(JSON.parse(fs.readFileSync(process.argv[2], 'utf8'))));
   } catch { console.error('Could not render the saved review. No network, payment or publication was performed.'); process.exitCode = 1; }
 }
+

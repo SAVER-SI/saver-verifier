@@ -1,5 +1,7 @@
 # Changes
 
+- Make the stored report demo, local checkpoint plan and Markdown export runnable without wallet SDK installation. Share the unchanged strict result validator between offline and paid clients; paid execution and recovery still require dependencies.
+
 ## 2026-10-24 — strict public result validation
 
 - Validate complete v2 results, source URLs, unique IDs and linked verdict relations without adding dependencies.
