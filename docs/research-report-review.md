@@ -4,6 +4,8 @@ See the [agent workflow and fit guide](https://saververify.com/fact-checking-api
 
 SAVER can provide a separately cited assessment of one important factual claim in an agent-generated report. The report remains unchanged. A supported claim is not a verified report, and a confidence value is not a calibrated probability.
 
+A tested Python application bridge is available in [integrations/gpt-researcher](../integrations/gpt-researcher/README.md). It defaults to an offline plan and delegates authorized execution to the existing bounded client.
+
 ## First integration: GPT Researcher
 
 GPT Researcher exposes `conduct_research()`, `write_report()` and `get_research_sources()`. Its calling agent can select one exact factual passage from the returned Markdown, then run the SAVER checkpoint below before delivering the report. The same checkpoint accepts reports from other research frameworks.

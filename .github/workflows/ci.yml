@@ -27,4 +27,5 @@ jobs:
           package-manager-cache: false
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm test
+      - run: python3 -m unittest discover -s integrations/gpt-researcher -p 'test_*.py' -v
 
