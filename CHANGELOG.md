@@ -1,5 +1,10 @@
 # Changes
 
+## 2026-10-24 — dependency-free challenge inspection
+
+- Remove wallet/SDK imports from the free inspector by sharing request and payment-term validation in a dependency-free module. Paid clients retain the same validation and exports.
+- Document inspection without npm installation; verify it in a clean directory without wallet packages or credentials. No payment or production-server change.
+
 ## 2026-10-24 — Claude Code distribution package
 
 - Add plugin and SAVER-managed marketplace manifests around the unchanged 1.1.1 skill.

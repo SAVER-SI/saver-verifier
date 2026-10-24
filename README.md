@@ -35,10 +35,9 @@ The workflow helps an authorized agent select one material claim, inspect the fr
 
 The examples are unchanged, operator-funded, source-guided production records. Reading them is free; it runs no verification. They are not customer reviews or an independent accuracy benchmark.
 
-Inspect a live challenge without a wallet or payment, using Node.js 18+:
+Inspect a live challenge without a wallet, payment, or dependency installation, using Node.js 18+ from a checkout of this repository:
 
 ```sh
-npm ci
 node examples/verify-agent.mjs --json
 # Optional: inspect using your own valid request file.
 node examples/verify-agent.mjs examples/verify-request.json --json

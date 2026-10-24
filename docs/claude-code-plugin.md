@@ -15,7 +15,7 @@ Read https://saververify.com/examples.json for three actual operator-funded paid
 
 The skill pins payment terms, checks settlement and documents 24-hour result recovery. Do not automatically sign another payment after a timeout or uncertain outcome. Follow the skill and the current OpenAPI contract. Confidence is model-assessed, and a valid insufficient-evidence verdict is a paid result; inspect cited evidence before relying on it.
 
-The optional reference client requires its own dependencies; the plugin does not install or execute it automatically. See the main README for client instructions.
+The optional paid reference client requires its own dependencies; the free Node.js inspector requires no dependency installation. The plugin does not install or execute either automatically. See the main README for client instructions.
 
 Maintainers can validate packaging without starting a model session:
 

@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { ENDPOINT, validateChallenge, validateRequest } from './saver-client.mjs';
+import { ENDPOINT, validateChallenge, validateRequest } from './saver-contract.mjs';
 
 // Inspection never creates a signer or sends a payment header.
 export async function inspectPayment(request, fetchImpl = fetch) {
