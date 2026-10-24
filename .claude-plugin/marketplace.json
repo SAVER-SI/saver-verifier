@@ -1,0 +1,6 @@
+{
+  "name": "saver-tools",
+  "owner": {"name": "SAVER-SI"},
+  "metadata": {"description": "SAVER-managed factual claim verification skills for research agents."},
+  "plugins": [{"name": "saver-verifier", "source": "./"}]
+}

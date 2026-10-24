@@ -1,5 +1,11 @@
 # Changes
 
+## 2026-10-24 — Claude Code distribution package
+
+- Add plugin and SAVER-managed marketplace manifests around the unchanged 1.1.1 skill.
+- Document installation, existing-wallet requirements and explicit spending controls. No startup hooks, new hosted service or payment on installation.
+- Add offline packaging checks. Plugin version 1.0.0 is separate from the skill and API versions.
+
 ## 2026-10-24 — own-claim purchase workflow
 
 - Replace the fixed-claim paid CLI with a request-file workflow, default local plan and explicit `--execute --max-usdc=0.20` purchase. Existing bare invocations no longer buy the sample claim.

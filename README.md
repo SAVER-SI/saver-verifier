@@ -122,3 +122,16 @@ The [research checkpoint](docs/research-report-review.md#optional-local-report-e
 
 
 Catalogue display label: **SAVER Verifier Fact Checking**. Canonical routes, response versions and payment terms are documented in the manifest.
+
+## Claude Code plugin
+
+The SAVER-managed `saver-tools` marketplace packages the existing skill for Claude Code:
+
+```text
+/plugin marketplace add SAVER-SI/saver-verifier
+/plugin install saver-verifier@saver-tools
+```
+
+After installation, the skill is available as `/saver-verifier:saver-verifier`. Installation adds instructions, not a funded wallet or permission to spend. An existing authorized x402 wallet and a spending policy are required for paid execution. Without them, use the free contract/examples and report missing payment capability. [Setup, costs and limitations](docs/claude-code-plugin.md).
+
+Plugin package version is 1.0.0; skill source remains 1.1.1 and the API contract remains 1.2.2. This is a SAVER-managed marketplace; no Anthropic directory approval or endorsement is claimed.
