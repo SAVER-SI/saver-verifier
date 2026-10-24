@@ -120,3 +120,5 @@ Public documentation and examples are Apache-2.0 licensed. The skill artifact is
 The [research checkpoint](docs/research-report-review.md#optional-local-report-export) can export a saved v2 assessment as Markdown with clickable source references and tool attribution. Formatting is local and free; it does not publish the report or start another paid verification. The assessment covers one selected claim.
 
 
+
+Catalogue display label: **SAVER Verifier Fact Checking**. Canonical routes, response versions and payment terms are documented in the manifest.
