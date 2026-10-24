@@ -89,6 +89,8 @@ For opt-in recovery, persist a random 32-byte hexadecimal secret before the firs
 
 ## Integrations and skill
 
+[Install in Claude Code or Cursor](docs/agent-installation.md) · [Try the free stored report demo](docs/research-report-review.md#run-without-a-wallet-or-payment). Installation does not provide a wallet or authorize payment.
+
 - [Bounded paid client](examples/paid-verify.mjs) and [shared client](examples/saver-client.mjs): one authorized purchase, pinned terms, receipt checks and recovery.
 - **Try a report checkpoint without installing dependencies:** `node examples/research-report-review.mjs --demo` (Node.js 18+). Replays an operator-funded stored result; no network, wallet, model call or new payment.
 - [Research-report checkpoint](docs/research-report-review.md): an agent selects one exact factual passage for review. It checks that claim, not the whole report. This is a SAVER reference adapter, not an upstream GPT Researcher plugin or partnership.
