@@ -136,9 +136,9 @@ The SAVER-managed `saver-tools` marketplace packages the existing skill for Clau
 /plugin install saver-verifier@saver-tools
 ```
 
-After installation, the skill is available as `/saver-verifier:saver-verifier`. Installation adds instructions, not a funded wallet or permission to spend. An existing authorized x402 wallet and a spending policy are required for paid execution. Without them, use the free contract/examples and report missing payment capability. [Setup, costs and limitations](docs/claude-code-plugin.md).
+After installation, the skill is available as `/saver-verifier:saver-verifier`. Installation adds instructions, not a funded wallet or permission to spend. An existing authorized x402 wallet is required. Before every charge, the Claude plugin displays 0.20 USDC and the full Base recipient and waits for a separate explicit yes. A standing cap does not replace that confirmation. Without wallet capability or confirmation, use the free contract/examples. [Setup, costs and limitations](docs/claude-code-plugin.md).
 
-Plugin package version is 1.0.0; skill source remains 1.1.1 and the API contract remains 1.2.2. This is a SAVER-managed marketplace; no Anthropic directory approval or endorsement is claimed.
+Claude plugin version 1.0.1 is a separate, commit-pinned distribution with per-charge confirmation. The general Skills CLI/ClawHub skill remains 1.1.1, with its existing bounded-policy option; the API contract remains 1.2.2. This is a SAVER-managed marketplace; no Anthropic directory approval or endorsement is claimed.
 
 ## OpenAI directory status
 

@@ -1,6 +1,20 @@
 {
   "name": "saver-tools",
-  "owner": {"name": "SAVER-SI"},
-  "metadata": {"description": "SAVER-managed factual claim verification skills for research agents."},
-  "plugins": [{"name": "saver-verifier", "source": "./"}]
+  "owner": {
+    "name": "SAVER-SI"
+  },
+  "metadata": {
+    "description": "SAVER-managed factual claim verification skills for research agents."
+  },
+  "plugins": [
+    {
+      "name": "saver-verifier",
+      "version": "1.0.1",
+      "source": {
+        "source": "github",
+        "repo": "SAVER-SI/saver-verifier",
+        "sha": "4cf419630f07ce3e5b9b89b15c9e4f33683914de"
+      }
+    }
+  ]
 }

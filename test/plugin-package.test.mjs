@@ -1,29 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile, readdir } from 'node:fs/promises';
-
-const root = new URL('../', import.meta.url);
-const json = async path => JSON.parse(await readFile(new URL(path, root), 'utf8'));
-
-test('marketplace resolves the existing skill through the root plugin', async () => {
-  const plugin = await json('.claude-plugin/plugin.json');
-  const marketplace = await json('.claude-plugin/marketplace.json');
-  assert.equal(plugin.name, 'saver-verifier');
-  assert.equal(plugin.version, '1.0.0');
-  assert.equal(marketplace.name, 'saver-tools');
-  assert.deepEqual(marketplace.plugins, [{ name: plugin.name, source: './' }]);
-  const skill = await readFile(new URL('skills/saver-verifier/SKILL.md', root), 'utf8');
-  assert.match(skill, /version: 1\.1\.1/);
-  assert.match(skill, /spending policy/);
-  assert.match(skill, /Do not automatically/);
+import {readFile,readdir} from 'node:fs/promises';
+const root=new URL('../',import.meta.url);
+test('marketplace pins the consent-specific Claude release',async()=>{
+ const m=JSON.parse(await readFile(new URL('.claude-plugin/marketplace.json',root),'utf8'));
+ assert.equal(m.name,'saver-tools');assert.equal(m.plugins.length,1);
+ const p=m.plugins[0];assert.equal(p.name,'saver-verifier');assert.equal(p.version,'1.0.1');
+ assert.deepEqual(p.source,{source:'github',repo:'SAVER-SI/saver-verifier',sha:'4cf419630f07ce3e5b9b89b15c9e4f33683914de'});
+ assert.match(p.source.sha,/^[a-f0-9]{40}$/);
+ assert.deepEqual(await readdir(new URL('.claude-plugin/',root)),['marketplace.json']);
 });
-
-test('plugin contains instructions without automatic execution or secret collection', async () => {
-  const plugin = await json('.claude-plugin/plugin.json');
-  for (const field of ['mcpServers', 'hooks', 'agents', 'commands', 'userConfig', 'settings']) {
-    assert.equal(Object.hasOwn(plugin, field), false);
-  }
-  assert.deepEqual((await readdir(new URL('.claude-plugin/', root))).sort(), ['marketplace.json', 'plugin.json']);
-  assert.equal(plugin.homepage, 'https://saververify.com');
-  assert.equal(plugin.repository, 'https://github.com/SAVER-SI/saver-verifier');
+test('general autonomous agent skill remains separate and unchanged',async()=>{
+ const s=await readFile(new URL('skills/saver-verifier/SKILL.md',root),'utf8');
+ assert.ok(s.includes('version: 1.1.1'));assert.ok(s.includes('or an existing bounded per-call/session/daily spending policy'));
+ assert.ok(!s.includes('Require a separate yes for every charge'));
 });

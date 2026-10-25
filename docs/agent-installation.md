@@ -23,7 +23,7 @@ npx --yes skills@1.7.4 add SAVER-SI/saver-verifier --skill saver-verifier --agen
 npx --yes skills@1.7.4 add SAVER-SI/saver-verifier --skill saver-verifier --agent cursor --copy --yes
 ```
 
-Choose either the Claude plugin or the Skills CLI route for Claude Code; you do not need both. Review the [skill instructions](../skills/saver-verifier/SKILL.md) before installation. In an existing project, check for a previously installed copy before replacing it. CLI privacy and telemetry options are documented [upstream](https://github.com/vercel-labs/skills/blob/main/docs/troubleshooting.md).
+These are separate distributions: Claude plugin 1.0.1 requires a separate explicit yes after displaying price and recipient before every charge. The Skills CLI installs the unchanged general agent skill, whose policy can permit an existing bounded spending authorization. Installing both does not relax the Claude plugin's confirmation rule. Review the [skill instructions](../skills/saver-verifier/SKILL.md) before installation. In an existing project, check for a previously installed copy before replacing it. CLI privacy and telemetry options are documented [upstream](https://github.com/vercel-labs/skills/blob/main/docs/troubleshooting.md).
 
 The CLI also supports other agents, but the installation check recorded here targets Claude Code and Cursor only. It does not prove tool selection, wallet availability or paid execution in either runtime. Being installable does not imply a Skills.sh ranking or vendor endorsement.
 
