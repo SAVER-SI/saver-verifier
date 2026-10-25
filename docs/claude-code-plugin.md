@@ -20,7 +20,9 @@ The optional paid reference client requires its own dependencies; the free Node.
 Maintainers can validate packaging without starting a model session:
 
 ```sh
-claude plugin validate .
+# Validate the plugin folder, not main's marketplace root.
+git clone --branch release/claude-plugin-1.0.1 --single-branch https://github.com/SAVER-SI/saver-verifier.git saver-claude-plugin
+claude plugin validate ./saver-claude-plugin
 ```
 
 Official documentation: https://code.claude.com/docs/en/plugins/publish
@@ -45,3 +47,13 @@ If you previously added saver-tools, refresh its manifest before retrying an ins
 A successful installation reports that the plugin is active. A Claude usage-limit message can still prevent a model session; that is not a completed functional test. Installation and unsigned challenge inspection do not authorize a payment.
 
 If Git still attempts SSH despite the HTTPS source, inspect local Git URL rewrite rules or ask your Git administrator. Do not disable SSH host-key checking or TLS certificate verification. No global Git configuration change is required by SAVER.
+
+## First run and missing-wallet outcome
+
+Follow the [first-run checklist](agent-installation.md#first-run-in-claude-no-payment). The initial check is unsigned and costs no SAVER payment. It validates the 402 challenge without reading credentials or creating a wallet. Calling-runtime model usage can still apply.
+
+If no authorized payment tool is already available, stop with: "SAVER payment capability is missing. No payment was signed and no live verification was completed." Do not ask the model to search local files or environment variables for a wallet key. A connected tool still requiring authentication is not payment-ready.
+
+## Official directory candidate
+
+Plugin 1.0.2 was submitted for official Anthropic directory review on 25 October 2026 at commit `33c25f1784a1de2cb8ab956a38d789cdd36677b5`. This candidate is a minimal instruction package without bundled clients or dependency installs. Its consent rule is unchanged. Approval and publication are unconfirmed; the marketplace's existing 1.0.1 pin remains unchanged. The submitted release is distinct from main and the general 1.1.1 skill.
