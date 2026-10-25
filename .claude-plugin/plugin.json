@@ -1,10 +1,19 @@
 {
   "name": "saver-verifier",
-  "version": "1.0.0",
-  "description": "Source-backed factual claim checks for research agents. Reading examples is free; a completed check costs 0.20 USDC on Base through an existing authorized x402 wallet.",
-  "author": {"name": "SAVER-SI", "url": "https://github.com/SAVER-SI"},
+  "version": "1.0.1",
+  "description": "Source-backed claim checks. Every paid check requires displaying 0.20 USDC and the full Base recipient, then an explicit user yes; standing budgets do not replace confirmation.",
+  "author": {
+    "name": "SAVER-SI",
+    "url": "https://github.com/SAVER-SI"
+  },
   "homepage": "https://saververify.com",
   "repository": "https://github.com/SAVER-SI/saver-verifier",
   "license": "Apache-2.0",
-  "keywords": ["fact-checking", "claim-verification", "source-verification", "research", "x402"]
+  "keywords": [
+    "fact-checking",
+    "claim-verification",
+    "source-verification",
+    "research",
+    "x402"
+  ]
 }

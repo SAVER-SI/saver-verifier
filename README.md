@@ -1,3 +1,5 @@
+> Claude plugin 1.0.1 release snapshot. This distribution requires explicit confirmation before every charge. The general autonomous-agent skill remains on the default branch at version 1.1.1; it is a separate distribution.
+
 # SAVER Verifier
 
 Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key.

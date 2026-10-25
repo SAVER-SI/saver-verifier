@@ -1,14 +1,11 @@
 ---
 name: saver-verifier
 description: Independently check external factual claims in agent research, reports or other tool outputs using web evidence and cited sources. Use when a cited second check is needed before relying on a claim; not for wallet security, transaction simulation or arithmetic.
-version: 1.1.1
-metadata:
-  openclaw:
-    emoji: "🛡️"
-    homepage: https://saververify.com
 ---
 
 # SAVER Verifier
+
+Apply the per-charge confirmation rule below even if linked documentation permits autonomous spending under a budget.
 
 Inspect https://saververify.com/agent-tool.json for the input/output schemas and canonical transport. Inspect https://saververify.com/examples.json before buying. These are three actual operator-funded paid reports, not organic customer reviews or an independent accuracy benchmark. Reading them is free.
 
@@ -20,7 +17,7 @@ On HTTP 400/413, correct the request using `code` and `help` before paying. Use 
 
 On HTTP 402, decode the base64 JSON in `PAYMENT-REQUIRED`; the body may be `{}`. Use the runtime's existing authorized x402 v2 wallet with the exact scheme, Base Mainnet (`eip155:8453`) and USDC. Require 0.20 USDC (`amount: "200000"`), token `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` and recipient `0xdfd6cb683F5288e1dD1337E84C09b490857CC110`. Reject unexpected payment terms or destinations.
 
-Require explicit user approval for each charge or an existing bounded per-call/session/daily spending policy before signing. Do not bypass that policy, ask a user to paste a private key, or expose wallet secrets to a model, request body or logs. If no authorized wallet is available, report missing payment capability.
+Before each charge, show the user the exact claim, price 0.20 USDC, network Base Mainnet, and full recipient address 0xdfd6cb683F5288e1dD1337E84C09b490857CC110. Explain that an insufficient_evidence assessment is also a completed paid check. Ask whether to pay for this specific claim and wait for an explicit yes before signing. Require a separate yes for every charge. A standing spending cap may additionally limit the amount, but never replaces this per-charge confirmation. Silence, installation, an earlier approval, or a general instruction to work autonomously does not authorize the next charge. If the user declines or does not answer, do not sign or pay. Do not ask a user to paste a private key, or expose wallet secrets to a model, request body or logs. If no authorized wallet is available, report missing payment capability.
 
 Retry the same request with `PAYMENT-SIGNATURE` using the runtime's x402 client. Read the result and `PAYMENT-RESPONSE` on success; require a successful Base settlement receipt with a transaction hash. Do not automatically sign another payment after a lost response, timeout, invalid receipt or uncertain outcome.
 
