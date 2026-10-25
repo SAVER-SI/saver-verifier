@@ -148,3 +148,15 @@ Not submitted. OpenAI supports importing skill packages, but its current directo
 ## Result validation
 
 The reference client validates every required v2 result field, unique IDs, evidence-to-source links and HTTP(S) source URLs. Supported, contradicted and mixed verdicts require the corresponding linked findings; valid empty-evidence abstentions remain supported. A valid payment receipt does not make a malformed assessment valid. Validation failure never authorizes a replacement payment.
+
+## Official Anthropic directory submission
+
+Submitted for review on **25 October 2026**, as reported by the operator. **Approval and publication have not been confirmed.** Submission does not imply Anthropic endorsement or partnership.
+
+The submitted candidate is Claude plugin **1.0.2**, from `SAVER-SI/saver-verifier`, repository root on `release/claude-plugin-1.0.1`, commit `33c25f1784a1de2cb8ab956a38d789cdd36677b5`. The branch name is retained for the existing submission; the manifest carries version 1.0.2. The package contains the manifest, SAVER icon, skill, README and license, with no bundled executable clients, install dependencies or MCP server. Portal source validation passed; its four link-field notices are informational directory metadata warnings.
+
+The existing `saver-tools` marketplace remains separately pinned to plugin **1.0.1** at `4cf419630f07ce3e5b9b89b15c9e4f33683914de`. The directory candidate has not silently replaced that installed distribution. Both retain a separate explicit user yes before each payment. The general agent skill (1.1.1) and API contract (1.2.2) are unchanged.
+
+[Privacy notice](https://saververify.com/privacy/) · [Service terms](https://saververify.com/terms/) · Contact: [rjp.saver@gmail.com](mailto:rjp.saver@gmail.com).
+
+No additional submission or follow-up is needed while this review is pending. Record a confirmed review result before advertising directory availability.
