@@ -53,3 +53,9 @@ API 1.2.2 documents request correction, bounded payment admission, strict comple
 The [README before consolidation](https://github.com/SAVER-SI/saver-verifier/blob/08f14b03abc28d5ef0a5b7a6db3993489a55db9e/README.md) and Git history retain dated release observations and test counts. Operator-funded tests are not evidence of organic adoption or independent accuracy.
 
 
+
+## 2026-10-25 — installation maintenance
+
+- Fix the Franklin installation command to copy both transitive local client modules; verify the documented copied package starts without wallet credentials.
+- Claude marketplace and plugin source use public HTTPS with the existing exact plugin 1.0.1 commit pin. General skill 1.1.1, API 1.2.2 and payment terms are unchanged.
+- Public OpenAPI, agent tool, import manifest and three paid examples match the private service copies.

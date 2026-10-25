@@ -25,7 +25,7 @@ From the repository root, install into the hook directory with the same dependen
 
 ```sh
 mkdir -p ~/.blockrun/hooks
-cp examples/franklin-prespend-hook.mjs examples/franklin-prespend-hook.sh examples/franklin-prespend-hook.json examples/saver-client.mjs ~/.blockrun/hooks/
+cp examples/franklin-prespend-hook.mjs examples/franklin-prespend-hook.sh examples/franklin-prespend-hook.json examples/saver-client.mjs examples/saver-contract.mjs examples/saver-result.mjs ~/.blockrun/hooks/
 cp package.json package-lock.json ~/.blockrun/hooks/
 cd ~/.blockrun/hooks
 npm ci
