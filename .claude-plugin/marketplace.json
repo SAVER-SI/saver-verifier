@@ -14,6 +14,20 @@
         "source": "url",
         "url": "https://github.com/SAVER-SI/saver-verifier.git",
         "sha": "4cf419630f07ce3e5b9b89b15c9e4f33683914de"
+      },
+      "description": "Check factual claims, cited statistics and source attributions in research reports with linked web evidence. Each completed check costs 0.20 USDC on Base and requires a separate explicit yes after displaying the full recipient.",
+      "category": "research",
+      "keywords": [
+        "fact-checking",
+        "claim-verification",
+        "source-verification",
+        "research-reports",
+        "x402"
+      ],
+      "homepage": "https://saververify.com",
+      "author": {
+        "name": "SAVER-SI",
+        "url": "https://github.com/SAVER-SI"
       }
     }
   ]
