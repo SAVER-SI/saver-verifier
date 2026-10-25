@@ -39,6 +39,10 @@ No package installation, network request, wallet or model call is needed. This r
 
 Read the [report checkpoint guide](research-report-review.md) for your own selected passage and local Markdown export.
 
+## Already have a Coinbase wallet connected?
+
+Use the [Coinbase Wallet MCP request recipe](coinbase-wallet-mcp.md): POST body mapping, a 0.20-USDC cap, owner approval and recovery. It uses an existing connection; it does not install a wallet or require pasting a private key. This is a documented integration path, not a completed live Wallet MCP test.
+
 ## Before a live check
 
 Installation adds instructions, not a wallet or spending authorization. The runtime must already have an authorized x402 v2 wallet on Base and explicit approval or an existing bounded spending policy. Never paste private keys into a model conversation. If payment capability is missing, the agent should say so rather than invent a successful check.
