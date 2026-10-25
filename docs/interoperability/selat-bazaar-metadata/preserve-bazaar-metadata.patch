@@ -1,0 +1,38 @@
+--- a/scripts/discover_agentic_catalog.mjs
++++ b/scripts/discover_agentic_catalog.mjs
+@@ -661,15 +661,22 @@
+     // Demo sellers, payment tests, staging hosts and tunnels (lib/bazaar-noise).
+     const why = bazaarNoiseReason(r);
+     if (why) { noise[why] = (noise[why] || 0) + 1; continue; }
+-    if (!byHost.has(host)) byHost.set(host, { name: r.serviceName || host, endpoints: [] });
++    if (!byHost.has(host)) byHost.set(host, { name: r.serviceName || host, description: "", tags: [], endpoints: [] });
+     const svc = byHost.get(host);
+     if (r.serviceName && svc.name === host) svc.name = r.serviceName;
++    if (!svc.description && typeof r.description === "string") svc.description = r.description;
++    // Preserve declared metadata; do not infer tags from prose or change rank weights.
++    for (const tag of Array.isArray(r.tags) ? r.tags : []) {
++      if (typeof tag !== "string") continue;
++      const clean = tag.trim();
++      if (clean && clean.length <= 100 && !svc.tags.includes(clean) && svc.tags.length < 20) svc.tags.push(clean);
++    }
+     svc.endpoints.push(mapBazaarResource(r));
+   }
+   if (skipped) warn(`[bazaar] skipped ${skipped} resource(s) with no usable URL`);
+   const dropped = Object.values(noise).reduce((a, b) => a + b, 0);
+   if (dropped) warn(`[bazaar] dropped ${dropped} demo/test/staging resource(s): ${Object.entries(noise).map(([k, v]) => `${k} ${v}`).join(", ")}`);
+-  return [...byHost.entries()].map(([host, s]) => ({ id: host, name: s.name, domain: host, category: "", endpoints: s.endpoints }));
++  return [...byHost.entries()].map(([host, s]) => ({ id: host, name: s.name, domain: host, description: s.description, category: "", tags: s.tags, endpoints: s.endpoints }));
+ }
+ 
+ async function fetchBazaarResources({ warn = console.warn } = {}) {
+--- a/scripts/discover_federated_catalog.mjs
++++ b/scripts/discover_federated_catalog.mjs
+@@ -688,7 +688,7 @@
+       description: safeText(s.description, "Agentic service.description", warn),
+       url: rootUrl,
+       categories: s.category ? [s.category] : [],
+-      tags: [],
++      tags: [...new Set((Array.isArray(s.tags) ? s.tags : []).filter((t) => typeof t === "string" && t.trim() && t.length <= 100).map((t) => t.trim()))].slice(0, 20),
+       endpoints,
+       sources: [{ catalog: "bazaar", catalogId: s.id }],
+       supports: {

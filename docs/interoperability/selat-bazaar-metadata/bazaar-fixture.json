@@ -1,0 +1,86 @@
+[
+  {
+    "accepts": [
+      {
+        "amount": "200000",
+        "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        "extra": {
+          "name": "USD Coin",
+          "version": "2"
+        },
+        "maxTimeoutSeconds": 300,
+        "network": "eip155:8453",
+        "payTo": "0xdfd6cb683F5288e1dD1337E84C09b490857CC110",
+        "scheme": "exact"
+      }
+    ],
+    "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key.",
+    "resource": "https://api.saververify.com/v2/verify",
+    "serviceName": "SAVER Verifier Fact Checking",
+    "tags": [
+      "fact-checking",
+      "claim-verification",
+      "statistics",
+      "source-attribution",
+      "research-reports"
+    ],
+    "type": "http",
+    "x402Version": 2,
+    "extensions": {
+      "bazaar": {
+        "info": {
+          "input": {
+            "method": "POST",
+            "type": "http",
+            "bodyType": "json",
+            "body": {
+              "claim": "The Earth orbits the Sun."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "accepts": [
+      {
+        "amount": "200000",
+        "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        "extra": {
+          "name": "USD Coin",
+          "version": "2"
+        },
+        "maxTimeoutSeconds": 300,
+        "network": "eip155:8453",
+        "payTo": "0xdfd6cb683F5288e1dD1337E84C09b490857CC110",
+        "scheme": "exact"
+      }
+    ],
+    "description": "Verify factual claims and check whether cited sources support them. Fact-check statistics, dates and source attributions in agent research and reports against web evidence, preserving reporting periods, units and population groups. Returns a verdict, explanation and cited sources; /v2/verify links evidence to source IDs. 0.20 USDC via x402 v2 on Base. Model-assessed; no signup or API key.",
+    "resource": "https://api.saververify.com/verify",
+    "serviceName": "SAVER Verifier",
+    "tags": [
+      "fact-checking",
+      "claim-verification",
+      "statistics",
+      "source-attribution",
+      "research-reports"
+    ],
+    "type": "http",
+    "x402Version": 2,
+    "extensions": {
+      "bazaar": {
+        "info": {
+          "input": {
+            "method": "POST",
+            "type": "http",
+            "bodyType": "json",
+            "body": {
+              "claim": "The Earth orbits the Sun."
+            }
+          }
+        }
+      }
+    }
+  }
+]

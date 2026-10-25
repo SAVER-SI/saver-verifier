@@ -1,0 +1,21 @@
+// Run from extracted @selat-ai/selat-discovery@0.28.1 or @0.28.2 after applying patch.
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {mapBazaarToServices} from '../source/package/scripts/discover_agentic_catalog.mjs';
+import {normalizeAgenticCatalog} from '../source/package/scripts/discover_federated_catalog.mjs';
+const raw=JSON.parse(readFileSync(new URL('./bazaar-fixture.json',import.meta.url)));
+const warning=[];
+const mapped=mapBazaarToServices(raw,{warn:x=>warning.push(x)});
+const normalized=normalizeAgenticCatalog({services:mapped});
+assert.equal(normalized.length,1);
+assert.ok(normalized[0].description.includes('Fact-checking'));
+assert.deepEqual(normalized[0].tags,raw[0].tags);
+assert.ok(normalized[0].endpoints.some(x=>x.path==='/v2/verify' && x.method==='POST'));
+assert.ok(normalized[0].endpoints.every(x=>x.payments[0].amountUsd===0.2));
+const arbitrary=[{...raw[0],resource:'https://weather-provider.net/forecast',serviceName:'Weather',description:'Weather forecasts',tags:['weather','weather',' ',null,42,'x'.repeat(101)]}];
+const other=normalizeAgenticCatalog({services:mapBazaarToServices(arbitrary)});
+assert.deepEqual(other[0].tags,['weather']);
+assert.equal(other[0].description,'Weather forecasts');
+assert.equal(other[0].endpoints[0].method,'POST');
+assert.deepEqual(mapBazaarToServices(null),[]);
+console.log('PASS: published fixture survives both ingestion stages; generic provider, dedupe, invalid tags, method and price preserved.');
