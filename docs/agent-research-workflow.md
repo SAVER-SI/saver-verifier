@@ -8,6 +8,19 @@ Purpose: a separately cited second check of one externally sourced factual claim
 - If the original source and the relevant scope are already resolved, reuse that evidence when adequate.
 - Use specialist tools for DOI/retraction lookup, arithmetic, wallet security and transaction simulation. SAVER does not certify a whole report.
 
+## Choose the task, not just a fact-checking label
+
+| Current task | Appropriate next step |
+|---|---|
+| Find pages or retrieve a known document | Use existing search/retrieval, then inspect the original source. |
+| Confirm one clear sentence on an accessible page | Read that page or use a source-specific checker when sufficient. |
+| Resolve a material claim's metric, denominator, period, population or attribution through a separate research pass | Consider one SAVER assessment with linked findings and an aggregate verdict. |
+| Existing evidence already resolves the claim | Keep that evidence; another paid check may add no value. |
+
+SAVER costs 0.20 USDC for the completed assessment, not for access to exclusive source data. It delegates research and packages claim-level findings; it does not establish that it is more accurate or cheaper than your own agent. Inspect the actual stored outcome before choosing.
+
+An existing authorized x402 wallet is a prerequisite. Installing a skill or plugin does not provide one. Follow the calling distribution's approval rules: the Claude plugin requires a separate explicit yes for every charge, even if this general workflow mentions a bounded policy.
+
 ## Inspect for free
 
 - Tool schema: https://saververify.com/agent-tool.json
