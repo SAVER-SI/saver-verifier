@@ -5,7 +5,7 @@ Use SAVER for a separate web-backed assessment of a material external factual cl
 ## Claude Code: plugin
 
 ```text
-/plugin marketplace add SAVER-SI/saver-verifier
+/plugin marketplace add https://github.com/SAVER-SI/saver-verifier.git
 /plugin install saver-verifier@saver-tools
 ```
 

@@ -3,7 +3,7 @@
 Install the existing SAVER skill from the SAVER-managed marketplace:
 
 ```text
-/plugin marketplace add SAVER-SI/saver-verifier
+/plugin marketplace add https://github.com/SAVER-SI/saver-verifier.git
 /plugin install saver-verifier@saver-tools
 ```
 
@@ -30,3 +30,18 @@ Official documentation: https://code.claude.com/docs/en/plugins/publish
 Update the saver-tools marketplace and the installed saver-verifier plugin to 1.0.1. The install commands above are unchanged. Version 1.0.0 cached installations do not gain the new rule until updated. The marketplace fetches the plugin from commit `4cf419630f07ce3e5b9b89b15c9e4f33683914de`; later pushes to main or the release branch cannot alter this pinned package. The root of main now distributes the marketplace; the actual Claude plugin lives in the pinned release snapshot. Review that exact source before installing.
 
 The plugin's confirmation rule applies even if linked general API/client documentation permits autonomous execution under a spending policy. It is an instruction policy, not a new server-side payment gate. No startup hook or payment is added. No new live payment was used to test this release.
+
+## Public HTTPS installation
+
+Both the marketplace command and the pinned plugin source use public HTTPS. No GitHub account, SSH key, or GitHub SSH host-key setup is required. The plugin remains pinned to the same reviewed commit; version 1.0.1 and its payment confirmation rules are unchanged.
+
+If you previously added saver-tools, refresh its manifest before retrying an installation:
+
+```text
+/plugin marketplace update saver-tools
+/plugin install saver-verifier@saver-tools
+```
+
+A successful installation reports that the plugin is active. A Claude usage-limit message can still prevent a model session; that is not a completed functional test. Installation and unsigned challenge inspection do not authorize a payment.
+
+If Git still attempts SSH despite the HTTPS source, inspect local Git URL rewrite rules or ask your Git administrator. Do not disable SSH host-key checking or TLS certificate verification. No global Git configuration change is required by SAVER.

@@ -6,7 +6,7 @@ test('marketplace pins the consent-specific Claude release',async()=>{
  const m=JSON.parse(await readFile(new URL('.claude-plugin/marketplace.json',root),'utf8'));
  assert.equal(m.name,'saver-tools');assert.equal(m.plugins.length,1);
  const p=m.plugins[0];assert.equal(p.name,'saver-verifier');assert.equal(p.version,'1.0.1');
- assert.deepEqual(p.source,{source:'github',repo:'SAVER-SI/saver-verifier',sha:'4cf419630f07ce3e5b9b89b15c9e4f33683914de'});
+ assert.deepEqual(p.source,{source:'url',url:'https://github.com/SAVER-SI/saver-verifier.git',sha:'4cf419630f07ce3e5b9b89b15c9e4f33683914de'});
  assert.match(p.source.sha,/^[a-f0-9]{40}$/);
  assert.deepEqual(await readdir(new URL('.claude-plugin/',root)),['marketplace.json']);
 });

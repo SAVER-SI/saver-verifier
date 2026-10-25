@@ -132,7 +132,7 @@ Catalogue display label: **SAVER Verifier Fact Checking**. Canonical routes, res
 The SAVER-managed `saver-tools` marketplace packages the existing skill for Claude Code:
 
 ```text
-/plugin marketplace add SAVER-SI/saver-verifier
+/plugin marketplace add https://github.com/SAVER-SI/saver-verifier.git
 /plugin install saver-verifier@saver-tools
 ```
 

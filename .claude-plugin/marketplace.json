@@ -11,8 +11,8 @@
       "name": "saver-verifier",
       "version": "1.0.1",
       "source": {
-        "source": "github",
-        "repo": "SAVER-SI/saver-verifier",
+        "source": "url",
+        "url": "https://github.com/SAVER-SI/saver-verifier.git",
         "sha": "4cf419630f07ce3e5b9b89b15c9e4f33683914de"
       }
     }
