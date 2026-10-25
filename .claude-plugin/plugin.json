@@ -17,5 +17,7 @@
     "x402"
   ],
   "documentationUrl": "https://github.com/SAVER-SI/saver-verifier/blob/release/claude-plugin-1.0.1/README.md",
-  "supportUrl": "https://github.com/SAVER-SI/saver-verifier/issues"
+  "supportUrl": "https://github.com/SAVER-SI/saver-verifier/issues",
+  "privacyPolicyUrl": "https://saververify.com/privacy/",
+  "termsOfServiceUrl": "https://saververify.com/terms/"
 }
