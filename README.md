@@ -17,6 +17,8 @@ This is the official public repository for contracts, client examples and the sk
 | Signup / API key | None |
 | API contract / skill source | 1.2.2 / 1.1.1; separate versions |
 
+Both endpoints use the same source-checked verification engine; only the response format differs. `/verify` keeps string evidence for compatibility; `/v2/verify` exposes the checked evidence-to-source links.
+
 Use SAVER when a factual error would change a report or decision. The stored cases distinguish capacity from generation, sales from fleet stock, and global averages from income-group figures. Use dedicated tools for arithmetic, wallet risk, token security, sanctions and transaction simulation.
 
 ## For agents reviewing research reports

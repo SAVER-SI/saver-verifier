@@ -15,7 +15,7 @@
       "post": {
         "operationId": "verifyClaim",
         "summary": "Factual claim verification — original evidence format",
-        "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key. This endpoint keeps the original string-evidence response shape; use /v2/verify for explicit evidence-to-source links.",
+        "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key. This endpoint keeps the original string-evidence response shape; use /v2/verify for explicit evidence-to-source links. Both endpoints use the same source-checked verification engine; only the response format differs.",
         "security": [
           {
             "x402": []
@@ -272,7 +272,7 @@
       "post": {
         "operationId": "verifyClaimWithSources",
         "summary": "Claim verification and cited-source support — linked evidence",
-        "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key. Evidence references source IDs. Source membership does not prove that each interpretation is correct. See agent-tool.json selectionGuide for free recorded examples and fit criteria.",
+        "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key. Evidence references source IDs. Source membership does not prove that each interpretation is correct. See agent-tool.json selectionGuide for free recorded examples and fit criteria. Both endpoints use the same source-checked verification engine; only the response format differs.",
         "security": [
           {
             "x402": []
