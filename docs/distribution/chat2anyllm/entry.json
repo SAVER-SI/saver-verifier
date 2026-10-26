@@ -1,0 +1,11 @@
+{
+  "SAVER-SI/saver-verifier": {
+    "name": "SAVER Verifier",
+    "description": "Factual claim checks with linked web evidence for research reports. Live checks cost 0.20 USDC on Base via an existing authorized x402 wallet; the Claude plugin requires explicit approval before every charge. Installation provides no wallet and authorizes no spending.",
+    "enabled": true,
+    "type": "marketplace",
+    "repoOwner": "SAVER-SI",
+    "repoName": "saver-verifier",
+    "repoBranch": "main"
+  }
+}
