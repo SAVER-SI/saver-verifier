@@ -160,3 +160,6 @@ The existing `saver-tools` marketplace remains separately pinned to plugin **1.0
 [Privacy notice](https://saververify.com/privacy/) · [Service terms](https://saververify.com/terms/) · Contact: [rjp.saver@gmail.com](mailto:rjp.saver@gmail.com).
 
 No additional submission or follow-up is needed while this review is pending. Record a confirmed review result before advertising directory availability.
+
+
+Authorization retries are bounded to one provider attempt per authorization; free result recovery remains available. See [x402 integration](docs/x402.md#authorization-retries-and-payment-envelope-limits) for retry behavior and payment-header limits.
