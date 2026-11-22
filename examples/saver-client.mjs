@@ -88,9 +88,13 @@ export function createSaverClient(privateKey, fetchImpl = fetch) {
   return {
     async verify(
       request,
-      { token = randomBytes(32).toString("hex"), saveRecovery } = {},
+      { token, saveRecovery } = {},
     ) {
       validateRequest(request);
+      if (token === undefined) {
+        if (typeof saveRecovery !== "function") throw Error("Persist a recovery token before purchase or provide saveRecovery.");
+        token = randomBytes(32).toString("hex");
+      }
       if (!/^[\da-f]{64}$/i.test(token)) throw Error("Invalid recovery token.");
       if (saveRecovery)
         await saveRecovery({ token, request, endpoint: ENDPOINT });

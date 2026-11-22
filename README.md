@@ -62,7 +62,7 @@ node examples/paid-verify.mjs request.json --execute --max-usdc=0.20
 node examples/paid-verify.mjs --recover
 ```
 
-Live execution uses the runtime's existing authorized `SAVER_PRIVATE_KEY` wallet. Keep the key outside model context. The recovery file defaults to `.saver-recovery.json`; configure `SAVER_RECOVERY_FILE` for a separate, approved purchase. Never overwrite a prior attempt or choose a new file merely to retry an uncertain payment. The CLI requires a request file and explicit budget for live execution; it no longer buys a hard-coded sample claim.
+Live execution uses the runtime's existing authorized `SAVER_PRIVATE_KEY` wallet. Keep the key outside model context. For recurring orders, give each approved purchase a stable ID: `node examples/paid-verify.mjs request.json --execute --max-usdc=0.20 --purchase-id=report-001`. In the same private working directory, the CLI saves `.saver-recovery-report-001.json` before sending. Repeat the same ID and request to recover without signing; use `--recover --purchase-id=report-001` to recover without the request file or wallet. Use a new ID only for a separately approved purchase. An ID is local to that directory, not a server idempotency key. Do not combine it with `SAVER_RECOVERY_FILE`. Direct client integrations must supply a previously persisted token or a `saveRecovery` callback that completes before sending. Without an ID the recovery file defaults to `.saver-recovery.json`; configure `SAVER_RECOVERY_FILE` for a separate, approved purchase. Never overwrite a prior attempt or choose a new file merely to retry an uncertain payment. The CLI requires a request file and explicit budget for live execution; it no longer buys a hard-coded sample claim.
 
 ## Send a claim
 
