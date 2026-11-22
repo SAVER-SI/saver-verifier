@@ -141,7 +141,7 @@ The SAVER-managed `saver-tools` marketplace packages the existing skill for Clau
 
 After installation, the skill is available as `/saver-verifier:saver-verifier`. Installation adds instructions, not a funded wallet or permission to spend. An existing authorized x402 wallet is required. Before every charge, the Claude plugin displays 0.20 USDC and the full Base recipient and waits for a separate explicit yes. A standing cap does not replace that confirmation. Without wallet capability or confirmation, use the free contract/examples. [Setup, costs and limitations](docs/claude-code-plugin.md).
 
-Claude plugin version 1.0.1 is a separate, commit-pinned distribution with per-charge confirmation. The general Skills CLI/ClawHub skill remains 1.1.1, with its existing bounded-policy option; the API contract remains 1.2.2. This is a SAVER-managed marketplace; no Anthropic directory approval or endorsement is claimed.
+Claude plugin version 1.0.3 is a separate, commit-pinned distribution with per-charge confirmation. The general Skills CLI/ClawHub skill remains 1.1.1, with its existing bounded-policy option; the API contract remains 1.2.2. This is a SAVER-managed marketplace; no Anthropic directory approval or endorsement is claimed.
 
 ## OpenAI directory status
 
@@ -157,7 +157,7 @@ Submitted for review on **25 October 2026**, as reported by the operator. **Appr
 
 The submitted candidate is Claude plugin **1.0.2**, from `SAVER-SI/saver-verifier`, repository root on `release/claude-plugin-1.0.1`, commit `33c25f1784a1de2cb8ab956a38d789cdd36677b5`. The branch name is retained for the existing submission; the manifest carries version 1.0.2. The package contains the manifest, SAVER icon, skill, README and license, with no bundled executable clients, install dependencies or MCP server. Portal source validation passed; its four link-field notices are informational directory metadata warnings.
 
-The existing `saver-tools` marketplace remains separately pinned to plugin **1.0.1** at `4cf419630f07ce3e5b9b89b15c9e4f33683914de`. The directory candidate has not silently replaced that installed distribution. Both retain a separate explicit user yes before each payment. The general agent skill (1.1.1) and API contract (1.2.2) are unchanged.
+The existing `saver-tools` marketplace remains separately pinned to plugin **1.0.3** at `ca21da30e1395fc6951a33fec9664c639e49185f`. The directory candidate has not silently replaced that installed distribution. Both retain a separate explicit user yes before each payment. The general agent skill (1.1.1) and API contract (1.2.2) are unchanged.
 
 [Privacy notice](https://saververify.com/privacy/) · [Service terms](https://saververify.com/terms/) · Contact: [rjp.saver@gmail.com](mailto:rjp.saver@gmail.com).
 

@@ -2,6 +2,14 @@
 
 Purpose: a separately cited second check of one externally sourced factual claim. Use when a metric, denominator, reporting period, population or source attribution remains important to the report. This guide does not authorize payment.
 
+## Before publication
+
+Before publication, select one sentence whose statistic matters to the report. Compare its year, unit, population and denominator with the cited source. If that already resolves the question, keep the evidence and skip the purchase. If a material mismatch remains unresolved, propose one 0.20 USDC check of that sentence with its source URL as context. This rule selects a claim; it never authorizes spending.
+
+After a completed check, inspect the linked evidence. Keep a supported sentence if the source fits. Send a contradicted or mixed sentence back for editing; leave insufficient evidence flagged as unresolved. Do not silently rewrite the draft or sign another payment.
+
+Stored example (free to read, operator-funded): [IRENA energy check](https://saververify.com/examples/energy-capacity-check.json). The draft attributed 86% of global electricity generation in 2023 to renewables. The cited figure measured the renewable share of new capacity additions. The verdict was contradicted: return the sentence for correction before publication.
+
 ## Decide whether another check is useful
 
 - Prefer SAVER when a material claim needs a separate web-research pass and evidence-to-source links.
