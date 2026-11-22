@@ -1,6 +1,6 @@
 {
   "name": "saver-verifier",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Source-backed claim checks. Every paid check requires displaying 0.20 USDC and the full Base recipient, then an explicit user yes; standing budgets do not replace confirmation.",
   "author": {
     "name": "SAVER-SI",
@@ -16,7 +16,7 @@
     "research",
     "x402"
   ],
-  "documentationUrl": "https://github.com/SAVER-SI/saver-verifier/blob/release/claude-plugin-1.0.1/README.md",
+  "documentationUrl": "https://github.com/SAVER-SI/saver-verifier/blob/release/claude-plugin-1.0.3/README.md",
   "supportUrl": "https://github.com/SAVER-SI/saver-verifier/issues",
   "privacyPolicyUrl": "https://saververify.com/privacy/",
   "termsOfServiceUrl": "https://saververify.com/terms/"
