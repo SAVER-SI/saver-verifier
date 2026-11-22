@@ -33,3 +33,25 @@ test('shared client rejects malformed input before persisting recovery or networ
  let calls=0,saves=0;const client=createSaverClient('0x'+'11'.repeat(32),async()=>{calls++;throw Error('no network');});
  await assert.rejects(client.verify({claim:'ok',body:{}},{saveRecovery:()=>saves++}));assert.equal(calls,0);assert.equal(saves,0);
 });
+
+test('two approved orders remain separately recoverable after a lost response',async()=>{
+ const records=new Map(), sends=[], reads=[];
+ const files={existsSync:p=>records.has(p),readFileSync:p=>p==='claim.json'?JSON.stringify(request):records.get(p),
+ writeFileSync:(p,data,opts)=>{assert.equal(opts.flag,'wx');assert.ok(!records.has(p));records.set(p,data);}};
+ const options={files,env:{SAVER_PRIVATE_KEY:'TEST'},recover:t=>{reads.push(t);return t;},
+ createClient:()=>({verify:async(req,{saveRecovery})=>{const token=String(sends.length+1).repeat(64);
+ saveRecovery({request:req,endpoint:'https://api.saververify.com/v2/verify',token});sends.push(token);
+ if(sends.length===1)throw Error('lost response');return token;}})};
+ const buy=id=>runPurchase(['claim.json','--execute','--max-usdc=0.20','--purchase-id='+id],options);
+ await assert.rejects(buy('one'),/lost response/);await buy('one');await buy('two');
+ await runPurchase(['--recover','--purchase-id=two'],options);
+ assert.equal(records.size,2);assert.deepEqual(reads,sends);assert.equal(sends.length,2);
+ files.readFileSync=p=>p==='claim.json'?'{"claim":"Different"}':records.get(p);
+ await assert.rejects(buy('one'),/another request/);assert.equal(sends.length,2);
+});
+test('no request leaves the client if recovery is absent or cannot be persisted',async()=>{
+ let calls=0;const c=createSaverClient('0x'+'11'.repeat(32),async()=>{calls++;});
+ await assert.rejects(c.verify(request),/recovery token/);
+ await assert.rejects(c.verify(request,{saveRecovery:async()=>{throw Error('disk full')}}),/disk full/);
+ assert.equal(calls,0);
+});
