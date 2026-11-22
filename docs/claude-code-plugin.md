@@ -7,7 +7,7 @@ Install the existing SAVER skill from the SAVER-managed marketplace:
 /plugin install saver-verifier@saver-tools
 ```
 
-Invoke `/saver-verifier:saver-verifier` after installation. Plugin version 1.0.1 is a separate Claude distribution pinned to an exact source commit. The general Skills CLI/ClawHub skill remains 1.1.1 and is not changed by this release. It is not an Anthropic endorsement or an official directory approval.
+Invoke `/saver-verifier:saver-verifier` after installation. Plugin version 1.0.3 is a separate Claude distribution pinned to an exact source commit. The general Skills CLI/ClawHub skill remains 1.1.1 and is not changed by this release. It is not an Anthropic endorsement or an official directory approval.
 
 Installation adds instructions only. It does not install a funded wallet, grant spending permission, run a verification, or send a payment. There are no startup hooks or additional hosted services. Normal model charges from your calling runtime still apply when you use it.
 
@@ -21,7 +21,7 @@ Maintainers can validate packaging without starting a model session:
 
 ```sh
 # Validate the plugin folder, not main's marketplace root.
-git clone --branch release/claude-plugin-1.0.1 --single-branch https://github.com/SAVER-SI/saver-verifier.git saver-claude-plugin
+git clone --branch release/claude-plugin-1.0.3 --single-branch https://github.com/SAVER-SI/saver-verifier.git saver-claude-plugin
 claude plugin validate ./saver-claude-plugin
 ```
 
@@ -29,13 +29,13 @@ Official documentation: https://code.claude.com/docs/en/plugins/publish
 
 ## Upgrade and pinned source
 
-Update the saver-tools marketplace and the installed saver-verifier plugin to 1.0.1. The install commands above are unchanged. Version 1.0.0 cached installations do not gain the new rule until updated. The marketplace fetches the plugin from commit `4cf419630f07ce3e5b9b89b15c9e4f33683914de`; later pushes to main or the release branch cannot alter this pinned package. The root of main now distributes the marketplace; the actual Claude plugin lives in the pinned release snapshot. Review that exact source before installing.
+Update the saver-tools marketplace and the installed saver-verifier plugin to 1.0.3. The install commands above are unchanged. Version 1.0.0 cached installations do not gain the new rule until updated. The marketplace fetches the plugin from commit `ca21da30e1395fc6951a33fec9664c639e49185f`; later pushes to main or the release branch cannot alter this pinned package. The root of main now distributes the marketplace; the actual Claude plugin lives in the pinned release snapshot. Review that exact source before installing.
 
 The plugin's confirmation rule applies even if linked general API/client documentation permits autonomous execution under a spending policy. It is an instruction policy, not a new server-side payment gate. No startup hook or payment is added. No new live payment was used to test this release.
 
 ## Public HTTPS installation
 
-Both the marketplace command and the pinned plugin source use public HTTPS. No GitHub account, SSH key, or GitHub SSH host-key setup is required. The plugin remains pinned to the same reviewed commit; version 1.0.1 and its payment confirmation rules are unchanged.
+Both the marketplace command and the pinned plugin source use public HTTPS. No GitHub account, SSH key, or GitHub SSH host-key setup is required. The plugin remains pinned to the same reviewed commit; version 1.0.3 and its payment confirmation rules are unchanged.
 
 If you previously added saver-tools, refresh its manifest before retrying an installation:
 
@@ -56,4 +56,4 @@ If no authorized payment tool is already available, stop with: "SAVER payment ca
 
 ## Official directory candidate
 
-Plugin 1.0.2 was submitted for official Anthropic directory review on 25 October 2026 at commit `33c25f1784a1de2cb8ab956a38d789cdd36677b5`. This candidate is a minimal instruction package without bundled clients or dependency installs. Its consent rule is unchanged. Approval and publication are unconfirmed; the marketplace's existing 1.0.1 pin remains unchanged. The submitted release is distinct from main and the general 1.1.1 skill.
+Plugin 1.0.2 was submitted for official Anthropic directory review on 25 October 2026 at commit `33c25f1784a1de2cb8ab956a38d789cdd36677b5`. This candidate is a minimal instruction package without bundled clients or dependency installs. Its consent rule is unchanged. Approval and publication are unconfirmed; the SAVER marketplace separately distributes 1.0.3. The submitted release is distinct from main and the general 1.1.1 skill.
