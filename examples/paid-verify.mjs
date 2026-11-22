@@ -11,17 +11,28 @@ export async function runPurchase(args, {
   const recovery = args.includes('--recover');
   const budget = args.filter(a => a.startsWith('--max-usdc='));
   const inputs = args.filter(a => !a.startsWith('--'));
-  const unknown = args.filter(a => a.startsWith('--') && !['--execute', '--recover'].includes(a) && !a.startsWith('--max-usdc='));
+  const ids = args.filter(a => a.startsWith('--purchase-id='));
+  const id = ids.length ? ids[0].slice('--purchase-id='.length) : null;
+  if (ids.length > 1 || (id !== null && !/^[a-z0-9][a-z0-9-]{0,63}$/.test(id))) throw Error('Invalid purchase ID: use 1–64 lowercase letters, digits or hyphens.');
+  if (id && env.SAVER_RECOVERY_FILE) throw Error('Use a purchase ID or SAVER_RECOVERY_FILE, not both.');
+  const unknown = args.filter(a => a.startsWith('--') && !['--execute', '--recover'].includes(a) && !a.startsWith('--max-usdc=') && !a.startsWith('--purchase-id='));
   if (unknown.length || new Set(args).size !== args.length || budget.length > 1 || inputs.length > 1 ||
       (recovery && (execute || budget.length || inputs.length)) || (!recovery && inputs.length !== 1)) {
     throw Error('Use: node examples/paid-verify.mjs request.json [--execute --max-usdc=0.20], or --recover.');
   }
-  const file = env.SAVER_RECOVERY_FILE || '.saver-recovery.json';
+  const file = env.SAVER_RECOVERY_FILE || (id ? `.saver-recovery-${id}.json` : '.saver-recovery.json');
   if (recovery) return recover(JSON.parse(files.readFileSync(file, 'utf8')).token);
   const request = validateRequest(JSON.parse(files.readFileSync(inputs[0], 'utf8')));
   if (budget.length && budget[0] !== '--max-usdc=0.20') throw Error('The permitted budget is exactly --max-usdc=0.20.');
   if (!execute) return {mode:'plan', paymentsAuthorized:0, networkRequests:0, endpoint:ENDPOINT, request, maximumPurchaseUSDC:'0.20', recoveryFile:file};
   if (budget[0] !== '--max-usdc=0.20') throw Error('Execution requires --max-usdc=0.20 and an existing authorized spending policy or explicit approval.');
+  if (id && files.existsSync(file)) {
+    const record = JSON.parse(files.readFileSync(file, 'utf8'));
+    if (record.endpoint !== ENDPOINT || record.request?.claim !== request.claim ||
+        (record.request?.context ?? null) !== (request.context ?? null))
+      throw Error('Purchase ID already belongs to another request.');
+    return recover(record.token);
+  }
   if (files.existsSync(file)) throw Error('Prior attempt exists. Use --recover; do not overwrite it or automatically repay.');
   if (!env.SAVER_PRIVATE_KEY) throw Error('An existing authorized wallet is required. Keep its key outside model context.');
   return createClient(env.SAVER_PRIVATE_KEY).verify(request, {
