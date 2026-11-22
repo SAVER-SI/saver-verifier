@@ -7,6 +7,12 @@ description: Independently check external factual claims in agent research, repo
 
 Apply the per-charge confirmation rule below even if linked documentation permits autonomous spending under a budget.
 
+Before publication, select one sentence whose statistic matters to the report. Compare its year, unit, population and denominator with the cited source. If that already resolves the question, keep the evidence and skip the purchase. If a material mismatch remains unresolved, propose one 0.20 USDC check of that sentence with its source URL as context. This rule selects a claim; it never authorizes spending.
+
+After a completed check, inspect the linked evidence. Keep a supported sentence if the source fits. Send a contradicted or mixed sentence back for editing; leave insufficient evidence flagged as unresolved. Do not silently rewrite the draft or sign another payment.
+
+Stored example (free to read, operator-funded): [IRENA energy check](https://saververify.com/examples/energy-capacity-check.json). The draft attributed 86% of global electricity generation in 2023 to renewables. The cited figure measured the renewable share of new capacity additions. The verdict was contradicted: return the sentence for correction before publication.
+
 Inspect https://saververify.com/agent-tool.json for the input/output schemas and canonical transport. Inspect https://saververify.com/examples.json before buying. These are three actual operator-funded paid reports, not organic customer reviews or an independent accuracy benchmark. Reading them is free.
 
 Use `POST https://api.saververify.com/v2/verify` for evidence-to-source links. Keep `POST /verify` for integrations requiring the original string-evidence format. Inspect https://api.saververify.com/openapi.json and https://api.saververify.com/.well-known/x402 for the current contract.
