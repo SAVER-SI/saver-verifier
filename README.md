@@ -8,6 +8,14 @@ An existing authorized x402 v2 wallet integration is required for paid checks. T
 
 Each completed assessment costs **0.20 USDC on Base Mainnet**. Before every charge, the skill must display the exact claim, price, network and full recipient and receive an explicit yes. A standing budget never replaces this confirmation. An insufficient-evidence assessment is a completed paid check.
 
+## Decide before publication
+
+Before publication, select one sentence whose statistic matters to the report. Compare its year, unit, population and denominator with the cited source. If that already resolves the question, keep the evidence and skip the purchase. If a material mismatch remains unresolved, propose one 0.20 USDC check of that sentence with its source URL as context. This rule selects a claim; it never authorizes spending.
+
+After a completed check, inspect the linked evidence. Keep a supported sentence if the source fits. Send a contradicted or mixed sentence back for editing; leave insufficient evidence flagged as unresolved. Do not silently rewrite the draft or sign another payment.
+
+Stored example (free to read, operator-funded): [IRENA energy check](https://saververify.com/examples/energy-capacity-check.json). The draft attributed 86% of global electricity generation in 2023 to renewables. The cited figure measured the renewable share of new capacity additions. The verdict was contradicted: return the sentence for correction before publication.
+
 ## Try it
 
 Invoke `/saver-verifier:saver-verifier` with one of these requests:
