@@ -9,11 +9,11 @@
   "plugins": [
     {
       "name": "saver-verifier",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "source": {
         "source": "url",
         "url": "https://github.com/SAVER-SI/saver-verifier.git",
-        "sha": "4cf419630f07ce3e5b9b89b15c9e4f33683914de"
+        "sha": "ca21da30e1395fc6951a33fec9664c639e49185f"
       },
       "description": "Check factual claims, cited statistics and source attributions in research reports with linked web evidence. Each completed check costs 0.20 USDC on Base and requires a separate explicit yes after displaying the full recipient.",
       "category": "research",
