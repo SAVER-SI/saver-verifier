@@ -1,6 +1,6 @@
 {
   "name": "saver_verify_claim",
-  "description": "Fact-checking and claim verification API for AI agents. Verify whether a cited source supports a claim; check statistics, dates, units and populations in research reports before publication. Separate web research returns a verdict, linked evidence and sources. Source verification is model-assessed, not guaranteed correct. POST /v2/verify; x402 v2 on Base; 0.20 USDC. No signup or API key.",
+  "description": "Fact-checking and claim verification for research reports. When sources disagree on a statistic, check one claim against web evidence. Compare definitions, dates, denominators and populations to assess whether cited sources support the claim. Model-assessed verdict and linked evidence. POST /v2/verify; x402 v2 on Base; 0.20 USDC per completed check. No signup or API key.",
   "inputSchema": {
     "type": "object",
     "properties": {
