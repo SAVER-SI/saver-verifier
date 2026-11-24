@@ -10,8 +10,8 @@ test('marketplace pins the consent-specific Claude release',async()=>{
  assert.match(p.source.sha,/^[a-f0-9]{40}$/);
  assert.deepEqual(await readdir(new URL('.claude-plugin/',root)),['marketplace.json']);
 });
-test('general autonomous agent skill remains separate and unchanged',async()=>{
+test('general autonomous agent skill has its own version and spending policy',async()=>{
  const s=await readFile(new URL('skills/saver-verifier/SKILL.md',root),'utf8');
- assert.ok(s.includes('version: 1.1.1'));assert.ok(s.includes('or an existing bounded per-call/session/daily spending policy'));
+ assert.ok(s.includes('version: 1.1.2'));assert.ok(s.includes('or an existing bounded per-call/session/daily spending policy'));
  assert.ok(!s.includes('Require a separate yes for every charge'));
 });

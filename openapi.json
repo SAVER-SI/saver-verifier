@@ -3,7 +3,7 @@
   "info": {
     "title": "SAVER Verifier",
     "version": "1.2.2",
-    "description": "Fact-checking API for research reports. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check."
+    "description": "Fact-checking API for research reports and factual claim verification. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check."
   },
   "servers": [
     {
@@ -15,7 +15,7 @@
       "post": {
         "operationId": "verifyClaim",
         "summary": "Factual claim verification — original evidence format",
-        "description": "Fact-checking API for research reports. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check. This endpoint keeps the original string-evidence response shape; use /v2/verify for explicit evidence-to-source links. Both endpoints use the same source-checked verification engine; only the response format differs.",
+        "description": "Fact-checking API for research reports and factual claim verification. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check. This endpoint keeps the original string-evidence response shape; use /v2/verify for explicit evidence-to-source links. Both endpoints use the same source-checked verification engine; only the response format differs.",
         "security": [
           {
             "x402": []
@@ -272,7 +272,7 @@
       "post": {
         "operationId": "verifyClaimWithSources",
         "summary": "Claim verification and cited-source support — linked evidence",
-        "description": "Fact-checking API for research reports. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check. Evidence references source IDs. Source membership does not prove that each interpretation is correct. See agent-tool.json selectionGuide for free recorded examples and fit criteria. Both endpoints use the same source-checked verification engine; only the response format differs.",
+        "description": "Fact-checking API for research reports and factual claim verification. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check. Evidence references source IDs. Source membership does not prove that each interpretation is correct. See agent-tool.json selectionGuide for free recorded examples and fit criteria. Both endpoints use the same source-checked verification engine; only the response format differs.",
         "security": [
           {
             "x402": []

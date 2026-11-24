@@ -1,6 +1,6 @@
 {
   "name": "saver_verify_claim",
-  "description": "Fact-checking API for research reports. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.",
+  "description": "Fact-checking API for research reports and factual claim verification. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.",
   "inputSchema": {
     "type": "object",
     "properties": {

@@ -7,7 +7,7 @@ Install the existing SAVER skill from the SAVER-managed marketplace:
 /plugin install saver-verifier@saver-tools
 ```
 
-Invoke `/saver-verifier:saver-verifier` after installation. Plugin version 1.0.3 is a separate Claude distribution pinned to an exact source commit. The general Skills CLI/ClawHub skill remains 1.1.1 and is not changed by this release. It is not an Anthropic endorsement or an official directory approval.
+Invoke `/saver-verifier:saver-verifier` after installation. Plugin version 1.0.3 is a separate Claude distribution pinned to an exact source commit. The general agent skill source is versioned separately (1.1.2). It is not an Anthropic endorsement or an official directory approval.
 
 Installation adds instructions only. It does not install a funded wallet, grant spending permission, run a verification, or send a payment. There are no startup hooks or additional hosted services. Normal model charges from your calling runtime still apply when you use it.
 
@@ -56,4 +56,4 @@ If no authorized payment tool is already available, stop with: "SAVER payment ca
 
 ## Official directory candidate
 
-Plugin 1.0.2 was submitted for official Anthropic directory review on 25 October 2026 at commit `33c25f1784a1de2cb8ab956a38d789cdd36677b5`. This candidate is a minimal instruction package without bundled clients or dependency installs. Its consent rule is unchanged. Approval and publication are unconfirmed; the SAVER marketplace separately distributes 1.0.3. The submitted release is distinct from main and the general 1.1.1 skill.
+Plugin 1.0.2 was submitted for official Anthropic directory review on 25 October 2026 at commit `33c25f1784a1de2cb8ab956a38d789cdd36677b5`. This candidate is a minimal instruction package without bundled clients or dependency installs. Its consent rule is unchanged. Approval and publication are unconfirmed; the SAVER marketplace separately distributes 1.0.3. The submitted release is distinct from main and the general agent skill.

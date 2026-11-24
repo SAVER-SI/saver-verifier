@@ -1,7 +1,7 @@
 {
   "x402Version": 2,
   "name": "SAVER Verifier",
-  "description": "Fact-checking API for research reports. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.",
+  "description": "Fact-checking API for research reports and factual claim verification. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.",
   "canonicalBaseUrl": "https://api.saververify.com",
   "recommendedEndpoint": "https://api.saververify.com/v2/verify",
   "openapi": "https://api.saververify.com/openapi.json",
@@ -15,7 +15,7 @@
       "x402Version": 2,
       "method": "POST",
       "serviceName": "SAVER Verifier Fact Checking",
-      "description": "Fact-checking API for research reports. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.",
+      "description": "Fact-checking API for research reports and factual claim verification. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.",
       "mimeType": "application/json",
       "tags": [
         "fact-checking",
@@ -296,7 +296,7 @@
       "x402Version": 2,
       "method": "POST",
       "serviceName": "SAVER Verifier Fact Checking",
-      "description": "Fact-checking API for research reports. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.",
+      "description": "Fact-checking API for research reports and factual claim verification. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.",
       "mimeType": "application/json",
       "tags": [
         "fact-checking",
