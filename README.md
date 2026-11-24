@@ -1,6 +1,6 @@
 # SAVER Verifier
 
-Fact-checking and claim verification for research reports. When sources disagree on a statistic, check one claim against web evidence. Compare definitions, dates, denominators and populations to assess whether cited sources support the claim. Model-assessed verdict and linked evidence. POST /v2/verify; x402 v2 on Base; 0.20 USDC per completed check. No signup or API key.
+Fact-checking API for research reports. Before publishing, verify a factual claim against its cited source. Send the claim and optionally a source URL as context. Get a model-assessed verdict, linked evidence, and sources for 0.20 USDC per completed check.
 
 This is the official public repository for contracts, client examples and the skill. The production server implementation is private.
 
